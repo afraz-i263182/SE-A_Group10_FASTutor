@@ -1,23 +1,1628 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FASTutor - Learn from the seniors who’ve been there</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FASTutor — FAST-NUCES Verified Peer Mentorship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&icon_names=account_balance_wallet,account_circle,arrow_forward,arrow_right_alt,auto_stories,chat,check_circle,close,domain,expand_more,forum,group_add,groups,lock,meeting_room,menu,payments,person_search,schedule,school,search,star,terminal,tune,verified,verified_user,workspace_premium&display=block"
+  rel="stylesheet"
+/>  <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
-  <header>
-    <!-- Navigation and branding -->
+  <!-- ==================== HEADER / NAV ==================== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <!-- Brand Crest & Monogram -->
+      <div class="header-left">
+        <a class="brand-link" data-nav="find-tutors" href="#find-tutors">
+          <div class="brand-crest">
+            <span class="material-symbols-outlined brand-crest-icon">school</span>
+          </div>
+          <div class="brand-text">
+            <div class="brand-title-row">
+              <span class="brand-name">FASTutor</span>
+              <span class="badge-verified-pill">Verified</span>
+            </div>
+            <span class="brand-subtitle">FAST-NUCES Peer Mentorship</span>
+          </div>
+        </a>
+
+        <!-- Academic Nav Links -->
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <a aria-current="page" class="nav-link is-active" data-nav="find-tutors" href="#find-tutors">Find Tutors</a>
+          <a class="nav-link" data-nav="group-sessions" href="#exam-rush">Group Sessions</a>
+          <a class="nav-link" data-nav="study-resources" href="#study-resources">Study Resources</a>
+          <a class="nav-link" data-nav="practice-exams" href="#courses">Past Papers</a>
+          <a class="nav-link nav-link--rush" data-nav="exam-rush" href="#exam-rush">
+            <span>Exam Rush</span>
+            <span class="ping-indicator" aria-hidden="true">
+              <span class="ping-ring"></span>
+              <span class="ping-dot"></span>
+            </span>
+          </a>
+          <a class="nav-link" data-nav="become-a-tutor" href="#become-a-tutor">Become a Tutor</a>
+        </nav>
+      </div>
+
+      <!-- Action Area -->
+      <div class="header-actions">
+        <button class="btn-ghost-nav" data-open-auth="login" type="button">Log in</button>
+        <button class="btn btn-primary btn-sm" data-open-auth="signup" type="button">Get Started</button>
+        <div class="header-divider" aria-hidden="true"></div>
+        <button
+          class="account-trigger"
+          data-open-auth="login"
+          type="button"
+          aria-label="Student Portal Account"
+          title="Student Portal Account"
+        >
+          <span class="material-symbols-outlined">account_circle</span>
+        </button>
+        <button
+          class="mobile-menu-btn"
+          id="mobile-menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-nav-drawer"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" hidden>
+      <div class="container mobile-nav-inner">
+        <a class="mobile-nav-link is-active" data-nav="find-tutors" href="#find-tutors">Find Tutors</a>
+        <a class="mobile-nav-link" data-nav="group-sessions" href="#exam-rush">Group Sessions</a>
+        <a class="mobile-nav-link" data-nav="study-resources" href="#study-resources">Study Resources</a>
+        <a class="mobile-nav-link" data-nav="practice-exams" href="#courses">Past Papers</a>
+        <a class="mobile-nav-link mobile-nav-link--rush" data-nav="exam-rush" href="#exam-rush">
+          <span>Exam Rush</span>
+          <span class="ping-indicator" aria-hidden="true">
+            <span class="ping-ring"></span>
+            <span class="ping-dot"></span>
+          </span>
+        </a>
+        <a class="mobile-nav-link" data-nav="become-a-tutor" href="#become-a-tutor">Become a Tutor</a>
+        <div class="mobile-nav-actions">
+          <button class="btn btn-secondary btn-full" data-open-auth="login" type="button">Log in</button>
+          <button class="btn btn-primary btn-full" data-open-auth="signup" type="button">Get Started</button>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <!-- Primary page content -->
-     <h1>Hello World</h1>
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="site-main">
+    <!-- SECTION 1 & 2: EXECUTIVE HERO -->
+    <section class="hero-section" id="find-tutors">
+      <div class="hero-glow hero-glow--left" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--right" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left Column (7 Cols) -->
+          <div class="hero-left">
+            <div class="eyebrow-pill">
+              <span class="eyebrow-dot"></span>
+              <span class="eyebrow-text">FAST-NUCES Verified Peer Network</span>
+            </div>
+
+            <h1 class="hero-heading">
+              Learn from the seniors who’ve
+              <span class="hero-highlight">aced it.</span>
+            </h1>
+
+            <p class="hero-lead">
+              Strictly vetted seniors holding ‘A’ grades and 3.4+ CGPA. 1-on-1 coaching, sessional revision, and real past-paper solutions tailored to all 5 FAST campuses.
+            </p>
+
+            <!-- Refined Search Console -->
+            <form class="search-console" id="hero-search-form" novalidate>
+              <div class="search-controls-row">
+                <!-- Course Input -->
+                <div class="search-field-box search-field-box--grow">
+                  <span class="material-symbols-outlined search-field-icon">search</span>
+                  <input
+                    class="search-input"
+                    id="hero-course-search"
+                    name="course"
+                    placeholder="Search course code or topic (e.g. CS-2001, COAL, Algo)"
+                    type="text"
+                    autocomplete="off"
+                  />
+                  <button
+                    class="search-clear-btn"
+                    id="hero-search-clear"
+                    type="button"
+                    aria-label="Clear search"
+                    hidden
+                  >
+                    <span class="material-symbols-outlined">close</span>
+                  </button>
+                </div>
+
+                <!-- Campus Selector -->
+                <div class="search-field-box search-field-box--select">
+                  <div class="select-inner">
+                    <span class="material-symbols-outlined select-domain-icon">domain</span>
+                    <select class="campus-select" id="hero-campus-select" name="campus" aria-label="Select FAST Campus">
+                      <option value="all">All Campuses</option>
+                      <option selected value="Islamabad">Islamabad (H-11/4)</option>
+                      <option value="Lahore">Lahore (Faisal Town)</option>
+                      <option value="Karachi">Karachi (Shah Latif &amp; City)</option>
+                      <option value="Peshawar">Peshawar (Industrial)</option>
+                      <option value="Chiniot-Faisalabad">Chiniot-Faisalabad</option>
+                    </select>
+                  </div>
+                  <span class="material-symbols-outlined select-chevron">expand_more</span>
+                </div>
+
+                <!-- Search Action -->
+                <button class="btn btn-primary search-submit-btn" type="submit">
+                  <span>Find Tutors</span>
+                  <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+              </div>
+
+              <!-- Tags / Trending Strip -->
+              <div class="popular-tags-strip">
+                <span class="popular-label">Popular Courses:</span>
+                <button class="tag-chip" data-quick-course="DSA" type="button">Data Structures</button>
+                <button class="tag-chip" data-quick-course="COAL" type="button">COAL (8086)</button>
+                <button class="tag-chip" data-quick-course="OOP" type="button">OOP</button>
+                <button class="tag-chip" data-quick-course="Calculus" type="button">Calculus II</button>
+              </div>
+            </form>
+
+            <!-- Social trust badges -->
+            <div class="hero-trust-row">
+              <div class="trust-badge-item">
+                <span class="material-symbols-outlined icon-secondary">verified_user</span>
+                <span>Flex Transcript Verified</span>
+              </div>
+              <span class="trust-dot" aria-hidden="true">•</span>
+              <div class="trust-badge-item">
+                <span class="material-symbols-outlined icon-tertiary">account_balance_wallet</span>
+                <span>Sadapay &amp; Escrow Guard</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Tutor Preview (5 Cols) -->
+          <div class="hero-right">
+            <article class="showcase-card">
+              <!-- Top bar badge & status -->
+              <div class="showcase-header">
+                <span class="status-available-pill">
+                  <span class="pulse-dot"></span>
+                  Available Today
+                </span>
+                <div class="rating-pill">
+                  <span class="material-symbols-outlined star-icon">star</span>
+                  <span>4.9</span>
+                  <span class="rating-count">(48 reviews)</span>
+                </div>
+              </div>
+
+              <!-- Profile Details -->
+              <div class="showcase-profile">
+                <div class="avatar-wrap">
+                  <img
+                    class="showcase-avatar"
+                    alt="Ahmed Khan tutor portrait"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp5juVRmM6H_boh1vDzE5fXlj8phFGdWf9_Qfn2gVYcsm6xnVnHHP4WCXPILBp4aPlJgvcZt5AWDjqrs0Jf9K120Ga1kTQfqiv48NWPmIQtmbUBnHhfKdwflAsirgAdn25Km3pDUav-IbGyWTxeeWSLiMKPRzpoDQkNHUSVGQ4XvNFWWJuq2L7USb4oiLUUwRgafQle-Jhc5mbJic5LZUNlapc5OYhnpEcBt6RA-0p"
+                  />
+                  <span class="avatar-check" title="Verified FASTian">✓</span>
+                </div>
+                <div class="showcase-identity">
+                  <div class="showcase-name-row">
+                    <span class="showcase-name">Ahmed Khan</span>
+                    <span class="material-symbols-outlined verified-seal" title="Verified Transcript">verified</span>
+                  </div>
+                  <span class="showcase-batch">Batch '21 • BS CS (Islamabad Campus)</span>
+                  <span class="showcase-role">Teaching Assistant for CS-2001 (Fall '23)</span>
+                </div>
+              </div>
+
+              <!-- Academic Verified Grade Tags in Forest Emerald -->
+              <div class="grade-tags-row">
+                <span class="grade-chip grade-chip--emerald">Grade A+ in DSA</span>
+                <span class="grade-chip grade-chip--slate">Grade A in Algorithms</span>
+                <span class="grade-chip grade-chip--amber">Sessional Specialist</span>
+              </div>
+
+              <blockquote class="showcase-quote">
+                "Specialized in recursive trees, graphs, and assembly stack diagrams. Let's guarantee your mid-term marks with actual past exam walk-throughs."
+              </blockquote>
+
+              <!-- Pricing & Action -->
+              <div class="showcase-footer">
+                <div>
+                  <span class="fee-label">Mentorship Fee</span>
+                  <span class="fee-amount">PKR 850</span>
+                  <span class="fee-unit"> / hour</span>
+                </div>
+                <button
+                  class="btn btn-primary btn-md"
+                  data-book-tutor="Ahmed Khan"
+                  data-book-rate="PKR 850/hr"
+                  data-book-campus="Islamabad (H-11/4)"
+                  data-book-course="CS-2001 Data Structures & Algorithms"
+                  type="button"
+                >
+                  Book Session
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TRUST STRIP & METRICS -->
+    <section class="metrics-section" aria-label="Platform Statistics">
+      <div class="container">
+        <div class="metrics-grid">
+          <div class="metric-item">
+            <div class="metric-top">
+              <span class="metric-value">500+</span>
+              <span class="metric-tag metric-tag--secondary">Active</span>
+            </div>
+            <span class="metric-label">Verified FAST Seniors</span>
+            <span class="metric-sub">Screened with Flex Transcripts</span>
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-top">
+              <span class="metric-value">10,000+</span>
+              <span class="metric-tag metric-tag--secondary">Hours</span>
+            </div>
+            <span class="metric-label">Sessions Completed</span>
+            <span class="metric-sub">1-on-1 &amp; cohort exam reviews</span>
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-top">
+              <span class="metric-value metric-value--tertiary">4.9 ★</span>
+              <span class="metric-tag metric-tag--amber">Top Tier</span>
+            </div>
+            <span class="metric-label">Average Rating</span>
+            <span class="metric-sub">From authentic campus students</span>
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-top">
+              <span class="metric-value">5 Campuses</span>
+            </div>
+            <span class="metric-label">All-Pakistan Network</span>
+            <span class="metric-sub">ISB, LHR, KHI, PWR, CFD</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: BROWSE BY COURSE GRID -->
+    <section class="section section--surface" id="courses">
+      <div class="container">
+        <div class="section-header-split">
+          <div class="section-heading-group max-w-xl">
+            <div class="eyebrow-inline">
+              <span class="eyebrow-dot"></span>
+              <span class="eyebrow-text">Department Catalog</span>
+            </div>
+            <h2 class="section-title">Master FAST's toughest subjects</h2>
+            <p class="section-subtitle">
+              Tuned to your specific campus course outlines, assignment rubrics, and professor expectations.
+            </p>
+          </div>
+          <a class="link-arrow" href="#featured-tutors" data-reset-filters>
+            <span>Browse all 48 department courses</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- 8 Course Cards -->
+        <div class="courses-grid">
+          <article class="course-card" data-course-filter="DSA" role="button" tabindex="0">
+            <div class="course-card-top">
+              <div class="course-code-row">
+                <span class="course-code">CS-2001</span>
+                <span class="availability-dot availability-dot--high" title="High tutor availability"></span>
+              </div>
+              <h3 class="course-title">Data Structures &amp; Algorithms</h3>
+            </div>
+            <div class="course-card-footer">
+              <span class="course-mentors">64 Active Mentors</span>
+              <span class="course-rate">Avg PKR 850/hr</span>
+            </div>
+          </article>
+
+          <article class="course-card" data-course-filter="OOP" role="button" tabindex="0">
+            <div class="course-card-top">
+              <div class="course-code-row">
+                <span class="course-code">CS-217</span>
+                <span class="availability-dot availability-dot--high" title="High tutor availability"></span>
+              </div>
+              <h3 class="course-title">Object Oriented Programming</h3>
+            </div>
+            <div class="course-card-footer">
+              <span class="course-mentors">52 Active Mentors</span>
+              <span class="course-rate">Avg PKR 750/hr</span>
+            </div>
+          </article>
+
+          <article class="course-card" data-course-filter="COAL" role="button" tabindex="0">
+            <div class="course-card-top">
+              <div class="course-code-row">
+                <span class="course-code">EE/CS-2009</span>
+                <span class="availability-dot availability-dot--medium" title="Moderate tutor availability"></span>
+              </div>
+              <h3 class="course-title">Computer Org. &amp; Assembly (COAL)</h3>
+            </div>
+            <div class="course-card-footer">
+              <span class="course-mentors">38 Active Mentors</span>
+              <span class="course-rate">Avg PKR 900/hr</span>
+            </div>
+          </article>
+
+          <article class="course-card" data-course-filter="Databases" role="button" tabindex="0">
+            <div class="course-card-top">
+              <div class="course-code-row">
+                <span class="course-code">CS-3005</span>
+                <span class="availability-dot availability-dot--high" title="High tutor availability"></span>
+              </div>
+              <h3 class="course-title">Database Systems</h3>
+            </div>
+            <div class="course-card-footer">
+              <span class="course-mentors">41 Active Mentors</span>
+              <span class="course-rate">Avg PKR 700/hr</span>
+            </div>
+          </article>
+
+          <article class="course-card" data-course-filter="Discrete" role="button" tabindex="0">
+            <div class="course-card-top">
+              <div class="course-code-row">
+                <span class="course-code">MT-2005</span>
+                <span class="availability-dot availability-dot--high" title="High tutor availability"></span>
+              </div>
+              <h3 class="course-title">Discrete Structures</h3>
+            </div>
+            <div class="course-card-footer">
+              <span class="course-mentors">29 Active Mentors</span>
+              <span class="course-rate">Avg PKR 650/hr</span>
+            </div>
+          </article>
+
+          <article class="course-card" data-course-filter="Calculus" role="button" tabindex="0">
+            <div class="course-card-top">
+              <div class="course-code-row">
+                <span class="course-code">MT-1008</span>
+                <span class="availability-dot availability-dot--high" title="High tutor availability"></span>
+              </div>
+              <h3 class="course-title">Multivariable Calculus</h3>
+            </div>
+            <div class="course-card-footer">
+              <span class="course-mentors">44 Active Mentors</span>
+              <span class="course-rate">Avg PKR 600/hr</span>
+            </div>
+          </article>
+
+          <article class="course-card" data-course-filter="OS" role="button" tabindex="0">
+            <div class="course-card-top">
+              <div class="course-code-row">
+                <span class="course-code">CS-3004</span>
+                <span class="availability-dot availability-dot--medium" title="Moderate tutor availability"></span>
+              </div>
+              <h3 class="course-title">Operating Systems</h3>
+            </div>
+            <div class="course-card-footer">
+              <span class="course-mentors">35 Active Mentors</span>
+              <span class="course-rate">Avg PKR 950/hr</span>
+            </div>
+          </article>
+
+          <article class="course-card" data-course-filter="Linear Algebra" role="button" tabindex="0">
+            <div class="course-card-top">
+              <div class="course-code-row">
+                <span class="course-code">MT-2001</span>
+                <span class="availability-dot availability-dot--high" title="High tutor availability"></span>
+              </div>
+              <h3 class="course-title">Linear Algebra &amp; Diff Eq.</h3>
+            </div>
+            <div class="course-card-footer">
+              <span class="course-mentors">31 Active Mentors</span>
+              <span class="course-rate">Avg PKR 650/hr</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: HOW IT WORKS (EXECUTIVE 3-STEP TIMELINE) -->
+    <section class="section section--white section--bordered" id="how-it-works">
+      <div class="container">
+        <div class="section-header-center">
+          <div class="eyebrow-pill">
+            <span class="eyebrow-dot eybrow-dot--sm"></span>
+            <span class="eyebrow-text eyebrow-text--sm">Process Architecture</span>
+          </div>
+          <h2 class="section-title section-title--lg">How FASTutor Works</h2>
+          <p class="section-subtitle max-w-lg">
+            Engineered around fast-paced sessional timelines, campus lab schedules, and peer security.
+          </p>
+
+          <!-- Toggle -->
+          <div class="role-toggle" id="how-role-toggle" role="tablist" aria-label="Select Role">
+            <button
+              class="how-btn is-active"
+              data-role="student"
+              role="tab"
+              aria-selected="true"
+              type="button"
+            >
+              For FAST Students
+            </button>
+            <button
+              class="how-btn"
+              data-role="tutor"
+              role="tab"
+              aria-selected="false"
+              type="button"
+            >
+              For Senior Tutors
+            </button>
+          </div>
+        </div>
+
+        <!-- 3 Stepped Cards with timeline accents -->
+        <div class="steps-grid" id="how-steps-container">
+          <!-- Step 1 -->
+          <article class="step-card">
+            <div class="step-number step-number--primary">01</div>
+            <div class="step-copy">
+              <h3 class="step-title">Find Your Match</h3>
+              <p class="step-desc">
+                Filter by course syllabus, campus labs, past paper experience, or hourly budget. View authenticated student ratings.
+              </p>
+            </div>
+            <div class="step-footnote">
+              <span class="step-tag">Filter by campus &amp; teacher</span>
+              <span class="material-symbols-outlined step-tag-icon">arrow_right_alt</span>
+            </div>
+          </article>
+
+          <!-- Step 2 -->
+          <article class="step-card">
+            <div class="step-number step-number--secondary">02</div>
+            <div class="step-copy">
+              <h3 class="step-title">Book with Escrow</h3>
+              <p class="step-desc">
+                Choose 1-on-1 or collaborative group slots. Pay easily via Sadapay, Nayapay, or campus cash held in guarantee escrow.
+              </p>
+            </div>
+            <div class="step-footnote">
+              <span class="step-tag">100% money-back guarantee</span>
+              <span class="material-symbols-outlined step-tag-icon">lock</span>
+            </div>
+          </article>
+
+          <!-- Step 3 -->
+          <article class="step-card">
+            <div class="step-number step-number--tertiary">03</div>
+            <div class="step-copy">
+              <h3 class="step-title">Ace the Exam</h3>
+              <p class="step-desc">
+                Meet on campus (library/lab) or Google Meet, review past question walkthroughs, and boost your sessional marks.
+              </p>
+            </div>
+            <div class="step-footnote">
+              <span class="step-tag">Guaranteed GPA boost</span>
+              <span class="material-symbols-outlined step-tag-icon">verified</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: FEATURED TUTORS (4 RICH CARDS) -->
+    <section class="section section--surface" id="featured-tutors">
+      <div class="container">
+        <div class="section-header-split">
+          <div class="section-heading-group">
+            <div class="eyebrow-inline">
+              <span class="eyebrow-dot"></span>
+              <span class="eyebrow-text">Peer Excellence</span>
+            </div>
+            <h2 class="section-title">Top-Rated Mentors This Week</h2>
+            <p class="section-subtitle">
+              Verified high-performing seniors holding 'A' grades in target FAST courses.
+            </p>
+          </div>
+          <div class="filter-toolbar">
+            <button
+              class="btn-filter"
+              id="campus-filter-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="campus-filter-bar"
+            >
+              <span class="material-symbols-outlined icon-secondary">tune</span>
+              <span>Filter by Campus</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Collapsible Campus Filter Pill Bar -->
+        <div class="campus-filter-bar" id="campus-filter-bar" hidden>
+          <span class="filter-bar-label">Campus:</span>
+          <div class="filter-pills-group" role="group" aria-label="Filter tutors by campus">
+            <button class="filter-pill is-active" data-campus-pill="all" type="button">All Campuses</button>
+            <button class="filter-pill" data-campus-pill="Islamabad" type="button">Islamabad</button>
+            <button class="filter-pill" data-campus-pill="Lahore" type="button">Lahore</button>
+            <button class="filter-pill" data-campus-pill="Karachi" type="button">Karachi</button>
+            <button class="filter-pill" data-campus-pill="Peshawar" type="button">Peshawar</button>
+            <button class="filter-pill" data-campus-pill="Chiniot-Faisalabad" type="button">Chiniot-Faisalabad</button>
+          </div>
+        </div>
+
+        <!-- Active Filter Banner -->
+        <div class="active-filter-banner" id="active-filter-banner" hidden>
+          <span id="active-filter-summary">Showing filtered mentors</span>
+          <button class="btn-reset-link" id="reset-filters-btn" type="button">Reset Filters</button>
+        </div>
+
+        <!-- 4 Premium Tutor Cards Grid -->
+        <div class="tutors-grid" id="tutors-grid">
+          <!-- Tutor 1 -->
+          <article
+            class="tutor-card"
+            data-campus="Islamabad"
+            data-courses="CS-2001 DSA Data Structures Algorithms COAL 8086 EE/CS-2009"
+          >
+            <div class="tutor-card-body">
+              <div class="tutor-top-row">
+                <div class="avatar-wrap">
+                  <img
+                    class="tutor-avatar"
+                    alt="Hamza Tariq portrait"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxoKQWIpz0Xdvqs8UTYbEVECc2p1j4f-3vL6QM8gULvYbUPmZnicczPKh65sZwlgAGf3vUyX7j7CFiAei46QOzoEFoFJpU31rqWGJZOQ7gPLkCqbZA3-048p7-0xdFDlS1JMDEmj9dVlVbfIxffMkrrXuBf7t4XLWIwU4_iFJeD8Do1pUWNV1XDcmFCALcC4WOrFH8j1j5fVz9LdKISGkI5vAVq6W_A1A896V4jXCR"
+                  />
+                  <span class="avatar-check avatar-check--sm">✓</span>
+                </div>
+                <span class="rating-pill rating-pill--sm">
+                  <span class="material-symbols-outlined star-icon star-icon--sm">star</span>
+                  <span>4.9</span>
+                </span>
+              </div>
+
+              <div>
+                <h3 class="tutor-name">Hamza Tariq</h3>
+                <span class="tutor-meta">Batch '21 • BS CS (Islamabad)</span>
+              </div>
+
+              <div class="tutor-tags">
+                <span class="grade-chip grade-chip--emerald grade-chip--sm">Grade A in DSA</span>
+                <span class="grade-chip grade-chip--slate grade-chip--sm">COAL (8086)</span>
+              </div>
+            </div>
+
+            <div class="tutor-card-footer">
+              <div>
+                <span class="rate-label">Rate</span>
+                <span class="rate-value">PKR 800</span>
+                <span class="rate-unit">/hr</span>
+              </div>
+              <button
+                class="btn btn-primary btn-xs"
+                data-book-tutor="Hamza Tariq"
+                data-book-rate="PKR 800/hr"
+                data-book-campus="Islamabad (H-11/4)"
+                data-book-course="DSA & COAL (8086)"
+                type="button"
+              >
+                Book Session
+              </button>
+            </div>
+          </article>
+
+          <!-- Tutor 2 -->
+          <article
+            class="tutor-card"
+            data-campus="Lahore"
+            data-courses="CS-217 OOP Object Oriented Programming CS-3005 Databases Database Systems"
+          >
+            <div class="tutor-card-body">
+              <div class="tutor-top-row">
+                <div class="avatar-wrap">
+                  <img
+                    class="tutor-avatar"
+                    alt="Ayesha Noor portrait"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCByTjRy7-bLegR82UAnV4G6h__-WCSck8Fn8I89f_-15CZUHTSrj_Vp_vHU8xgmYJOrvGbxDBdYhAXSlvbRhMxHkC4lz3eLaIcCAKuLG3qzxmFvNgvX-P6i2Z-NJYSzqrl7_3cFSuQ8TZC_iT3hV9M0kmd_SX3gnbQqtohU-CNEITMpNLcgj6953IAjisF0M6n2mwGv1rEU0XOrH9jFB6o17sx2HXlNbhG9GsIexl1"
+                  />
+                  <span class="avatar-check avatar-check--sm">✓</span>
+                </div>
+                <span class="rating-pill rating-pill--sm">
+                  <span class="material-symbols-outlined star-icon star-icon--sm">star</span>
+                  <span>5.0</span>
+                </span>
+              </div>
+
+              <div>
+                <h3 class="tutor-name">Ayesha Noor</h3>
+                <span class="tutor-meta">Batch '22 • BS SE (Lahore)</span>
+              </div>
+
+              <div class="tutor-tags">
+                <span class="grade-chip grade-chip--emerald grade-chip--sm">Grade A+ in OOP</span>
+                <span class="grade-chip grade-chip--slate grade-chip--sm">Databases</span>
+              </div>
+            </div>
+
+            <div class="tutor-card-footer">
+              <div>
+                <span class="rate-label">Rate</span>
+                <span class="rate-value">PKR 750</span>
+                <span class="rate-unit">/hr</span>
+              </div>
+              <button
+                class="btn btn-primary btn-xs"
+                data-book-tutor="Ayesha Noor"
+                data-book-rate="PKR 750/hr"
+                data-book-campus="Lahore (Faisal Town)"
+                data-book-course="OOP & Database Systems"
+                type="button"
+              >
+                Book Session
+              </button>
+            </div>
+          </article>
+
+          <!-- Tutor 3 -->
+          <article
+            class="tutor-card"
+            data-campus="Karachi"
+            data-courses="CS-3004 OS Operating Systems Computer Networks"
+          >
+            <div class="tutor-card-body">
+              <div class="tutor-top-row">
+                <div class="avatar-wrap">
+                  <img
+                    class="tutor-avatar"
+                    alt="Bilal Mustafa portrait"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRkNse5LMhl1u7rEHFyw_sJc-dyBCe4-0vhzMPeM4gWeceY5WzroTCkYJXbkGJMraIdpAhEOCUjekLAArq9wgW5Bu3j1zm4psnvxvl3DHHvGc9NF3qC2xMtNlM2VmdHAktUfpWmNB0Yd1iYQWogKUpl2K10ZfHcQUjilGlE1M7zBCgW8JeWhzDeUIel6cDKErLEh2EXgyvfUs0MvEcWthL4SZUfki1pNL4hTaTGcTw"
+                  />
+                  <span class="avatar-check avatar-check--sm">✓</span>
+                </div>
+                <span class="rating-pill rating-pill--sm">
+                  <span class="material-symbols-outlined star-icon star-icon--sm">star</span>
+                  <span>4.8</span>
+                </span>
+              </div>
+
+              <div>
+                <h3 class="tutor-name">Bilal Mustafa</h3>
+                <span class="tutor-meta">Batch '21 • EE/CS (Karachi)</span>
+              </div>
+
+              <div class="tutor-tags">
+                <span class="grade-chip grade-chip--emerald grade-chip--sm">Grade A in OS</span>
+                <span class="grade-chip grade-chip--slate grade-chip--sm">Networks</span>
+              </div>
+            </div>
+
+            <div class="tutor-card-footer">
+              <div>
+                <span class="rate-label">Rate</span>
+                <span class="rate-value">PKR 900</span>
+                <span class="rate-unit">/hr</span>
+              </div>
+              <button
+                class="btn btn-primary btn-xs"
+                data-book-tutor="Bilal Mustafa"
+                data-book-rate="PKR 900/hr"
+                data-book-campus="Karachi (Shah Latif & City)"
+                data-book-course="Operating Systems & Networks"
+                type="button"
+              >
+                Book Session
+              </button>
+            </div>
+          </article>
+
+          <!-- Tutor 4 -->
+          <article
+            class="tutor-card"
+            data-campus="Islamabad"
+            data-courses="MT-2005 Discrete Structures MT-2001 Linear Algebra MT-1008 Calculus Multivariable Calculus"
+          >
+            <div class="tutor-card-body">
+              <div class="tutor-top-row">
+                <div class="avatar-wrap">
+                  <img
+                    class="tutor-avatar"
+                    alt="Mahnoor Fatima portrait"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPE6gE5iwcsNYAEZKssx15f9XDBqYpcZMatzcP0I67biqKoT4utzuWi1v9qfT4Hh98YWkVaOhvOtdVRLBU9pUlo8msL5yU2eBRfWJQD6ApNgHOk0JWHnYlyd-nYEuX7Ee-9Sbbb9oXsv5sCnQ442kvRKpV5VogNErKKEhGG6cVI9VwGzRB30XRTJ_uMB4KhRp-YJP0a1pthTrpCzgtMlgYoxHvot8p4t6AP3tesvwE"
+                  />
+                  <span class="avatar-check avatar-check--sm">✓</span>
+                </div>
+                <span class="rating-pill rating-pill--sm">
+                  <span class="material-symbols-outlined star-icon star-icon--sm">star</span>
+                  <span>5.0</span>
+                </span>
+              </div>
+
+              <div>
+                <h3 class="tutor-name">Mahnoor Fatima</h3>
+                <span class="tutor-meta">Batch '22 • BS AI (Islamabad)</span>
+              </div>
+
+              <div class="tutor-tags">
+                <span class="grade-chip grade-chip--emerald grade-chip--sm">Grade A+ in Discrete</span>
+                <span class="grade-chip grade-chip--slate grade-chip--sm">Linear Algebra</span>
+              </div>
+            </div>
+
+            <div class="tutor-card-footer">
+              <div>
+                <span class="rate-label">Rate</span>
+                <span class="rate-value">PKR 700</span>
+                <span class="rate-unit">/hr</span>
+              </div>
+              <button
+                class="btn btn-primary btn-xs"
+                data-book-tutor="Mahnoor Fatima"
+                data-book-rate="PKR 700/hr"
+                data-book-campus="Islamabad (H-11/4)"
+                data-book-course="Discrete Structures & Linear Algebra"
+                type="button"
+              >
+                Book Session
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Empty Search State -->
+        <div class="empty-tutors-state" id="empty-tutors-state" hidden>
+          <span class="material-symbols-outlined empty-icon">person_search</span>
+          <h3>No featured mentors matched that filter</h3>
+          <p>Try clearing your course keyword or switching to All Campuses to view available seniors.</p>
+          <button class="btn btn-primary btn-sm" id="empty-reset-btn" type="button">Show All Featured Mentors</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: EXAM RUSH BANNER -->
+    <section class="banner-section" id="exam-rush">
+      <div class="container">
+        <div class="exam-rush-banner">
+          <div class="banner-glow banner-glow--amber" aria-hidden="true"></div>
+          <div class="banner-glow banner-glow--emerald" aria-hidden="true"></div>
+
+          <div class="exam-rush-content">
+            <div class="exam-rush-copy">
+              <div class="rush-eyebrow">
+                <span class="ping-indicator ping-indicator--lg" aria-hidden="true">
+                  <span class="ping-ring"></span>
+                  <span class="ping-dot"></span>
+                </span>
+                <span class="rush-eyebrow-text">FAST Sessional Sprint Active</span>
+              </div>
+              <h2 class="exam-rush-title">
+                Exam tomorrow? Need emergency past-paper walkthroughs?
+              </h2>
+              <p class="exam-rush-desc">
+                Join live group cram hubs or book verified standby seniors from 8:00 PM to 2:00 AM on nights before Sessional 1, 2, and Final Exams.
+              </p>
+            </div>
+
+            <div class="exam-rush-actions">
+              <button
+                class="btn btn-amber btn-lg"
+                data-book-tutor="Sessional Sprint Cohort Hub"
+                data-book-rate="PKR 300/student"
+                data-book-campus="Online Google Meet / Campus Hub"
+                data-book-course="Exam Rush Past-Paper Walkthrough"
+                type="button"
+              >
+                <span class="material-symbols-outlined">group_add</span>
+                <span>Join Group Review (PKR 300)</span>
+              </button>
+              <a class="btn btn-glass btn-lg" href="#featured-tutors" data-reset-filters>
+                Find Standby Tutors
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: WHY FASTUTOR (ACADEMIC TRUST) -->
+    <section class="section section--white section--bordered">
+      <div class="container">
+        <div class="section-header-center">
+          <div class="eyebrow-pill">
+            <span class="eyebrow-dot eybrow-dot--sm"></span>
+            <span class="eyebrow-text eyebrow-text--sm">The FASTian Difference</span>
+          </div>
+          <h2 class="section-title section-title--lg">Why FASTutor Works Best</h2>
+          <p class="section-subtitle max-w-xl">
+            Generic tutors do not understand the brutal relative grading curves, strict assignment autograders, and lab exams unique to FAST-NUCES.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon-box feature-icon-box--emerald">
+              <span class="material-symbols-outlined">verified</span>
+            </div>
+            <h3 class="feature-title">Verified Academic Transcripts</h3>
+            <p class="feature-desc">
+              Every mentor must show their official Flex portal transcript proving an 'A' grade in the course and a 3.4+ overall CGPA.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon-box feature-icon-box--slate">
+              <span class="material-symbols-outlined">meeting_room</span>
+            </div>
+            <h3 class="feature-title">Flexible &amp; On-Campus</h3>
+            <p class="feature-desc">
+              Study face-to-face in the campus library, cafeteria corner, or departmental labs — or jump into private Google Meet links.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon-box feature-icon-box--amber">
+              <span class="material-symbols-outlined">groups</span>
+            </div>
+            <h3 class="feature-title">Group Sessional Cohorts</h3>
+            <p class="feature-desc">
+              Share fees with up to 4 classmates at only PKR 250–350 each for midterm sprint sessions and problem-solving reviews.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon-box feature-icon-box--emerald">
+              <span class="material-symbols-outlined">auto_stories</span>
+            </div>
+            <h3 class="feature-title">Curated Past Papers</h3>
+            <p class="feature-desc">
+              Practice verified questions, past sessionals, and marking guidelines annotated by top batch alumni.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: REAL STORIES / TESTIMONIALS -->
+    <section class="section section--surface">
+      <div class="container">
+        <div class="section-header-center">
+          <div class="eyebrow-pill">
+            <span class="eyebrow-dot eybrow-dot--sm"></span>
+            <span class="eyebrow-text eyebrow-text--sm">Proven Outcomes</span>
+          </div>
+          <h2 class="section-title section-title--lg">Real Stories, Real Grade Turnarounds</h2>
+          <p class="section-subtitle max-w-lg">
+            See how FASTians turned around their semester grades through senior peer mentoring.
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          <!-- Testimonial 1 -->
+          <article class="testimonial-card">
+            <div class="testimonial-body">
+              <div class="stars-row" aria-label="5 out of 5 stars">
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+              </div>
+              <blockquote class="testimonial-quote">
+                "I was on the verge of failing COAL with a D on Sessional 1. My tutor Zain (Batch '20) broke down 8086 assembly instructions in 3 sessions. Ended up with a B+!"
+              </blockquote>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-initials author-initials--primary">DS</div>
+              <div>
+                <span class="author-name">Daniyal S.</span>
+                <span class="author-meta">BSCS Batch '23 • Islamabad</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Testimonial 2 -->
+          <article class="testimonial-card">
+            <div class="testimonial-body">
+              <div class="stars-row" aria-label="5 out of 5 stars">
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+              </div>
+              <blockquote class="testimonial-quote">
+                "Data Structures tree traversals finally clicked when Bilal drew out recursion stack frames. The best 1,500 PKR I spent all semester."
+              </blockquote>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-initials author-initials--secondary">ZF</div>
+              <div>
+                <span class="author-name">Zoya Farooq</span>
+                <span class="author-meta">BSSE Batch '23 • Lahore</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Testimonial 3 -->
+          <article class="testimonial-card">
+            <div class="testimonial-body">
+              <div class="stars-row" aria-label="5 out of 5 stars">
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+                <span class="material-symbols-outlined star-icon">star</span>
+              </div>
+              <blockquote class="testimonial-quote">
+                "Group revision with 3 friends for Multivariable Calculus saved our finals. We all scored A's in our quizzes and destroyed the curve."
+              </blockquote>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-initials author-initials--amber">MU</div>
+              <div>
+                <span class="author-name">M. Usman</span>
+                <span class="author-meta">BSCS Batch '24 • Karachi</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: BECOME A TUTOR (SPLIT SECTION) -->
+    <section class="section section--white section--border-top" id="become-a-tutor">
+      <div class="container">
+        <div class="tutor-split-grid">
+          <div class="tutor-split-left">
+            <div class="eyebrow-pill">
+              <span class="eyebrow-dot"></span>
+              <span class="eyebrow-text eyebrow-text--sm">Campus Leadership</span>
+            </div>
+
+            <h2 class="split-heading">
+              Turn your academic success into high-paying campus mentorship
+            </h2>
+
+            <p class="split-lead">
+              Join 500+ verified senior tutors who mentor juniors in between lectures while reinforcing their own technical mastery for job interviews.
+            </p>
+
+            <div class="perks-grid">
+              <div class="perk-card">
+                <div class="perk-icon perk-icon--emerald">
+                  <span class="material-symbols-outlined">payments</span>
+                </div>
+                <div>
+                  <h4 class="perk-title">PKR 25K–50K / month</h4>
+                  <p class="perk-desc">Flexible slots around your own lab and lecture schedule.</p>
+                </div>
+              </div>
+
+              <div class="perk-card">
+                <div class="perk-icon perk-icon--amber">
+                  <span class="material-symbols-outlined">workspace_premium</span>
+                </div>
+                <div>
+                  <h4 class="perk-title">Official Certificate</h4>
+                  <p class="perk-desc">Verified FASTutor Teaching Certificate to boost your software CV.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="split-cta-row">
+              <button class="btn btn-primary btn-lg" data-open-apply type="button">
+                <span>Apply as a Tutor</span>
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </button>
+              <span class="cta-note">Takes 3 mins • Instant Nu-ID check</span>
+            </div>
+          </div>
+
+          <!-- Right Card: Qualification Checklist -->
+          <aside class="eligibility-card">
+            <h3 class="eligibility-title">Tutor Eligibility Criteria</h3>
+
+            <div class="checklist-group">
+              <div class="checklist-item">
+                <span class="material-symbols-outlined checklist-icon">check_circle</span>
+                <div>
+                  <span class="checklist-heading">Grade A or A- in Target Subject</span>
+                  <span class="checklist-sub">Verified via Flex student portal screenshot or slip</span>
+                </div>
+              </div>
+
+              <div class="checklist-item">
+                <span class="material-symbols-outlined checklist-icon">check_circle</span>
+                <div>
+                  <span class="checklist-heading">Minimum 3.20 Overall CGPA</span>
+                  <span class="checklist-sub">Must be enrolled in 4th semester or higher (Junior / Senior)</span>
+                </div>
+              </div>
+
+              <div class="checklist-item">
+                <span class="material-symbols-outlined checklist-icon">check_circle</span>
+                <div>
+                  <span class="checklist-heading">Active FAST Student Nu-Email</span>
+                  <span class="checklist-sub">Confirmation sent to your @nu.edu.pk address</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="payout-notice">
+              <span class="material-symbols-outlined payout-icon">verified_user</span>
+              <span class="payout-text">
+                Weekly payouts deposited directly to your Sadapay, Nayapay, or local bank IBAN every Monday.
+              </span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 11: CAMPUS GUIDES & STUDY REPOS -->
+    <section class="section section--surface" id="study-resources">
+      <div class="container">
+        <div class="section-header-split">
+          <div class="section-heading-group">
+            <div class="eyebrow-inline">
+              <span class="eyebrow-dot"></span>
+              <span class="eyebrow-text">Insights &amp; Circles</span>
+            </div>
+            <h2 class="section-title">Campus Guides &amp; Study Repos</h2>
+            <p class="section-subtitle">
+              Written by top seniors to help you navigate assignments, grading rubrics, and campus life.
+            </p>
+          </div>
+        </div>
+
+        <div class="guides-grid">
+          <!-- Article 1 -->
+          <article class="guide-card" data-article-id="oop-uml" role="button" tabindex="0">
+            <img
+              class="guide-image"
+              alt="Digital illustration and diagram of code syntax and UML class diagram"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLTowOhrVFd8I206kldC-j1k9uX9trxvcQWDR68y5L0XOU79udiEWhjf-wE6-BTxy9-XdzMyyJ7-bh6tQQnVahxiL9xNxBGZXIoHKUAWVxRdEXs8nHFJViT1S9Qy3mbbeISDbTov27cmln02HgI58ie1cRgNsMVgBTMuDVekqS1EsOWKd8TlGatM4ZUUwz46rBWzUH4iyEuTz4V7Nq2sHeMyxiRC0Rmlnjw5_6dwD1"
+            />
+            <div class="guide-body">
+              <div class="guide-top">
+                <span class="guide-category">Exam Preparation</span>
+                <h3 class="guide-title">
+                  How to survive OOP Sessional 1: What teachers look for in UML
+                </h3>
+              </div>
+              <span class="guide-meta">5 min read • by CS Senior Council</span>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="guide-card" data-article-id="dsa-patterns" role="button" tabindex="0">
+            <img
+              class="guide-image"
+              alt="Close up of a student typing algorithmic C++ code in VS Code"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuVxBiTTOAYNrw_ROjMJAoBcfs2e-KjnSdQzOlN3Of2VQD4FbNt0e5tO8q_ZtNyTacEXwE8EtJvNNIvmuIUs4hfioCbBB6TToEa3PN7nnMjlgYutMXPPe_hZ-uKtTGeLzLkFAp9I9epA0sQig6DHiZJoUpSWRLrKKTqgcK0vO2vaq-Yipcr0oTFV6hNzDhcStOTuXQWFGLKS-NU4wQBOeuPyMmb-SdsPihG5lTlvoU"
+            />
+            <div class="guide-body">
+              <div class="guide-top">
+                <span class="guide-category">DSA Strategy</span>
+                <h3 class="guide-title">
+                  Top 10 DSA LeetCode patterns that frequently appear in FAST Midterms
+                </h3>
+              </div>
+              <span class="guide-meta">8 min read • by Dean's List Tutor</span>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="guide-card" data-article-id="study-spots" role="button" tabindex="0">
+            <img
+              class="guide-image"
+              alt="Sunlit study area at FAST university library"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeq2dKJijhGZWwx3lxu45xLE9bnBXReBEhqpixUhPlyo5TUteY1rM8wBMYyYBadTxV5FWzNSX8MRQVeVP1SRziJl9bVgq9vOXmqhybOlVlZSsL6e7ac8b0gWXGY3HFy1w882SpyMv1p-rkT4oPECAIhPg3iE6hfMY5yT8nGk-otCMgFW4dA10Zxf4TXyJVVAswcWUZNDn-ys4kdB1sj1oSoQ5Jfec4umY94oGUEXvg"
+            />
+            <div class="guide-body">
+              <div class="guide-top">
+                <span class="guide-category">Campus Life</span>
+                <h3 class="guide-title">
+                  Campus Guide: Best quiet study spots with power outlets in Islamabad &amp; Lahore
+                </h3>
+              </div>
+              <span class="guide-meta">4 min read • by Student Reps</span>
+            </div>
+          </article>
+
+          <!-- Card 4: WhatsApp Communities -->
+          <article class="whatsapp-card">
+            <div class="whatsapp-top">
+              <div class="whatsapp-icon-box">
+                <span class="material-symbols-outlined">forum</span>
+              </div>
+              <span class="whatsapp-eyebrow">Campus Circles</span>
+              <h3 class="whatsapp-title">Official FASTutor WhatsApp Groups</h3>
+              <p class="whatsapp-desc">
+                Join your campus-specific study channel (ISB, LHR, KHI, PWR, CFD) for instant assignment doubts and tutor updates.
+              </p>
+            </div>
+            <div class="whatsapp-footer">
+              <button class="btn btn-amber btn-full" data-open-whatsapp type="button">
+                <span class="material-symbols-outlined">chat</span>
+                <span>Join WhatsApp Group</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 12: ACCORDION FAQS -->
+    <section class="section section--white section--border-top" id="faq">
+      <div class="container container--narrow">
+        <div class="section-header-center">
+          <div class="eyebrow-pill">
+            <span class="eyebrow-dot eybrow-dot--sm"></span>
+            <span class="eyebrow-text eyebrow-text--sm">Clarifications</span>
+          </div>
+          <h2 class="section-title section-title--lg">Frequently Asked Questions</h2>
+          <p class="section-subtitle">
+            Everything you need to know about peer mentoring, payments, and our academic guarantee.
+          </p>
+        </div>
+
+        <div class="faq-list" id="faq-accordion-group">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <button class="faq-toggle" type="button" aria-expanded="false">
+              <span class="faq-question">How are tutor grades verified?</span>
+              <span class="material-symbols-outlined faq-chevron">expand_more</span>
+            </button>
+            <div class="faq-content" hidden>
+              <p class="faq-answer">
+                Every tutor must upload official university Flex portal transcripts and their active Nu-ID. Our campus leads verify the specific course grade (requiring an A or A-) and overall CGPA (3.2+) before their profile is marked active.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button class="faq-toggle" type="button" aria-expanded="false">
+              <span class="faq-question">What payment methods are accepted?</span>
+              <span class="material-symbols-outlined faq-chevron">expand_more</span>
+            </button>
+            <div class="faq-content" hidden>
+              <p class="faq-answer">
+                We accept Nayapay, Sadapay, JazzCash, EasyPaisa, direct bank IBAN transfers, and hand-to-hand cash for on-campus sessions held in campus libraries or cafeteria study corners.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button class="faq-toggle" type="button" aria-expanded="false">
+              <span class="faq-question">Can I take sessions in-person on campus?</span>
+              <span class="material-symbols-outlined faq-chevron">expand_more</span>
+            </button>
+            <div class="faq-content" hidden>
+              <p class="faq-answer">
+                Yes! You can choose on-campus mode during booking. Popular meetup spots include the campus central libraries, departmental computer labs, and designated student activity centers.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button class="faq-toggle" type="button" aria-expanded="false">
+              <span class="faq-question">What if I'm not satisfied with my tutor?</span>
+              <span class="material-symbols-outlined faq-chevron">expand_more</span>
+            </button>
+            <div class="faq-content" hidden>
+              <p class="faq-answer">
+                Our 100% Student Guarantee covers your first session. If you feel the teaching style did not match your needs, report it within 2 hours of session end for an instant swap or full credit refund.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <button class="faq-toggle" type="button" aria-expanded="false">
+              <span class="faq-question">How do Group Sessions work?</span>
+              <span class="material-symbols-outlined faq-chevron">expand_more</span>
+            </button>
+            <div class="faq-content" hidden>
+              <p class="faq-answer">
+                You can create a study group or join an existing cohort of 3–5 batchmates. Group rates drop to PKR 250–350 per student, making intensive weekly reviews highly budget-friendly.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item">
+            <button class="faq-toggle" type="button" aria-expanded="false">
+              <span class="faq-question">Are tutors available late at night during exam week?</span>
+              <span class="material-symbols-outlined faq-chevron">expand_more</span>
+            </button>
+            <div class="faq-content" hidden>
+              <p class="faq-answer">
+                Yes! Through the Exam Rush feature, verified tutors host emergency virtual revision hubs and 1-on-1 sprint slots from 8:00 PM until 2:00 AM on the nights preceding Midterms and Finals.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 13: CLOSING CALL-TO-ACTION -->
+    <section class="closing-cta-section">
+      <div class="container">
+        <div class="closing-cta-box">
+          <div class="closing-cta-copy">
+            <h2 class="closing-cta-title">Ready to boost your GPA this semester?</h2>
+            <p class="closing-cta-desc">
+              Search 500+ verified FAST seniors today or schedule your emergency exam cram session.
+            </p>
+          </div>
+          <div class="closing-cta-actions">
+            <a class="btn btn-amber btn-lg" href="#find-tutors">Find Your Course Tutor Now</a>
+            <button class="btn btn-glass btn-lg" data-open-apply type="button">Apply to Become a Tutor</button>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <!-- Copyright and secondary links -->
+  <!-- ==================== EXECUTIVE FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-grid">
+        <!-- Brand Summary -->
+        <div class="footer-brand-col">
+          <div class="footer-brand-row">
+            <div class="footer-crest">
+              <span class="material-symbols-outlined">school</span>
+            </div>
+            <span class="footer-brand-name">FASTutor</span>
+          </div>
+          <p class="footer-tagline">
+            The dedicated peer-to-peer tutoring and academic mastery network engineered for FAST-NUCES students and alumni.
+          </p>
+          <div class="footer-community-row">
+            <span class="footer-community-label">Campus Community</span>
+            <button class="footer-icon-btn" data-open-whatsapp type="button" aria-label="Campus Forum">
+              <span class="material-symbols-outlined">forum</span>
+            </button>
+            <button class="footer-icon-btn" data-open-whatsapp type="button" aria-label="Study Groups">
+              <span class="material-symbols-outlined">groups</span>
+            </button>
+            <a class="footer-icon-btn" href="#study-resources" aria-label="CS & EE Study Repos">
+              <span class="material-symbols-outlined">terminal</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Campus Nodes -->
+        <div class="footer-col">
+          <span class="footer-col-title">Campus Nodes</span>
+          <ul class="footer-links">
+            <li><button class="footer-link-btn" data-footer-campus="Islamabad" type="button">Islamabad (H-11/4)</button></li>
+            <li><button class="footer-link-btn" data-footer-campus="Lahore" type="button">Lahore (Faisal Town)</button></li>
+            <li><button class="footer-link-btn" data-footer-campus="Karachi" type="button">Karachi (Shah Latif Town)</button></li>
+            <li><button class="footer-link-btn" data-footer-campus="Karachi" type="button">Karachi (City Campus)</button></li>
+            <li><button class="footer-link-btn" data-footer-campus="Peshawar" type="button">Peshawar (Hayatabad)</button></li>
+            <li><button class="footer-link-btn" data-footer-campus="Chiniot-Faisalabad" type="button">Chiniot-Faisalabad</button></li>
+          </ul>
+        </div>
+
+        <!-- Peer Learning -->
+        <div class="footer-col">
+          <span class="footer-col-title">Peer Learning</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="#featured-tutors">Verified Course Mentors</a></li>
+            <li><a class="footer-link" href="#courses">Past Exam Archives</a></li>
+            <li><a class="footer-link" href="#study-resources">CS &amp; EE Study Repos</a></li>
+            <li><a class="footer-link" href="#exam-rush">Exam Rush Sessions</a></li>
+            <li><a class="footer-link" href="#become-a-tutor">Tutor Accreditation</a></li>
+          </ul>
+        </div>
+
+        <!-- Trust & Governance -->
+        <div class="footer-col">
+          <span class="footer-col-title">Trust &amp; Governance</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="#faq">Academic Integrity Code</a></li>
+            <li><a class="footer-link" href="#faq">FAST Honor Guidelines</a></li>
+            <li><a class="footer-link" href="#how-it-works">Sadapay Escrow Protection</a></li>
+            <li><a class="footer-link" href="#faq">Terms of Mentorship</a></li>
+            <li><a class="footer-link" href="#become-a-tutor">Campus Ambassador Desk</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="footer-bottom">
+        <span>
+          © 2025 FASTutor. Built by FAST-NUCES alumni for the student body. Not an official entity of FAST-NUCES administration.
+        </span>
+        <div class="footer-legal-links">
+          <a href="#faq">Privacy Policy</a>
+          <span aria-hidden="true">•</span>
+          <a href="#faq">Terms of Service</a>
+          <span aria-hidden="true">•</span>
+          <a href="#faq">Student Guidelines</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
+  <!-- ==================== INTERACTIVE MODALS ==================== -->
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <!-- 1. Book Session Modal -->
+    <div
+      class="modal-dialog"
+      id="booking-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="booking-modal-title"
+      hidden
+    >
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow">Escrow-Protected Booking</span>
+          <h3 class="modal-title" id="booking-modal-title">Book Mentorship Session</h3>
+        </div>
+        <button class="modal-close-btn" data-close-modal type="button" aria-label="Close modal">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <form class="modal-form" id="booking-form" novalidate>
+        <div class="booking-summary-box">
+          <div>
+            <span class="booking-tutor-label" id="booking-tutor-name">Ahmed Khan</span>
+            <span class="booking-tutor-meta" id="booking-tutor-meta">Islamabad (H-11/4) • CS-2001</span>
+          </div>
+          <span class="booking-rate-pill" id="booking-tutor-rate">PKR 850/hr</span>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="booking-format">Session Mode</label>
+            <select class="form-control" id="booking-format" name="format">
+              <option value="On-Campus (Library / Lab)">On-Campus (Library / Lab)</option>
+              <option value="Online (Google Meet)">Online (Google Meet)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="booking-payment">Escrow Payment</label>
+            <select class="form-control" id="booking-payment" name="payment">
+              <option value="SadaPay">SadaPay</option>
+              <option value="NayaPay">NayaPay</option>
+              <option value="JazzCash / EasyPaisa">JazzCash / EasyPaisa</option>
+              <option value="Campus Cash (In-Person)">Campus Cash (In-Person)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Select Available Slot (Today / Tomorrow)</label>
+          <div class="slot-matrix" id="slot-matrix" role="radiogroup" aria-label="Available Time Slots">
+            <button class="slot-chip is-selected" data-slot="Today • 4:00 PM" type="button">Today • 4:00 PM</button>
+            <button class="slot-chip" data-slot="Today • 8:30 PM" type="button">Today • 8:30 PM</button>
+            <button class="slot-chip is-occupied" type="button" disabled>Today • 6:00 PM (Booked)</button>
+            <button class="slot-chip" data-slot="Tomorrow • 1:30 PM" type="button">Tomorrow • 1:30 PM</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="booking-email">FAST Student Nu-Email</label>
+          <input
+            class="form-control"
+            id="booking-email"
+            name="email"
+            type="email"
+            placeholder="e.g. i243182@nu.edu.pk"
+            required
+          />
+          <span class="form-error" id="booking-email-error" hidden></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="booking-notes">Topics or Past Paper Focus (Optional)</label>
+          <input
+            class="form-control"
+            id="booking-notes"
+            name="notes"
+            type="text"
+            placeholder="e.g. AVL tree rotations & Fall '23 Sessional 1"
+          />
+        </div>
+
+        <div class="form-feedback form-feedback--success" id="booking-success" hidden></div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-md" data-close-modal type="button">Cancel</button>
+          <button class="btn btn-primary btn-md" type="submit">Confirm Escrow Booking</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 2. Apply as a Tutor Modal -->
+    <div
+      class="modal-dialog"
+      id="apply-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="apply-modal-title"
+      hidden
+    >
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow">Senior Verification</span>
+          <h3 class="modal-title" id="apply-modal-title">Apply to Become a FASTutor</h3>
+        </div>
+        <button class="modal-close-btn" data-close-modal type="button" aria-label="Close modal">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <form class="modal-form" id="apply-form" novalidate>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="apply-name">Full Name</label>
+            <input class="form-control" id="apply-name" type="text" placeholder="e.g. Afraz Hassan" required />
+            <span class="form-error" id="apply-name-error" hidden></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="apply-email">Official Nu-Email</label>
+            <input class="form-control" id="apply-email" type="email" placeholder="i22xxxx@nu.edu.pk" required />
+            <span class="form-error" id="apply-email-error" hidden></span>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="apply-campus">FAST Campus</label>
+            <select class="form-control" id="apply-campus">
+              <option value="Islamabad">Islamabad (H-11/4)</option>
+              <option value="Lahore">Lahore (Faisal Town)</option>
+              <option value="Karachi">Karachi (Shah Latif &amp; City)</option>
+              <option value="Peshawar">Peshawar (Hayatabad)</option>
+              <option value="Chiniot-Faisalabad">Chiniot-Faisalabad</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="apply-cgpa">Current CGPA (Min 3.20)</label>
+            <input
+              class="form-control"
+              id="apply-cgpa"
+              type="number"
+              step="0.01"
+              min="2.00"
+              max="4.00"
+              placeholder="e.g. 3.65"
+              required
+            />
+            <span class="form-error" id="apply-cgpa-error" hidden></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="apply-courses">Target Courses (With Grade A or A-)</label>
+          <input
+            class="form-control"
+            id="apply-courses"
+            type="text"
+            placeholder="e.g. CS-2001 Data Structures (A+), CS-217 OOP (A)"
+            required
+          />
+          <span class="form-error" id="apply-courses-error" hidden></span>
+        </div>
+
+        <div class="form-feedback form-feedback--success" id="apply-success" hidden></div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-md" data-close-modal type="button">Cancel</button>
+          <button class="btn btn-primary btn-md" type="submit">Submit Transcript Application</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 3. Auth Modal (Log in / Get Started) -->
+    <div
+      class="modal-dialog"
+      id="auth-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="auth-modal-title"
+      hidden
+    >
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow">FAST-NUCES Portal</span>
+          <h3 class="modal-title" id="auth-modal-title">Welcome back, FASTian</h3>
+        </div>
+        <button class="modal-close-btn" data-close-modal type="button" aria-label="Close modal">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab is-active" data-auth-tab="login" type="button">Log in</button>
+        <button class="auth-tab" data-auth-tab="signup" type="button">Create Student Account</button>
+      </div>
+
+      <form class="modal-form" id="auth-form" novalidate>
+        <div class="form-group" id="auth-name-group" hidden>
+          <label class="form-label" for="auth-name">Full Name</label>
+          <input class="form-control" id="auth-name" type="text" placeholder="Your full name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="auth-email">NU-ID Email Address</label>
+          <input class="form-control" id="auth-email" type="email" placeholder="rollno@nu.edu.pk" required />
+          <span class="form-error" id="auth-email-error" hidden></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="auth-password">Password</label>
+          <input class="form-control" id="auth-password" type="password" placeholder="••••••••" required />
+          <span class="form-error" id="auth-password-error" hidden></span>
+        </div>
+
+        <div class="form-feedback form-feedback--success" id="auth-success" hidden></div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-md" data-close-modal type="button">Close</button>
+          <button class="btn btn-primary btn-md" id="auth-submit-btn" type="submit">Log in to FASTutor</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 4. Info / Guide / WhatsApp Modal -->
+    <div
+      class="modal-dialog"
+      id="info-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="info-modal-title"
+      hidden
+    >
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow" id="info-modal-eyebrow">Campus Resource</span>
+          <h3 class="modal-title" id="info-modal-title">Guide Preview</h3>
+        </div>
+        <button class="modal-close-btn" data-close-modal type="button" aria-label="Close modal">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="modal-body-copy" id="info-modal-body"></div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-md" data-close-modal type="button">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/script.js"></script>
 </body>
 </html>
