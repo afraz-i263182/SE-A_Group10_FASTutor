@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const heroSearchForm = document.getElementById("hero-search-form");
   const heroCourseInput = document.getElementById("hero-course-search");
   const heroSearchClear = document.getElementById("hero-search-clear");
-  const heroCampusSelect = document.getElementById("hero-campus-select");
 
   const campusFilterToggle = document.getElementById("campus-filter-toggle");
   const campusFilterBar = document.getElementById("campus-filter-bar");
@@ -68,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const emptyResetBtn = document.getElementById("empty-reset-btn");
   const emptyTutorsState = document.getElementById("empty-tutors-state");
   const tutorCards = document.querySelectorAll(".tutor-card");
-  const tutorsSection = document.getElementById("featured-tutors");
+  const tutorsSection = document.getElementById("best-tutors");
 
   const filterState = {
     query: "",
@@ -84,14 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
     campusPills.forEach((pill) => {
       pill.classList.toggle("is-active", pill.dataset.campusPill === campusValue);
     });
-    if (heroCampusSelect) {
-      const matchingOption = Array.from(heroCampusSelect.options).find(
-        (opt) => opt.value === campusValue
-      );
-      if (matchingOption) {
-        heroCampusSelect.value = campusValue;
-      }
-    }
   };
 
   const applyTutorFilters = ({ scrollToResults = false } = {}) => {
@@ -170,7 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
     heroSearchForm.addEventListener("submit", (event) => {
       event.preventDefault();
       filterState.query = heroCourseInput ? heroCourseInput.value : "";
-      filterState.campus = heroCampusSelect ? heroCampusSelect.value : "all";
       applyTutorFilters({ scrollToResults: true });
     });
   }
@@ -221,17 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Footer campus node quick filter
-  document.querySelectorAll("[data-footer-campus]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterState.campus = btn.dataset.footerCampus || "all";
-      filterState.query = "";
-      if (heroCourseInput) heroCourseInput.value = "";
-      if (campusFilterBar) campusFilterBar.hidden = false;
-      applyTutorFilters({ scrollToResults: true });
-    });
-  });
-
   if (resetFiltersBtn) resetFiltersBtn.addEventListener("click", resetAllFilters);
   if (emptyResetBtn) emptyResetBtn.addEventListener("click", resetAllFilters);
   document.querySelectorAll("[data-reset-filters]").forEach((el) => {
@@ -251,40 +230,40 @@ document.addEventListener("DOMContentLoaded", () => {
     student: [
       {
         title: "Find Your Match",
-        desc: "Filter by course syllabus, campus labs, past paper experience, or hourly budget. View authenticated student ratings.",
-        tag: "Filter by campus & teacher",
+        desc: "Search by course code, campus, and senior ratings to pick a mentor who aced your exact course.",
+        tag: "Filter by campus and teacher",
         icon: "arrow_right_alt",
       },
       {
-        title: "Book with Escrow",
-        desc: "Choose 1-on-1 or collaborative group slots. Pay easily via Sadapay, Nayapay, or campus cash held in guarantee escrow.",
+        title: "Book with Seniors",
+        desc: "Pick In-Person or Online mode, choose your time slot, and pay safely via Online transfer or campus cash.",
         tag: "100% money-back guarantee",
         icon: "lock",
       },
       {
         title: "Ace the Exam",
-        desc: "Meet on campus (library/lab) or Google Meet, review past question walkthroughs, and boost your sessional marks.",
-        tag: "Guaranteed GPA boost",
+        desc: "Meet in the campus library or online, walk through past sessionals, and walk into your exam confident.",
+        tag: "Guaranteed GPA Boost",
         icon: "verified",
       },
     ],
     tutor: [
       {
         title: "Submit Transcript",
-        desc: "Upload your unofficial Flex portal grade slip showing your A or A- grade and active Nu-ID email for 24-hr review.",
+        desc: "Upload your Flex portal grade slip showing an A or A- grade and active Nu-ID email for 24-hr review.",
         tag: "24-hr Nu-ID verification",
         icon: "verified_user",
       },
       {
         title: "Set Schedule & Rate",
-        desc: "Choose which days and labs you are free, customize your hourly rate (PKR 600-1200/hr), and sync your calendar.",
+        desc: "Choose which days and lab gaps you are free, customize your hourly rate, and sync your slots.",
         tag: "Full control over lab gaps",
         icon: "schedule",
       },
       {
         title: "Teach & Get Paid",
-        desc: "Deliver high-impact peer sessions, help juniors survive the curve, and enjoy automated weekly payouts to your Sadapay or Nayapay.",
-        tag: "Every Monday IBAN / wallet payout",
+        desc: "Deliver high-impact peer sessions, help juniors beat the curve, and receive weekly wallet or IBAN payouts.",
+        tag: "Weekly SadaPay / IBAN payout",
         icon: "payments",
       },
     ],
@@ -347,14 +326,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ------------------------------------------------------------------------
-     5. Interactive Modals & Form Validation
+     5. Interactive Modals & 3-Step Booking Wizard (Vertical Prototype)
      ------------------------------------------------------------------------ */
   const modalBackdrop = document.getElementById("modal-backdrop");
   const allModals = document.querySelectorAll(".modal-dialog");
   const bookingModal = document.getElementById("booking-modal");
   const applyModal = document.getElementById("apply-modal");
   const authModal = document.getElementById("auth-modal");
-  const infoModal = document.getElementById("info-modal");
 
   let lastFocusedElement = null;
 
@@ -366,7 +344,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     modalBackdrop.hidden = false;
     document.body.style.overflow = "hidden";
-    const firstInput = dialogEl.querySelector("input, select, button:not([data-close-modal])");
+    const firstInput = dialogEl.querySelector(
+      "input:not([hidden]), select:not([hidden]), button:not([data-close-modal]):not([disabled])"
+    );
     if (firstInput) firstInput.focus();
   };
 
@@ -401,17 +381,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isValidNuEmail = (email) => /^[^\s@]+@nu\.edu\.pk$/i.test(email.trim());
 
-  // --- Booking Modal ---
+  // --- Booking Wizard ---
   const bookingForm = document.getElementById("booking-form");
+  const bookingStepLabel = document.getElementById("booking-step-label");
+  const bookingSummaryBox = document.getElementById("booking-summary-box");
   const bookingTutorName = document.getElementById("booking-tutor-name");
   const bookingTutorMeta = document.getElementById("booking-tutor-meta");
   const bookingTutorRate = document.getElementById("booking-tutor-rate");
+
+  const bookingFormat = document.getElementById("booking-format");
+  const bookingPayment = document.getElementById("booking-payment");
   const bookingEmail = document.getElementById("booking-email");
   const bookingEmailError = document.getElementById("booking-email-error");
-  const bookingSuccess = document.getElementById("booking-success");
+  const bookingNotes = document.getElementById("booking-notes");
+
+  const bookingStep1 = document.getElementById("booking-step-1");
+  const bookingStep2 = document.getElementById("booking-step-2");
+  const bookingStep3 = document.getElementById("booking-step-3");
+  const bookingNextBtn = document.getElementById("booking-next-btn");
+  const bookingBackBtn = document.getElementById("booking-back-btn");
+  const bookingDoneBtn = document.getElementById("booking-done-btn");
+  const bookingStep2Summary = document.getElementById("booking-step2-summary");
+
+  const confirmSlotHeading = document.getElementById("confirm-slot-heading");
+  const confirmModeBadge = document.getElementById("confirm-mode-badge");
+  const confirmEmailNote = document.getElementById("confirm-email-note");
+
+  const wizardIndicators = document.querySelectorAll("[data-wizard-indicator]");
   const slotChips = document.querySelectorAll(".slot-chip:not(:disabled)");
 
-  let selectedSlot = "Today • 4:00 PM";
+  let selectedSlot = "Today 4:00 PM";
+
+  const stepMetaLabels = {
+    1: "Step 1 of 3 • Schedule",
+    2: "Step 2 of 3 • Student Details",
+    3: "Step 3 of 3 • Confirmed",
+  };
+
+  const setBookingStep = (stepNumber) => {
+    if (bookingStep1) bookingStep1.hidden = stepNumber !== 1;
+    if (bookingStep2) bookingStep2.hidden = stepNumber !== 2;
+    if (bookingStep3) bookingStep3.hidden = stepNumber !== 3;
+    if (bookingSummaryBox) bookingSummaryBox.hidden = stepNumber === 3;
+    if (bookingStepLabel) {
+      bookingStepLabel.textContent = stepMetaLabels[stepNumber] || "";
+    }
+
+    wizardIndicators.forEach((pill) => {
+      const idx = Number(pill.dataset.wizardIndicator);
+      pill.classList.toggle("is-active", idx === stepNumber);
+      pill.classList.toggle("is-done", idx < stepNumber);
+    });
+
+    const modeVal = bookingFormat ? bookingFormat.value : "In-Person";
+    const payVal = bookingPayment ? bookingPayment.value : "Online";
+
+    if (stepNumber === 2 && bookingStep2Summary) {
+      bookingStep2Summary.textContent = `${selectedSlot} • ${modeVal} • ${payVal} Payment`;
+      if (bookingEmail) bookingEmail.focus();
+    }
+
+    if (stepNumber === 3 && bookingDoneBtn) {
+      bookingDoneBtn.focus();
+    }
+  };
 
   slotChips.forEach((chip) => {
     chip.addEventListener("click", () => {
@@ -423,27 +456,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll("[data-book-tutor]").forEach((btn) => {
     btn.addEventListener("click", () => {
+      setMobileMenuOpen(false);
       if (bookingForm) bookingForm.reset();
       if (bookingEmailError) bookingEmailError.hidden = true;
-      if (bookingSuccess) bookingSuccess.hidden = true;
+
+      // Reset slot selection to default first available slot
+      slotChips.forEach((c, idx) => {
+        const isFirst = idx === 0;
+        c.classList.toggle("is-selected", isFirst);
+        if (isFirst) selectedSlot = c.dataset.slot || "Today 4:00 PM";
+      });
 
       if (bookingTutorName) bookingTutorName.textContent = btn.dataset.bookTutor || "Senior Mentor";
       if (bookingTutorMeta) {
-        bookingTutorMeta.textContent = `${btn.dataset.bookCampus || "FAST Campus"} • ${
+        bookingTutorMeta.textContent = `${btn.dataset.bookCampus || "Islamabad"} • ${
           btn.dataset.bookCourse || "Course Mentorship"
         }`;
       }
-      if (bookingTutorRate) bookingTutorRate.textContent = btn.dataset.bookRate || "PKR 800/hr";
+      if (bookingTutorRate) bookingTutorRate.textContent = btn.dataset.bookRate || "PKR 850/hr";
 
+      setBookingStep(1);
       openModal(bookingModal);
     });
   });
+
+  if (bookingNextBtn) {
+    bookingNextBtn.addEventListener("click", () => {
+      if (bookingEmailError) bookingEmailError.hidden = true;
+      setBookingStep(2);
+    });
+  }
+
+  if (bookingBackBtn) {
+    bookingBackBtn.addEventListener("click", () => {
+      if (bookingEmailError) bookingEmailError.hidden = true;
+      setBookingStep(1);
+    });
+  }
 
   if (bookingForm) {
     bookingForm.addEventListener("submit", (event) => {
       event.preventDefault();
       if (bookingEmailError) bookingEmailError.hidden = true;
-      if (bookingSuccess) bookingSuccess.hidden = true;
 
       const emailVal = bookingEmail ? bookingEmail.value.trim() : "";
       if (!isValidNuEmail(emailVal)) {
@@ -457,13 +511,23 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const tutor = bookingTutorName ? bookingTutorName.textContent : "your mentor";
-      const format = document.getElementById("booking-format")?.value || "On-Campus";
-      const payment = document.getElementById("booking-payment")?.value || "SadaPay";
+      const format = bookingFormat ? bookingFormat.value : "In-Person";
+      const payment = bookingPayment ? bookingPayment.value : "Online";
+      const topic = bookingNotes ? bookingNotes.value.trim() : "";
 
-      if (bookingSuccess) {
-        bookingSuccess.textContent = `Escrow slot reserved with ${tutor} for ${selectedSlot} (${format}). Payment instructions via ${payment} sent to ${emailVal}.`;
-        bookingSuccess.hidden = false;
+      if (confirmSlotHeading) {
+        confirmSlotHeading.textContent = `Slot Reserved ${selectedSlot}`;
       }
+      if (confirmModeBadge) {
+        confirmModeBadge.textContent = `${format} • ${payment} Payment with ${tutor}`;
+      }
+      if (confirmEmailNote) {
+        confirmEmailNote.textContent = topic
+          ? `Details for "${topic}" sent to your email address (${emailVal}).`
+          : `Details sent to your email address (${emailVal}).`;
+      }
+
+      setBookingStep(3);
     });
   }
 
@@ -473,6 +537,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll("[data-open-apply]").forEach((btn) => {
     btn.addEventListener("click", () => {
+      setMobileMenuOpen(false);
       if (applyForm) applyForm.reset();
       if (applySuccess) applySuccess.hidden = true;
       document.querySelectorAll("#apply-form .form-error").forEach((el) => {
@@ -629,73 +694,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Campus Guides & WhatsApp Info Modal ---
-  const infoEyebrow = document.getElementById("info-modal-eyebrow");
-  const infoTitle = document.getElementById("info-modal-title");
-  const infoBody = document.getElementById("info-modal-body");
-
-  const articlesMap = {
-    "oop-uml": {
-      eyebrow: "Exam Preparation • CS-217",
-      title: "How to survive OOP Sessional 1: What teachers look for in UML",
-      html: `
-        <p><strong>1. Distinguish Composition vs. Aggregation:</strong> Filled diamonds mean lifecycle ownership (e.g., <em>Department</em> owns <em>CourseSection</em>), while hollow diamonds indicate independent lifecycles.</p>
-        <p><strong>2. Cardinality & Visibility Markers:</strong> Always label <code>+</code> (public), <code>-</code> (private), and <code>#</code> (protected) members alongside multiplicity (<code>1..*</code>, <code>0..1</code>) — graders deduct up to 30% for omitted arrowheads.</p>
-        <p><strong>3. Map Directly to C++ Headers:</strong> Ensure every association arrow corresponds to an actual pointer, reference, or member object in your class declaration.</p>
-      `,
-    },
-    "dsa-patterns": {
-      eyebrow: "DSA Strategy • CS-2001",
-      title: "Top 10 DSA LeetCode patterns that frequently appear in FAST Midterms",
-      html: `
-        <p><strong>1. Recursion & Tree Traversals:</strong> Master lowest common ancestor (LCA), diameter of a binary tree, and AVL single/double rotation dry-runs on paper.</p>
-        <p><strong>2. Fast & Slow Pointers:</strong> Cycle detection, middle-node splitting, and reversing k-groups in singly/doubly linked lists without extra memory.</p>
-        <p><strong>3. Monotonic Stack & Prefix Sums:</strong> Next greater element, histogram area, and sliding-window subarray constraints commonly tested in Lab Midterms.</p>
-      `,
-    },
-    "study-spots": {
-      eyebrow: "Campus Life • ISB & LHR",
-      title: "Campus Guide: Best quiet study spots with power outlets in Islamabad & Lahore",
-      html: `
-        <p><strong>Islamabad (H-11/4):</strong> Central Library 2nd-floor quiet cubicles (east wall sockets), C-Block mezzanine benches before 1:00 PM, and the CS Basement discussion tables.</p>
-        <p><strong>Lahore (Faisal Town):</strong> Main Library upper reading hall corner desks, New Academic Block corridor booths, and the CS Lab waiting lounge between afternoon slots.</p>
-      `,
-    },
-  };
-
-  document.querySelectorAll("[data-article-id]").forEach((card) => {
-    const openArticle = () => {
-      const article = articlesMap[card.dataset.articleId];
-      if (!article) return;
-      if (infoEyebrow) infoEyebrow.textContent = article.eyebrow;
-      if (infoTitle) infoTitle.textContent = article.title;
-      if (infoBody) infoBody.innerHTML = article.html;
-      openModal(infoModal);
-    };
-
-    card.addEventListener("click", openArticle);
-    card.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        openArticle();
-      }
-    });
-  });
-
-  document.querySelectorAll("[data-open-whatsapp]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      if (infoEyebrow) infoEyebrow.textContent = "Verified Campus Circles";
-      if (infoTitle) infoTitle.textContent = "Join Official FASTutor WhatsApp Channels";
-      if (infoBody) {
-        infoBody.innerHTML = `
-          <p>Select your campus community channel to get instant past-paper drops, sessional sprint schedules, and verified TA availability:</p>
-          <p><strong>• Islamabad (H-11/4):</strong> #FASTutor-ISB-Hub (1,420 members)</p>
-          <p><strong>• Lahore (Faisal Town):</strong> #FASTutor-LHR-Hub (1,180 members)</p>
-          <p><strong>• Karachi, Peshawar & CFD:</strong> #FASTutor-National-Network (960 members)</p>
-          <p>Sign in with your <strong>@nu.edu.pk</strong> email to receive your single-use campus invite link.</p>
-        `;
-      }
-      openModal(infoModal);
-    });
-  });
+  /* ------------------------------------------------------------------------
+     6. Deep-Link Modal Opening From Other Pages (?modal=apply|login|signup)
+     ------------------------------------------------------------------------ */
+  const requestedModal = new URLSearchParams(window.location.search).get("modal");
+  if (requestedModal === "apply" && applyModal) {
+    openModal(applyModal);
+  } else if ((requestedModal === "login" || requestedModal === "signup") && authModal) {
+    setAuthMode(requestedModal);
+    openModal(authModal);
+  }
+  if (requestedModal && window.history?.replaceState) {
+    const cleanUrl = `${window.location.pathname}${window.location.hash}`;
+    window.history.replaceState({}, document.title, cleanUrl);
+  }
 });

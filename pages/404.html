@@ -8,12 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&icon_names=school,search,arrow_back,arrow_forward,home,menu,book_2,help,explore&display=block" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&icon_names=school,search,arrow_back,arrow_forward,home,menu,close,book_2,help,explore&display=block" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/404.css" />
 </head>
 <body class="notfound-page">
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="container header-inner">
       <div class="header-left">
         <a class="brand-link" href="../index.html" aria-label="FASTutor home">
@@ -23,9 +23,37 @@
             <span class="brand-subtitle">FAST-NUCES Peer Mentorship</span>
           </div>
         </a>
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <a class="nav-link" href="../index.html#best-tutors">Find Tutors</a>
+          <a class="nav-link nav-link--rush" href="../index.html#exam-rush">
+            <span>Exam Rush</span>
+            <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+          </a>
+          <a class="nav-link" href="./study-tips.html">Study Tips</a>
+          <a class="nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        </nav>
       </div>
       <div class="header-actions">
-        <a class="btn btn-primary btn-sm" href="../index.html#find-tutors">Find a Tutor <span class="material-symbols-outlined">arrow_forward</span></a>
+        <a class="btn-ghost-nav" href="../index.html?modal=login">Log in</a>
+        <a class="btn btn-primary btn-sm" href="../index.html?modal=signup">Get Started</a>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Toggle navigation menu">
+          <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" hidden>
+      <div class="container mobile-nav-inner">
+        <a class="mobile-nav-link" href="../index.html#best-tutors">Find Tutors</a>
+        <a class="mobile-nav-link mobile-nav-link--rush" href="../index.html#exam-rush">
+          <span>Exam Rush</span>
+          <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+        </a>
+        <a class="mobile-nav-link" href="./study-tips.html">Study Tips</a>
+        <a class="mobile-nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        <div class="mobile-nav-actions">
+          <a class="btn btn-secondary btn-full" href="../index.html?modal=login">Log in</a>
+          <a class="btn btn-primary btn-full" href="../index.html?modal=signup">Get Started</a>
+        </div>
       </div>
     </div>
   </header>
@@ -67,20 +95,44 @@
       </div>
     </div>
   </main>
-  <footer class="site-footer notfound-footer">
-    <div class="container notfound-footer-inner">
-      <div class="footer-brand-row">
-        <div class="footer-crest"><span class="material-symbols-outlined">school</span></div>
-        <span class="footer-brand-name">FASTutor</span>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-grid footer-grid--3">
+        <div class="footer-brand-col">
+          <div class="footer-brand-row">
+            <div class="footer-crest"><span class="material-symbols-outlined">school</span></div>
+            <span class="footer-brand-name">FASTutor</span>
+          </div>
+          <p class="footer-tagline">Learn from seniors who've aced it. Verified peer mentorship built for FAST-NUCES students.</p>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Explore</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="../index.html#best-tutors">Find Tutors</a></li>
+            <li><a class="footer-link" href="../index.html#exam-rush">Exam Rush</a></li>
+            <li><a class="footer-link" href="../index.html#exam-rush">Group Sessions</a></li>
+            <li><a class="footer-link" href="./study-tips.html">Study Tips</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Trust &amp; Policies</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="./terms.html">Terms of Service</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=privacy">Privacy Policy</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=community">Student Guidelines</a></li>
+          </ul>
+        </div>
       </div>
-      <span class="notfound-footer-note">Learn from the seniors who've been there.</span>
-      <div class="notfound-footer-links">
-        <a href="../index.html#find-tutors">Find Tutors</a>
-        <a href="../index.html#study-resources">Study Resources</a>
-        <a href="../index.html#faq">Help &amp; FAQs</a>
+      <div class="footer-bottom">
+        <span>© 2026 FASTutor. Built for the FAST-NUCES student community. Not affiliated with FAST-NUCES administration.</span>
+        <div class="footer-legal-links">
+          <a href="./terms.html">Terms of Service</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=privacy">Privacy Policy</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=community">Student Guidelines</a>
+        </div>
       </div>
-      <p class="notfound-copyright">© 2025 FASTutor. Built for the FAST-NUCES student community.</p>
     </div>
   </footer>
+  <script src="../js/script.js"></script>
 </body>
 </html>
