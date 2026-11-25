@@ -28,5 +28,9 @@
       activate(tabs[next].dataset.tab, true);
     });
   });
-  if (tabs.length) activate(tabs[0].dataset.tab);
+  const requestedTab = new URLSearchParams(window.location.search).get('tab');
+  const initialTab = tabs.some((tab) => tab.dataset.tab === requestedTab)
+    ? requestedTab
+    : tabs[0]?.dataset.tab;
+  if (initialTab) activate(initialTab);
 })();
