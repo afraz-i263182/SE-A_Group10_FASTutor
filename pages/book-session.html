@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Session | FASTutor</title>
+  <link rel="stylesheet" href="../css/fastutor.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span>FASTutor</span>
+          <span class="brand-tagline">Learn from the seniors who’ve been there</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        id="navToggle"
+        aria-expanded="false"
+        aria-controls="siteNav"
+        aria-label="Toggle navigation menu"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a class="nav-link" href="../index.html">Home</a></li>
+          <li><a class="nav-link" href="book-session.html" aria-current="page">Book a Session</a></li>
+          <li><a class="nav-link" href="ask-question.html">Ask a Question</a></li>
+        </ul>
+        <a class="nav-cta" href="auth.html">Sign In / Join</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="site-main">
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div>
+          <span class="eyebrow">1-on-1 Peer Mentorship</span>
+          <h1>Book a tutoring session with a senior</h1>
+          <p>Pick a course mentor, choose an online screen-share or on-campus study room slot, and walk into your next lab or exam prepared.</p>
+        </div>
+        <div class="hero-stat-pill">
+          <span>Average Rating:</span>
+          <strong>4.9 / 5.0 across 840+ sessions</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="container booking-layout">
+      <!-- LEFT: TUTOR DIRECTORY -->
+      <section aria-label="Available senior tutors">
+        <div class="card" style="margin-bottom: 1.25rem;">
+          <div class="card-header" style="margin-bottom: 1rem;">
+            <h2 class="card-title">Find Your Senior Mentor</h2>
+            <span class="badge badge-blue" id="tutorCountBadge">6 Tutors Available</span>
+          </div>
+
+          <div class="filter-bar">
+            <div class="form-group">
+              <label class="sr-only" for="tutorSearch">Search tutors or topics</label>
+              <input
+                class="form-control"
+                type="search"
+                id="tutorSearch"
+                placeholder="Search by name, course code, or topic..."
+              >
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="courseFilter">Filter by course</label>
+              <select class="form-control" id="courseFilter">
+                <option value="all">All Courses</option>
+                <option value="CS2001">CS2001 Data Structures</option>
+                <option value="CS1004">CS1004 OOP</option>
+                <option value="CS2005">CS2005 Database Systems</option>
+                <option value="CS2006">CS2006 Operating Systems</option>
+                <option value="MT1003">MT1003 Calculus &amp; Linear Algebra</option>
+                <option value="SE3002">SE3002 Software Architecture</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="modeFilter">Filter by mode</label>
+              <select class="form-control" id="modeFilter">
+                <option value="all">Online &amp; On-Campus</option>
+                <option value="Online">Online Meet</option>
+                <option value="On-Campus">On-Campus</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="tutor-grid" id="tutorGrid" aria-live="polite"></div>
+          <p id="noTutorsMsg" class="form-hint" hidden>No senior tutors match your current filters. Try clearing your search or switching course filters.</p>
+        </div>
+
+        <section class="card" aria-label="Your upcoming bookings">
+          <div class="card-header" style="margin-bottom: 0.9rem;">
+            <h2 class="card-title">Your Scheduled Sessions</h2>
+            <span class="badge badge-slate" id="bookingCountBadge">0 Booked</span>
+          </div>
+          <div id="upcomingBookingsList" class="booking-list">
+            <p class="form-hint" style="margin: 0;">You have no scheduled sessions yet. Select a tutor and confirm a time slot on the right.</p>
+          </div>
+        </section>
+      </section>
+
+      <!-- RIGHT: BOOKING FORM & SUMMARY -->
+      <aside class="summary-panel" aria-label="Session booking form">
+        <section class="card card-elevated">
+          <div class="card-header">
+            <h2 class="card-title">Session Details</h2>
+            <span class="badge badge-emerald" id="selectedModePill">Select Tutor</span>
+          </div>
+
+          <div id="bookingAlert" class="alert" role="status" aria-live="polite" hidden></div>
+
+          <form id="bookingForm" class="form-stack" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="bookingTutorSelect">
+                Selected Senior Tutor<span class="required-mark">*</span>
+              </label>
+              <select class="form-control" id="bookingTutorSelect" name="bookingTutorSelect" required></select>
+              <span class="field-error" id="bookingTutorError"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="bookingCourse">
+                Course<span class="required-mark">*</span>
+              </label>
+              <select class="form-control" id="bookingCourse" name="bookingCourse" required></select>
+              <span class="field-error" id="bookingCourseError"></span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="bookingFormat">
+                  Format<span class="required-mark">*</span>
+                </label>
+                <select class="form-control" id="bookingFormat" name="bookingFormat" required>
+                  <option value="Online Meet">Online Meet + Shared IDE</option>
+                  <option value="On-Campus">On-Campus Library Pod</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="bookingDuration">
+                  Duration<span class="required-mark">*</span>
+                </label>
+                <select class="form-control" id="bookingDuration" name="bookingDuration" required>
+                  <option value="30">30 mins</option>
+                  <option value="60" selected>60 mins</option>
+                  <option value="90">90 mins</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="bookingDate">
+                Preferred Date<span class="required-mark">*</span>
+              </label>
+              <input class="form-control" type="date" id="bookingDate" name="bookingDate" required>
+              <span class="field-error" id="bookingDateError"></span>
+            </div>
+
+            <div class="form-group">
+              <span class="form-label">Available Time Slots<span class="required-mark">*</span></span>
+              <div class="slot-grid" id="slotGrid" role="group" aria-label="Time slots"></div>
+              <input type="hidden" id="selectedTimeSlot" name="selectedTimeSlot">
+              <span class="field-error" id="bookingSlotError"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="bookingTopic">
+                Specific Topic or Concept<span class="required-mark">*</span>
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                id="bookingTopic"
+                name="bookingTopic"
+                placeholder="e.g., AVL tree rotations &amp; pointer debugging"
+                required
+              >
+              <span class="field-error" id="bookingTopicError"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="bookingNotes">
+                Preparation Notes (Optional)
+              </label>
+              <textarea
+                class="form-control"
+                id="bookingNotes"
+                name="bookingNotes"
+                placeholder="Share what you already reviewed or where you get stuck so your tutor can prepare examples."
+              ></textarea>
+            </div>
+
+            <div class="summary-box" aria-label="Booking summary">
+              <div class="summary-line">
+                <span>Tutor</span>
+                <strong id="sumTutor">—</strong>
+              </div>
+              <div class="summary-line">
+                <span>Course</span>
+                <strong id="sumCourse">—</strong>
+              </div>
+              <div class="summary-line">
+                <span>Schedule</span>
+                <strong id="sumSchedule">Choose date &amp; slot</strong>
+              </div>
+              <div class="summary-line">
+                <span>Format</span>
+                <strong id="sumFormat">Online Meet</strong>
+              </div>
+              <div class="summary-line" style="padding-top: 0.4rem; border-top: 1px solid var(--color-border);">
+                <span>Session Contribution</span>
+                <strong id="sumCost">—</strong>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Confirm Tutoring Session</button>
+          </form>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="brand-mark" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </span>
+            <span>FASTutor</span>
+          </div>
+          <p class="footer-desc">Learn from the seniors who’ve been there. Peer-led academic support built by students, for students.</p>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Platform</h2>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="book-session.html">Book a Session</a></li>
+            <li><a href="ask-question.html">Ask a Question</a></li>
+            <li><a href="auth.html">Sign In / Join</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Top Courses</h2>
+          <ul class="footer-links">
+            <li><a href="book-session.html?course=CS2001">CS2001 Data Structures</a></li>
+            <li><a href="book-session.html?course=CS1004">CS1004 Object-Oriented Prog.</a></li>
+            <li><a href="book-session.html?course=CS2005">CS2005 Database Systems</a></li>
+            <li><a href="book-session.html?course=CS2006">CS2006 Operating Systems</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Campuses &amp; Support</h2>
+          <ul class="footer-links">
+            <li>Islamabad · Lahore · Karachi</li>
+            <li>Peshawar · CFD · Multan</li>
+            <li><a href="mailto:support@fastutor.edu.pk">support@fastutor.edu.pk</a></li>
+            <li>Academic Honor Code Enforced</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 FASTutor · SE-A Group 10. All rights reserved.</span>
+        <span>Built with HTML5, CSS3 &amp; Vanilla JavaScript</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Mobile Nav Toggle
+      const navToggle = document.getElementById('navToggle');
+      const siteNav = document.getElementById('siteNav');
+      if (navToggle && siteNav) {
+        navToggle.addEventListener('click', function () {
+          const isOpen = siteNav.classList.toggle('is-open');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+
+      const TUTORS = [
+        {
+          id: 't1',
+          name: 'Zainab Farooq',
+          initials: 'ZF',
+          batch: 'BS(CS) 7th Sem · Islamabad',
+          rating: '4.9 (68 reviews)',
+          modes: ['Online', 'On-Campus'],
+          courses: [
+            { code: 'CS2001', label: 'CS2001 Data Structures' },
+            { code: 'CS1004', label: 'CS1004 Object-Oriented Programming' }
+          ],
+          ratePerHour: 0,
+          rateLabel: 'Free Peer Mentor',
+          bio: 'Former Lab Demonstrator for Data Structures. Focused on C++ pointers, recursion trees, graphs, and AVL balancing.',
+          unavailableSlots: ['12:30 PM']
+        },
+        {
+          id: 't2',
+          name: 'Bilal Ahmed',
+          initials: 'BA',
+          batch: 'BS(SE) 8th Sem · Lahore',
+          rating: '4.9 (54 reviews)',
+          modes: ['Online'],
+          courses: [
+            { code: 'CS2005', label: 'CS2005 Database Systems' },
+            { code: 'SE3002', label: 'SE3002 Software Architecture' }
+          ],
+          ratePerHour: 400,
+          rateLabel: 'PKR 400 / hr',
+          bio: 'Helps juniors master ERD normalization (1NF–BCNF), complex SQL joins, indexing, and clean MVC project architecture.',
+          unavailableSlots: ['10:00 AM', '09:00 PM']
+        },
+        {
+          id: 't3',
+          name: 'Hira Mansoor',
+          initials: 'HM',
+          batch: 'BS(AI) 6th Sem · Islamabad',
+          rating: '5.0 (41 reviews)',
+          modes: ['Online', 'On-Campus'],
+          courses: [
+            { code: 'MT1003', label: 'MT1003 Calculus & Analytical Geometry' },
+            { code: 'CS2001', label: 'CS2001 Data Structures' }
+          ],
+          ratePerHour: 0,
+          rateLabel: 'Free Peer Mentor',
+          bio: 'Dean’s List scholar breaking down multivariable calculus, eigenvectors, and time-complexity proofs step by step.',
+          unavailableSlots: ['04:30 PM']
+        },
+        {
+          id: 't4',
+          name: 'Usman Qureshi',
+          initials: 'UQ',
+          batch: 'BS(CS) 8th Sem · Karachi',
+          rating: '4.8 (62 reviews)',
+          modes: ['Online'],
+          courses: [
+            { code: 'CS2006', label: 'CS2006 Operating Systems' },
+            { code: 'CS2001', label: 'CS2001 Data Structures' }
+          ],
+          ratePerHour: 500,
+          rateLabel: 'PKR 500 / hr',
+          bio: 'Systems enthusiast guiding students through POSIX threads, mutexes, CPU scheduling, and memory paging in C/Linux.',
+          unavailableSlots: ['02:30 PM']
+        },
+        {
+          id: 't5',
+          name: 'Saad Mahmood',
+          initials: 'SM',
+          batch: 'BS(SE) 6th Sem · CFD',
+          rating: '4.8 (33 reviews)',
+          modes: ['Online', 'On-Campus'],
+          courses: [
+            { code: 'CS1004', label: 'CS1004 Object-Oriented Programming' },
+            { code: 'SE3002', label: 'SE3002 Software Architecture' }
+          ],
+          ratePerHour: 350,
+          rateLabel: 'PKR 350 / hr',
+          bio: 'Specializes in polymorphism, operator overloading, SOLID principles, and preparing for OOP lab evaluations.',
+          unavailableSlots: ['07:00 PM']
+        },
+        {
+          id: 't6',
+          name: 'Mehwish Khan',
+          initials: 'MK',
+          batch: 'BS(DS) 7th Sem · Peshawar',
+          rating: '4.9 (47 reviews)',
+          modes: ['Online'],
+          courses: [
+            { code: 'CS2005', label: 'CS2005 Database Systems' },
+            { code: 'MT1003', label: 'MT1003 Calculus & Linear Algebra' }
+          ],
+          ratePerHour: 0,
+          rateLabel: 'Free Peer Mentor',
+          bio: 'Patient, example-driven sessions for SQL subqueries, transaction isolation levels, and linear transformations.',
+          unavailableSlots: ['10:00 AM']
+        }
+      ];
+
+      const TIME_SLOTS = ['10:00 AM', '12:30 PM', '02:30 PM', '04:30 PM', '07:00 PM', '09:00 PM'];
+      const STORAGE_KEY = 'fastutor_bookings_v1';
+
+      const tutorGrid = document.getElementById('tutorGrid');
+      const tutorCountBadge = document.getElementById('tutorCountBadge');
+      const noTutorsMsg = document.getElementById('noTutorsMsg');
+      const tutorSearch = document.getElementById('tutorSearch');
+      const courseFilter = document.getElementById('courseFilter');
+      const modeFilter = document.getElementById('modeFilter');
+
+      const bookingTutorSelect = document.getElementById('bookingTutorSelect');
+      const bookingCourse = document.getElementById('bookingCourse');
+      const bookingFormat = document.getElementById('bookingFormat');
+      const bookingDuration = document.getElementById('bookingDuration');
+      const bookingDate = document.getElementById('bookingDate');
+      const slotGrid = document.getElementById('slotGrid');
+      const selectedTimeSlot = document.getElementById('selectedTimeSlot');
+      const bookingTopic = document.getElementById('bookingTopic');
+      const bookingNotes = document.getElementById('bookingNotes');
+      const selectedModePill = document.getElementById('selectedModePill');
+      const bookingAlert = document.getElementById('bookingAlert');
+      const bookingForm = document.getElementById('bookingForm');
+
+      const sumTutor = document.getElementById('sumTutor');
+      const sumCourse = document.getElementById('sumCourse');
+      const sumSchedule = document.getElementById('sumSchedule');
+      const sumFormat = document.getElementById('sumFormat');
+      const sumCost = document.getElementById('sumCost');
+      const upcomingBookingsList = document.getElementById('upcomingBookingsList');
+      const bookingCountBadge = document.getElementById('bookingCountBadge');
+
+      let activeTutorId = TUTORS[0].id;
+
+      // Set min date to today and default to tomorrow
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      const todayIso = yyyy + '-' + mm + '-' + dd;
+      bookingDate.min = todayIso;
+
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + 1);
+      bookingDate.value =
+        tomorrow.getFullYear() +
+        '-' +
+        String(tomorrow.getMonth() + 1).padStart(2, '0') +
+        '-' +
+        String(tomorrow.getDate()).padStart(2, '0');
+
+      // Apply ?course= from footer links if present
+      const urlParams = new URLSearchParams(window.location.search);
+      const preCourse = urlParams.get('course');
+      if (preCourse && courseFilter.querySelector('option[value="' + preCourse + '"]')) {
+        courseFilter.value = preCourse;
+      }
+
+      function populateTutorDropdown() {
+        bookingTutorSelect.innerHTML = TUTORS.map(function (t) {
+          return '<option value="' + t.id + '">' + t.name + ' (' + t.rateLabel + ')</option>';
+        }).join('');
+        bookingTutorSelect.value = activeTutorId;
+      }
+
+      function getTutorById(id) {
+        return TUTORS.find(function (t) { return t.id === id; }) || TUTORS[0];
+      }
+
+      function renderSlots(tutor) {
+        selectedTimeSlot.value = '';
+        slotGrid.innerHTML = TIME_SLOTS.map(function (slot) {
+          const isUnavailable = tutor.unavailableSlots.includes(slot);
+          return (
+            '<button type="button" class="slot-btn" data-slot="' +
+            slot +
+            '"' +
+            (isUnavailable ? ' disabled title="Already booked"' : '') +
+            '>' +
+            slot +
+            '</button>'
+          );
+        }).join('');
+
+        slotGrid.querySelectorAll('.slot-btn:not(:disabled)').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            slotGrid.querySelectorAll('.slot-btn').forEach(function (b) {
+              b.classList.remove('is-active');
+            });
+            btn.classList.add('is-active');
+            selectedTimeSlot.value = btn.getAttribute('data-slot');
+            document.getElementById('bookingSlotError').textContent = '';
+            updateSummary();
+          });
+        });
+
+        // Preselect first available slot for convenience
+        const firstAvailable = slotGrid.querySelector('.slot-btn:not(:disabled)');
+        if (firstAvailable) {
+          firstAvailable.click();
+        }
+      }
+
+      function syncTutorForm(tutorId) {
+        activeTutorId = tutorId;
+        const tutor = getTutorById(tutorId);
+        bookingTutorSelect.value = tutor.id;
+
+        bookingCourse.innerHTML = tutor.courses
+          .map(function (c) {
+            return '<option value="' + c.label + '">' + c.label + '</option>';
+          })
+          .join('');
+
+        selectedModePill.textContent = tutor.rateLabel;
+        selectedModePill.className = tutor.ratePerHour === 0 ? 'badge badge-emerald' : 'badge badge-amber';
+
+        // Adjust format availability
+        const onCampusOpt = bookingFormat.querySelector('option[value="On-Campus"]');
+        if (onCampusOpt) {
+          const supportsCampus = tutor.modes.includes('On-Campus');
+          onCampusOpt.disabled = !supportsCampus;
+          if (!supportsCampus) {
+            bookingFormat.value = 'Online Meet';
+          }
+        }
+
+        renderSlots(tutor);
+        updateSummary();
+        renderTutorCards();
+      }
+
+      function updateSummary() {
+        const tutor = getTutorById(activeTutorId);
+        const mins = Number(bookingDuration.value);
+        sumTutor.textContent = tutor.name;
+        sumCourse.textContent = bookingCourse.value || '—';
+        sumFormat.textContent = bookingFormat.value;
+
+        if (bookingDate.value && selectedTimeSlot.value) {
+          sumSchedule.textContent = bookingDate.value + ' · ' + selectedTimeSlot.value + ' (' + mins + 'm)';
+        } else {
+          sumSchedule.textContent = 'Choose date & slot';
+        }
+
+        if (tutor.ratePerHour === 0) {
+          sumCost.textContent = 'Free (Peer Volunteer)';
+        } else {
+          const total = Math.round((tutor.ratePerHour * mins) / 60);
+          sumCost.textContent = 'PKR ' + total;
+        }
+      }
+
+      function renderTutorCards() {
+        const query = tutorSearch.value.trim().toLowerCase();
+        const courseVal = courseFilter.value;
+        const modeVal = modeFilter.value;
+
+        const filtered = TUTORS.filter(function (tutor) {
+          const matchesCourse =
+            courseVal === 'all' ||
+            tutor.courses.some(function (c) { return c.code === courseVal; });
+          const matchesMode = modeVal === 'all' || tutor.modes.includes(modeVal);
+          const haystack = (
+            tutor.name +
+            ' ' +
+            tutor.batch +
+            ' ' +
+            tutor.bio +
+            ' ' +
+            tutor.courses.map(function (c) { return c.label; }).join(' ')
+          ).toLowerCase();
+          const matchesQuery = !query || haystack.includes(query);
+          return matchesCourse && matchesMode && matchesQuery;
+        });
+
+        tutorCountBadge.textContent = filtered.length + (filtered.length === 1 ? ' Tutor' : ' Tutors') + ' Available';
+        noTutorsMsg.hidden = filtered.length > 0;
+
+        tutorGrid.innerHTML = filtered
+          .map(function (tutor) {
+            const isSelected = tutor.id === activeTutorId;
+            const courseBadges = tutor.courses
+              .map(function (c) { return '<span class="badge badge-blue">' + c.code + '</span>'; })
+              .join('');
+            const modeBadges = tutor.modes
+              .map(function (m) { return '<span class="badge badge-slate">' + m + '</span>'; })
+              .join('');
+
+            return (
+              '<article class="tutor-card' + (isSelected ? ' is-selected' : '') + '">' +
+                '<div class="tutor-head">' +
+                  '<div class="avatar-circle" aria-hidden="true">' + tutor.initials + '</div>' +
+                  '<div>' +
+                    '<h3 class="tutor-name">' + tutor.name + '</h3>' +
+                    '<div class="tutor-meta">' + tutor.batch + ' · ★ ' + tutor.rating + '</div>' +
+                  '</div>' +
+                '</div>' +
+                '<p class="tutor-bio">' + tutor.bio + '</p>' +
+                '<div class="tag-list">' + courseBadges + modeBadges + '</div>' +
+                '<div class="tutor-footer">' +
+                  '<span class="tutor-rate">' + tutor.rateLabel + '</span>' +
+                  '<button type="button" class="btn btn-sm ' + (isSelected ? 'btn-navy' : 'btn-primary') + '" data-select-tutor="' + tutor.id + '">' +
+                    (isSelected ? 'Selected' : 'Select Tutor') +
+                  '</button>' +
+                '</div>' +
+              '</article>'
+            );
+          })
+          .join('');
+
+        tutorGrid.querySelectorAll('[data-select-tutor]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            syncTutorForm(btn.getAttribute('data-select-tutor'));
+          });
+        });
+      }
+
+      function loadBookings() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch (err) {
+          return [];
+        }
+      }
+
+      function saveBookings(items) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+        } catch (err) {
+          // Ignore storage quota errors
+        }
+      }
+
+      function renderBookings() {
+        const bookings = loadBookings();
+        bookingCountBadge.textContent = bookings.length + ' Booked';
+        if (bookings.length === 0) {
+          upcomingBookingsList.innerHTML =
+            '<p class="form-hint" style="margin: 0;">You have no scheduled sessions yet. Select a tutor and confirm a time slot on the right.</p>';
+          return;
+        }
+
+        upcomingBookingsList.innerHTML = bookings
+          .map(function (item) {
+            return (
+              '<div class="booking-item">' +
+                '<div>' +
+                  '<strong style="color: var(--color-navy);">' + item.course + '</strong>' +
+                  '<div class="form-hint">with ' + item.tutorName + ' · ' + item.date + ' at ' + item.slot + ' (' + item.duration + ' mins, ' + item.format + ')</div>' +
+                  '<div class="form-hint">Topic: ' + item.topic + ' · Ref: <strong>' + item.ref + '</strong></div>' +
+                '</div>' +
+                '<button type="button" class="btn btn-secondary btn-sm" data-cancel-ref="' + item.ref + '">Cancel</button>' +
+              '</div>'
+            );
+          })
+          .join('');
+
+        upcomingBookingsList.querySelectorAll('[data-cancel-ref]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            const ref = btn.getAttribute('data-cancel-ref');
+            const updated = loadBookings().filter(function (b) { return b.ref !== ref; });
+            saveBookings(updated);
+            renderBookings();
+          });
+        });
+      }
+
+      // Event Listeners
+      tutorSearch.addEventListener('input', renderTutorCards);
+      courseFilter.addEventListener('change', renderTutorCards);
+      modeFilter.addEventListener('change', renderTutorCards);
+
+      bookingTutorSelect.addEventListener('change', function () {
+        syncTutorForm(bookingTutorSelect.value);
+      });
+
+      [bookingCourse, bookingFormat, bookingDuration, bookingDate].forEach(function (el) {
+        el.addEventListener('change', updateSummary);
+      });
+
+      bookingForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        bookingAlert.hidden = true;
+
+        let valid = true;
+        if (!bookingDate.value || bookingDate.value < todayIso) {
+          document.getElementById('bookingDateError').textContent = 'Choose today or an upcoming date.';
+          bookingDate.classList.add('is-invalid');
+          valid = false;
+        } else {
+          document.getElementById('bookingDateError').textContent = '';
+          bookingDate.classList.remove('is-invalid');
+        }
+
+        if (!selectedTimeSlot.value) {
+          document.getElementById('bookingSlotError').textContent = 'Please select an available time slot.';
+          valid = false;
+        } else {
+          document.getElementById('bookingSlotError').textContent = '';
+        }
+
+        if (bookingTopic.value.trim().length < 4) {
+          document.getElementById('bookingTopicError').textContent = 'Enter a brief topic so your tutor can prepare.';
+          bookingTopic.classList.add('is-invalid');
+          valid = false;
+        } else {
+          document.getElementById('bookingTopicError').textContent = '';
+          bookingTopic.classList.remove('is-invalid');
+        }
+
+        if (!valid) return;
+
+        const tutor = getTutorById(activeTutorId);
+        const refCode = 'FT-' + Math.floor(10000 + Math.random() * 90000);
+        const newBooking = {
+          ref: refCode,
+          tutorId: tutor.id,
+          tutorName: tutor.name,
+          course: bookingCourse.value,
+          format: bookingFormat.value,
+          duration: bookingDuration.value,
+          date: bookingDate.value,
+          slot: selectedTimeSlot.value,
+          topic: bookingTopic.value.trim(),
+          notes: bookingNotes.value.trim()
+        };
+
+        const existing = loadBookings();
+        existing.unshift(newBooking);
+        saveBookings(existing);
+        renderBookings();
+
+        bookingAlert.className = 'alert alert-success';
+        bookingAlert.innerHTML =
+          '<div><strong>Session Confirmed (' + refCode + ')!</strong> Your ' +
+          newBooking.duration +
+          '-minute ' +
+          newBooking.course +
+          ' session with ' +
+          tutor.name +
+          ' is scheduled for ' +
+          newBooking.date +
+          ' at ' +
+          newBooking.slot +
+          '.</div>';
+        bookingAlert.hidden = false;
+
+        bookingTopic.value = '';
+        bookingNotes.value = '';
+      });
+
+      // Initialize
+      populateTutorDropdown();
+      syncTutorForm(activeTutorId);
+      renderBookings();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In or Join | FASTutor</title>
+  <link rel="stylesheet" href="../css/fastutor.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span>FASTutor</span>
+          <span class="brand-tagline">Learn from the seniors who’ve been there</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        id="navToggle"
+        aria-expanded="false"
+        aria-controls="siteNav"
+        aria-label="Toggle navigation menu"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a class="nav-link" href="../index.html">Home</a></li>
+          <li><a class="nav-link" href="book-session.html">Book a Session</a></li>
+          <li><a class="nav-link" href="ask-question.html">Ask a Question</a></li>
+        </ul>
+        <a class="nav-cta" href="auth.html" aria-current="page">Sign In / Join</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="site-main">
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div>
+          <span class="eyebrow">Verified Campus Access</span>
+          <h1>Sign in or join the FASTutor peer network</h1>
+          <p>Connect with verified senior mentors across FAST-NUCES campuses for 1-on-1 lab guidance, exam prep, and structured Q&amp;A.</p>
+        </div>
+        <div class="hero-stat-pill">
+          <span>Active Mentors:</span>
+          <strong>120+ Seniors across 5 Campuses</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="container auth-layout">
+      <aside class="auth-showcase" aria-label="Why join FASTutor">
+        <h2>Why learn with seniors who already aced the course?</h2>
+        <p>Every tutor on FASTutor has completed the core course with an A-grade or served as an undergraduate teaching assistant.</p>
+
+        <ul class="benefit-list">
+          <li class="benefit-item">
+            <span class="benefit-icon" aria-hidden="true">01</span>
+            <div>
+              <strong>University-Verified Accounts</strong>
+              <span>Sign up with your @nu.edu.pk address and roll number so every peer interaction stays campus-trusted.</span>
+            </div>
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-icon" aria-hidden="true">02</span>
+            <div>
+              <strong>Course-Specific Mentorship</strong>
+              <span>Filter senior tutors by exact FAST course codes—from Programming Fundamentals to Operating Systems.</span>
+            </div>
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-icon" aria-hidden="true">03</span>
+            <div>
+              <strong>Guided Learning, Zero Plagiarism</strong>
+              <span>Get conceptual walkthroughs and debugging strategies without violating academic integrity rules.</span>
+            </div>
+          </li>
+        </ul>
+
+        <blockquote class="quote-box">
+          “Two 45-minute sessions before my Data Structures midterms helped me finally grasp AVL rotations and recursion trees.”
+          <cite>— Hamza Tariq, BS(CS) Batch ’24 · Islamabad Campus</cite>
+        </blockquote>
+      </aside>
+
+      <section class="card card-elevated" aria-label="Authentication panel">
+        <div class="auth-tabs" role="tablist" aria-label="Authentication mode">
+          <button
+            type="button"
+            class="auth-tab"
+            id="tabSignIn"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panelSignIn"
+          >
+            Sign In
+          </button>
+          <button
+            type="button"
+            class="auth-tab"
+            id="tabSignUp"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panelSignUp"
+          >
+            Create Account
+          </button>
+        </div>
+
+        <div id="authStatusBanner" class="alert" role="status" aria-live="polite" hidden></div>
+
+        <!-- SIGN IN PANEL -->
+        <div id="panelSignIn" role="tabpanel" aria-labelledby="tabSignIn">
+          <form id="signInForm" class="form-stack" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="loginEmail">
+                University Email<span class="required-mark">*</span>
+              </label>
+              <input
+                class="form-control"
+                type="email"
+                id="loginEmail"
+                name="loginEmail"
+                placeholder="i231042@nu.edu.pk"
+                autocomplete="email"
+                required
+              >
+              <span class="field-error" id="loginEmailError"></span>
+            </div>
+
+            <div class="form-group">
+              <div class="form-label-row">
+                <label class="form-label" for="loginPassword">
+                  Password<span class="required-mark">*</span>
+                </label>
+                <button type="button" class="btn-ghost btn-sm" id="toggleRecoveryBtn">
+                  Forgot password?
+                </button>
+              </div>
+              <div class="input-with-action">
+                <input
+                  class="form-control"
+                  type="password"
+                  id="loginPassword"
+                  name="loginPassword"
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                  required
+                >
+                <button
+                  type="button"
+                  class="input-action-btn"
+                  data-toggle-password="loginPassword"
+                  aria-pressed="false"
+                >
+                  Show
+                </button>
+              </div>
+              <span class="field-error" id="loginPasswordError"></span>
+            </div>
+
+            <label class="checkbox-label">
+              <input type="checkbox" id="rememberMe" name="rememberMe">
+              <span>Keep me signed in on this browser for faster booking</span>
+            </label>
+
+            <button type="submit" class="btn btn-primary btn-block">Sign In to FASTutor</button>
+          </form>
+
+          <div id="recoveryDrawer" class="recovery-drawer" hidden>
+            <div class="form-stack">
+              <strong style="font-size: 0.92rem; color: var(--color-navy);">Reset your FASTutor password</strong>
+              <p class="form-hint" style="margin: 0;">Enter your @nu.edu.pk email to receive a password reset link.</p>
+              <div class="form-group">
+                <label class="sr-only" for="recoveryEmail">Recovery email</label>
+                <input
+                  class="form-control"
+                  type="email"
+                  id="recoveryEmail"
+                  placeholder="your.id@nu.edu.pk"
+                >
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button type="button" class="btn btn-navy btn-sm" id="sendRecoveryBtn">Send Reset Link</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="cancelRecoveryBtn">Cancel</button>
+              </div>
+              <div id="recoveryMessage" class="form-hint" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIGN UP PANEL -->
+        <div id="panelSignUp" role="tabpanel" aria-labelledby="tabSignUp" hidden>
+          <form id="signUpForm" class="form-stack" novalidate>
+            <div class="form-group">
+              <span class="form-label">I want to join as<span class="required-mark">*</span></span>
+              <div class="role-selector">
+                <label class="role-option">
+                  <input type="radio" name="accountRole" value="student" checked>
+                  <span class="role-card">
+                    <strong>Junior / Learner</strong>
+                    <span>Book sessions &amp; ask course questions</span>
+                  </span>
+                </label>
+                <label class="role-option">
+                  <input type="radio" name="accountRole" value="tutor">
+                  <span class="role-card">
+                    <strong>Senior Tutor</strong>
+                    <span>Mentor peers in courses you excelled in</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="signupName">
+                  Full Name<span class="required-mark">*</span>
+                </label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="signupName"
+                  name="signupName"
+                  placeholder="Ayesha Siddiqui"
+                  autocomplete="name"
+                  required
+                >
+                <span class="field-error" id="signupNameError"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signupRoll">
+                  Roll Number<span class="required-mark">*</span>
+                </label>
+                <input
+                  class="form-control"
+                  type="text"
+                  id="signupRoll"
+                  name="signupRoll"
+                  placeholder="23I-1042"
+                  required
+                >
+                <span class="field-error" id="signupRollError"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="signupCampus">
+                  Campus<span class="required-mark">*</span>
+                </label>
+                <select class="form-control" id="signupCampus" name="signupCampus" required>
+                  <option value="">Select campus</option>
+                  <option value="Islamabad">Islamabad</option>
+                  <option value="Lahore">Lahore</option>
+                  <option value="Karachi">Karachi</option>
+                  <option value="Peshawar">Peshawar</option>
+                  <option value="Chiniot-Faisalabad">Chiniot-Faisalabad</option>
+                  <option value="Multan">Multan</option>
+                </select>
+                <span class="field-error" id="signupCampusError"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signupDept">
+                  Degree Program<span class="required-mark">*</span>
+                </label>
+                <select class="form-control" id="signupDept" name="signupDept" required>
+                  <option value="">Select program</option>
+                  <option value="BS(CS)">BS Computer Science</option>
+                  <option value="BS(SE)">BS Software Engineering</option>
+                  <option value="BS(AI)">BS Artificial Intelligence</option>
+                  <option value="BS(DS)">BS Data Science</option>
+                  <option value="BS(CY)">BS Cyber Security</option>
+                  <option value="BS(EE)">BS Electrical Engineering</option>
+                </select>
+                <span class="field-error" id="signupDeptError"></span>
+              </div>
+            </div>
+
+            <div id="tutorExtraFields" class="tutor-extra-fields" hidden>
+              <strong style="font-size: 0.88rem; color: var(--color-navy);">Senior Tutor Eligibility</strong>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="tutorSemester">
+                    Current Semester<span class="required-mark">*</span>
+                  </label>
+                  <select class="form-control" id="tutorSemester" name="tutorSemester">
+                    <option value="">Select semester</option>
+                    <option value="5th Semester">5th Semester</option>
+                    <option value="6th Semester">6th Semester</option>
+                    <option value="7th Semester">7th Semester</option>
+                    <option value="8th Semester">8th Semester</option>
+                    <option value="Graduate / MS">Graduate / MS</option>
+                  </select>
+                  <span class="field-error" id="tutorSemesterError"></span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="tutorCourses">
+                    Subjects You Can Teach<span class="required-mark">*</span>
+                  </label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="tutorCourses"
+                    name="tutorCourses"
+                    placeholder="e.g., CS2001 Data Structures, CS1004 OOP"
+                  >
+                  <span class="field-error" id="tutorCoursesError"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signupEmail">
+                University Email (@nu.edu.pk)<span class="required-mark">*</span>
+              </label>
+              <input
+                class="form-control"
+                type="email"
+                id="signupEmail"
+                name="signupEmail"
+                placeholder="i231042@nu.edu.pk"
+                autocomplete="email"
+                required
+              >
+              <span class="field-error" id="signupEmailError"></span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="signupPassword">
+                  Password<span class="required-mark">*</span>
+                </label>
+                <div class="input-with-action">
+                  <input
+                    class="form-control"
+                    type="password"
+                    id="signupPassword"
+                    name="signupPassword"
+                    placeholder="Min. 8 characters"
+                    autocomplete="new-password"
+                    required
+                  >
+                  <button
+                    type="button"
+                    class="input-action-btn"
+                    data-toggle-password="signupPassword"
+                    aria-pressed="false"
+                  >
+                    Show
+                  </button>
+                </div>
+                <div class="strength-meter" aria-hidden="true">
+                  <div class="strength-bar" id="passwordStrengthBar"></div>
+                </div>
+                <span class="form-hint" id="passwordStrengthText">Use 8+ chars with uppercase &amp; numbers.</span>
+                <span class="field-error" id="signupPasswordError"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signupConfirm">
+                  Confirm Password<span class="required-mark">*</span>
+                </label>
+                <div class="input-with-action">
+                  <input
+                    class="form-control"
+                    type="password"
+                    id="signupConfirm"
+                    name="signupConfirm"
+                    placeholder="Re-enter password"
+                    autocomplete="new-password"
+                    required
+                  >
+                  <button
+                    type="button"
+                    class="input-action-btn"
+                    data-toggle-password="signupConfirm"
+                    aria-pressed="false"
+                  >
+                    Show
+                  </button>
+                </div>
+                <span class="field-error" id="signupConfirmError"></span>
+              </div>
+            </div>
+
+            <label class="checkbox-label">
+              <input type="checkbox" id="honorAgree" name="honorAgree" required>
+              <span>I agree to the FASTutor Peer Honor Code: sessions and Q&amp;A are for learning and concept mastery, never for submitting unauthored assignments.</span>
+            </label>
+            <span class="field-error" id="honorAgreeError"></span>
+
+            <button type="submit" class="btn btn-primary btn-block">Create FASTutor Account</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="brand-mark" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </span>
+            <span>FASTutor</span>
+          </div>
+          <p class="footer-desc">Learn from the seniors who’ve been there. Peer-led academic support built by students, for students.</p>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Platform</h2>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="book-session.html">Book a Session</a></li>
+            <li><a href="ask-question.html">Ask a Question</a></li>
+            <li><a href="auth.html">Sign In / Join</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Top Courses</h2>
+          <ul class="footer-links">
+            <li><a href="book-session.html?course=CS2001">CS2001 Data Structures</a></li>
+            <li><a href="book-session.html?course=CS1004">CS1004 Object-Oriented Prog.</a></li>
+            <li><a href="book-session.html?course=CS2005">CS2005 Database Systems</a></li>
+            <li><a href="book-session.html?course=CS2006">CS2006 Operating Systems</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Campuses &amp; Support</h2>
+          <ul class="footer-links">
+            <li>Islamabad · Lahore · Karachi</li>
+            <li>Peshawar · CFD · Multan</li>
+            <li><a href="mailto:support@fastutor.edu.pk">support@fastutor.edu.pk</a></li>
+            <li>Academic Honor Code Enforced</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 FASTutor · SE-A Group 10. All rights reserved.</span>
+        <span>Built with HTML5, CSS3 &amp; Vanilla JavaScript</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Mobile Navigation Toggle
+      const navToggle = document.getElementById('navToggle');
+      const siteNav = document.getElementById('siteNav');
+      if (navToggle && siteNav) {
+        navToggle.addEventListener('click', function () {
+          const isOpen = siteNav.classList.toggle('is-open');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+
+      // Elements
+      const tabSignIn = document.getElementById('tabSignIn');
+      const tabSignUp = document.getElementById('tabSignUp');
+      const panelSignIn = document.getElementById('panelSignIn');
+      const panelSignUp = document.getElementById('panelSignUp');
+      const statusBanner = document.getElementById('authStatusBanner');
+
+      function setBanner(type, messageHtml) {
+        statusBanner.className = 'alert alert-' + type;
+        statusBanner.innerHTML = messageHtml;
+        statusBanner.hidden = false;
+      }
+
+      function clearBanner() {
+        statusBanner.hidden = true;
+        statusBanner.textContent = '';
+      }
+
+      function switchAuthTab(mode) {
+        const isSignIn = mode === 'signin';
+        tabSignIn.setAttribute('aria-selected', String(isSignIn));
+        tabSignUp.setAttribute('aria-selected', String(!isSignIn));
+        panelSignIn.hidden = !isSignIn;
+        panelSignUp.hidden = isSignIn;
+        clearBanner();
+      }
+
+      tabSignIn.addEventListener('click', function () {
+        switchAuthTab('signin');
+      });
+
+      tabSignUp.addEventListener('click', function () {
+        switchAuthTab('signup');
+      });
+
+      // Honor ?mode=signup or #signup in URL
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('mode') === 'signup' || window.location.hash === '#signup') {
+        switchAuthTab('signup');
+      }
+
+      // Show / Hide Password Toggles
+      document.querySelectorAll('[data-toggle-password]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const target = document.getElementById(btn.getAttribute('data-toggle-password'));
+          if (!target) return;
+          const reveal = target.type === 'password';
+          target.type = reveal ? 'text' : 'password';
+          btn.textContent = reveal ? 'Hide' : 'Show';
+          btn.setAttribute('aria-pressed', String(reveal));
+        });
+      });
+
+      // Forgot Password Drawer
+      const toggleRecoveryBtn = document.getElementById('toggleRecoveryBtn');
+      const recoveryDrawer = document.getElementById('recoveryDrawer');
+      const cancelRecoveryBtn = document.getElementById('cancelRecoveryBtn');
+      const sendRecoveryBtn = document.getElementById('sendRecoveryBtn');
+      const recoveryEmail = document.getElementById('recoveryEmail');
+      const recoveryMessage = document.getElementById('recoveryMessage');
+
+      toggleRecoveryBtn.addEventListener('click', function () {
+        recoveryDrawer.hidden = !recoveryDrawer.hidden;
+        if (!recoveryDrawer.hidden) {
+          recoveryEmail.focus();
+        }
+      });
+
+      cancelRecoveryBtn.addEventListener('click', function () {
+        recoveryDrawer.hidden = true;
+        recoveryMessage.textContent = '';
+      });
+
+      sendRecoveryBtn.addEventListener('click', function () {
+        const emailVal = recoveryEmail.value.trim();
+        if (!/^[^\s@]+@nu\.edu\.pk$/i.test(emailVal)) {
+          recoveryMessage.style.color = 'var(--color-crimson)';
+          recoveryMessage.textContent = 'Please enter a valid @nu.edu.pk university email address.';
+          return;
+        }
+        recoveryMessage.style.color = 'var(--color-emerald)';
+        recoveryMessage.textContent = 'Password reset instructions have been queued for ' + emailVal + '.';
+      });
+
+      // Helper for field validation display
+      function setFieldError(inputEl, errorId, message) {
+        const errorEl = document.getElementById(errorId);
+        if (errorEl) errorEl.textContent = message;
+        if (inputEl) {
+          inputEl.classList.toggle('is-invalid', Boolean(message));
+        }
+      }
+
+      function isNuEmail(email) {
+        return /^[^\s@]+@nu\.edu\.pk$/i.test(email);
+      }
+
+      // Sign In Submission
+      const signInForm = document.getElementById('signInForm');
+      signInForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        clearBanner();
+
+        const emailInput = document.getElementById('loginEmail');
+        const passInput = document.getElementById('loginPassword');
+        const emailVal = emailInput.value.trim();
+        const passVal = passInput.value;
+        let valid = true;
+
+        if (!emailVal) {
+          setFieldError(emailInput, 'loginEmailError', 'University email is required.');
+          valid = false;
+        } else if (!isNuEmail(emailVal)) {
+          setFieldError(emailInput, 'loginEmailError', 'Please use your @nu.edu.pk email address.');
+          valid = false;
+        } else {
+          setFieldError(emailInput, 'loginEmailError', '');
+        }
+
+        if (!passVal || passVal.length < 6) {
+          setFieldError(passInput, 'loginPasswordError', 'Enter your password (at least 6 characters).');
+          valid = false;
+        } else {
+          setFieldError(passInput, 'loginPasswordError', '');
+        }
+
+        if (!valid) return;
+
+        try {
+          localStorage.setItem('fastutor_user_email', emailVal);
+        } catch (err) {
+          // Storage disabled; continue gracefully
+        }
+
+        setBanner(
+          'success',
+          '<div><strong>Welcome back, ' +
+            emailVal.split('@')[0] +
+            '!</strong> You are signed in. Continue to <a href="book-session.html">Book a Session</a> or <a href="ask-question.html">Ask a Question</a>.</div>'
+        );
+        signInForm.reset();
+      });
+
+      // Role Toggle for Senior Tutor extra fields
+      const roleRadios = document.querySelectorAll('input[name="accountRole"]');
+      const tutorExtraFields = document.getElementById('tutorExtraFields');
+      roleRadios.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+          const isTutor = radio.value === 'tutor' && radio.checked;
+          tutorExtraFields.hidden = !isTutor;
+        });
+      });
+
+      // Password Strength Meter
+      const signupPassword = document.getElementById('signupPassword');
+      const strengthBar = document.getElementById('passwordStrengthBar');
+      const strengthText = document.getElementById('passwordStrengthText');
+
+      signupPassword.addEventListener('input', function () {
+        const val = signupPassword.value;
+        let score = 0;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+
+        const widths = ['0%', '25%', '50%', '75%', '100%'];
+        const colors = ['var(--color-crimson)', '#ef4444', '#f59e0b', '#10b981', '#059669'];
+        const labels = [
+          'Use 8+ chars with uppercase & numbers.',
+          'Weak — add uppercase letters and numbers.',
+          'Fair — add a number or symbol for better security.',
+          'Good — solid password strength.',
+          'Strong password.'
+        ];
+
+        strengthBar.style.width = widths[score];
+        strengthBar.style.backgroundColor = colors[score];
+        strengthText.textContent = labels[score];
+      });
+
+      // Sign Up Submission
+      const signUpForm = document.getElementById('signUpForm');
+      signUpForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        clearBanner();
+
+        const selectedRole = document.querySelector('input[name="accountRole"]:checked').value;
+        const nameInput = document.getElementById('signupName');
+        const rollInput = document.getElementById('signupRoll');
+        const campusInput = document.getElementById('signupCampus');
+        const deptInput = document.getElementById('signupDept');
+        const emailInput = document.getElementById('signupEmail');
+        const passInput = document.getElementById('signupPassword');
+        const confirmInput = document.getElementById('signupConfirm');
+        const honorInput = document.getElementById('honorAgree');
+        const tutorSemester = document.getElementById('tutorSemester');
+        const tutorCourses = document.getElementById('tutorCourses');
+
+        let valid = true;
+
+        if (nameInput.value.trim().length < 3) {
+          setFieldError(nameInput, 'signupNameError', 'Enter your full name.');
+          valid = false;
+        } else {
+          setFieldError(nameInput, 'signupNameError', '');
+        }
+
+        if (!/^\d{2}[A-Za-z]-\d{4}$/.test(rollInput.value.trim())) {
+          setFieldError(rollInput, 'signupRollError', 'Use roll format like 23I-1042 or 22L-4510.');
+          valid = false;
+        } else {
+          setFieldError(rollInput, 'signupRollError', '');
+        }
+
+        if (!campusInput.value) {
+          setFieldError(campusInput, 'signupCampusError', 'Select your campus.');
+          valid = false;
+        } else {
+          setFieldError(campusInput, 'signupCampusError', '');
+        }
+
+        if (!deptInput.value) {
+          setFieldError(deptInput, 'signupDeptError', 'Select your degree program.');
+          valid = false;
+        } else {
+          setFieldError(deptInput, 'signupDeptError', '');
+        }
+
+        if (selectedRole === 'tutor') {
+          if (!tutorSemester.value) {
+            setFieldError(tutorSemester, 'tutorSemesterError', 'Select your current semester.');
+            valid = false;
+          } else {
+            setFieldError(tutorSemester, 'tutorSemesterError', '');
+          }
+          if (tutorCourses.value.trim().length < 4) {
+            setFieldError(tutorCourses, 'tutorCoursesError', 'List at least one course code or subject.');
+            valid = false;
+          } else {
+            setFieldError(tutorCourses, 'tutorCoursesError', '');
+          }
+        } else {
+          setFieldError(tutorSemester, 'tutorSemesterError', '');
+          setFieldError(tutorCourses, 'tutorCoursesError', '');
+        }
+
+        if (!isNuEmail(emailInput.value.trim())) {
+          setFieldError(emailInput, 'signupEmailError', 'Registration requires a valid @nu.edu.pk email.');
+          valid = false;
+        } else {
+          setFieldError(emailInput, 'signupEmailError', '');
+        }
+
+        const passVal = passInput.value;
+        if (passVal.length < 8 || !/[A-Z]/.test(passVal) || !/[0-9]/.test(passVal)) {
+          setFieldError(passInput, 'signupPasswordError', 'Minimum 8 characters with at least 1 uppercase letter and 1 digit.');
+          valid = false;
+        } else {
+          setFieldError(passInput, 'signupPasswordError', '');
+        }
+
+        if (confirmInput.value !== passVal || !confirmInput.value) {
+          setFieldError(confirmInput, 'signupConfirmError', 'Passwords do not match.');
+          valid = false;
+        } else {
+          setFieldError(confirmInput, 'signupConfirmError', '');
+        }
+
+        const honorError = document.getElementById('honorAgreeError');
+        if (!honorInput.checked) {
+          honorError.textContent = 'You must accept the Peer Honor Code to continue.';
+          valid = false;
+        } else {
+          honorError.textContent = '';
+        }
+
+        if (!valid) return;
+
+        const roleLabel = selectedRole === 'tutor' ? 'Senior Tutor' : 'Student Learner';
+        setBanner(
+          'success',
+          '<div><strong>Account created for ' +
+            nameInput.value.trim() +
+            ' (' +
+            roleLabel +
+            ')!</strong> Campus: ' +
+            campusInput.value +
+            '. You can now <a href="book-session.html">book a tutoring session</a> or <a href="ask-question.html">post your first question</a>.</div>'
+        );
+
+        signUpForm.reset();
+        tutorExtraFields.hidden = true;
+        strengthBar.style.width = '0%';
+        strengthText.textContent = 'Use 8+ chars with uppercase & numbers.';
+      });
+    })();
+  </script>
+</body>
+</html>

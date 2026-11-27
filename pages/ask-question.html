@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask a Question | FASTutor</title>
+  <link rel="stylesheet" href="../css/fastutor.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span>FASTutor</span>
+          <span class="brand-tagline">Learn from the seniors who’ve been there</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        id="navToggle"
+        aria-expanded="false"
+        aria-controls="siteNav"
+        aria-label="Toggle navigation menu"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a class="nav-link" href="../index.html">Home</a></li>
+          <li><a class="nav-link" href="book-session.html">Book a Session</a></li>
+          <li><a class="nav-link" href="ask-question.html" aria-current="page">Ask a Question</a></li>
+        </ul>
+        <a class="nav-cta" href="auth.html">Sign In / Join</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="site-main">
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div>
+          <span class="eyebrow">Peer Academic Q&amp;A Board</span>
+          <h1>Ask a question, get guided by seniors</h1>
+          <p>Post conceptual doubts, compiler errors, or tricky past-paper problems. Verified seniors and peers respond with step-by-step hints.</p>
+        </div>
+        <div class="hero-stat-pill">
+          <span>Median Reply Time:</span>
+          <strong>Under 45 minutes</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="container qa-layout">
+      <!-- LEFT: QUESTION COMPOSER & FEED -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <section class="card card-elevated" aria-label="Ask a new question">
+          <div class="card-header">
+            <h2 class="card-title">Post a Course Question</h2>
+            <button type="button" class="btn btn-secondary btn-sm" id="togglePreviewBtn" aria-expanded="false">
+              Preview Card
+            </button>
+          </div>
+
+          <div id="questionAlert" class="alert" role="status" aria-live="polite" hidden></div>
+
+          <form id="askForm" class="form-stack" novalidate>
+            <div class="form-group">
+              <div class="form-label-row">
+                <label class="form-label" for="qTitle">
+                  Question Title<span class="required-mark">*</span>
+                </label>
+                <span class="form-hint" id="titleCharCount">0 / 120</span>
+              </div>
+              <input
+                class="form-control"
+                type="text"
+                id="qTitle"
+                name="qTitle"
+                maxlength="120"
+                placeholder="e.g., Why does my C++ doubly linked list segfault when deleting the tail node?"
+                required
+              >
+              <span class="field-error" id="qTitleError"></span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="qCourse">
+                  Course<span class="required-mark">*</span>
+                </label>
+                <select class="form-control" id="qCourse" name="qCourse" required>
+                  <option value="">Select course</option>
+                  <option value="CS1002">CS1002 Programming Fundamentals</option>
+                  <option value="CS1004">CS1004 Object-Oriented Programming</option>
+                  <option value="CS2001">CS2001 Data Structures</option>
+                  <option value="CS2005">CS2005 Database Systems</option>
+                  <option value="CS2006">CS2006 Operating Systems</option>
+                  <option value="CS3001">CS3001 Computer Networks</option>
+                  <option value="MT1003">MT1003 Calculus &amp; Analytical Geometry</option>
+                  <option value="SE3002">SE3002 Software Design &amp; Architecture</option>
+                </select>
+                <span class="field-error" id="qCourseError"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="qCategory">
+                  Question Type<span class="required-mark">*</span>
+                </label>
+                <select class="form-control" id="qCategory" name="qCategory" required>
+                  <option value="Concept Clarification">Concept Clarification</option>
+                  <option value="Debugging / Error">Debugging / Code Error</option>
+                  <option value="Lab Task Guidance">Lab Task Guidance</option>
+                  <option value="Exam / Quiz Prep">Exam / Quiz Prep</option>
+                  <option value="Project Architecture">Project Architecture</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="qDetails">
+                Detailed Question &amp; What You Tried<span class="required-mark">*</span>
+              </label>
+              <textarea
+                class="form-control"
+                id="qDetails"
+                name="qDetails"
+                placeholder="Describe the concept or bug clearly, including what approach you already attempted."
+                required
+              ></textarea>
+              <span class="field-error" id="qDetailsError"></span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="qCode">
+                Optional Code or Error Output
+              </label>
+              <textarea
+                class="form-control code-input"
+                id="qCode"
+                name="qCode"
+                placeholder="Paste a short snippet or compiler message (keep under 25 lines)."
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="qTagInput">Topic Tags (up to 4)</label>
+                <div class="tag-input-wrap" id="tagContainer">
+                  <input
+                    type="text"
+                    class="tag-raw-input"
+                    id="qTagInput"
+                    placeholder="Type tag &amp; press Enter"
+                  >
+                </div>
+                <div class="suggested-tags" aria-label="Quick tags">
+                  <span class="form-hint">Quick add:</span>
+                  <button type="button" class="suggested-tag-btn" data-add-tag="pointers">pointers</button>
+                  <button type="button" class="suggested-tag-btn" data-add-tag="recursion">recursion</button>
+                  <button type="button" class="suggested-tag-btn" data-add-tag="sql-joins">sql-joins</button>
+                  <button type="button" class="suggested-tag-btn" data-add-tag="deadlocks">deadlocks</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="qUrgency">Timeline</label>
+                <select class="form-control" id="qUrgency" name="qUrgency">
+                  <option value="Normal">Standard (within 24 hrs)</option>
+                  <option value="Before Lab">Before Upcoming Lab</option>
+                  <option value="Exam Prep">Midterm / Final Prep</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="questionPreviewBox" class="question-preview" hidden>
+              <div class="form-hint" style="margin-bottom: 0.35rem; font-weight: 700; text-transform: uppercase;">Live Preview</div>
+              <h3 class="question-title" id="previewTitle">Your question title will appear here</h3>
+              <p class="question-excerpt" id="previewDetails">Your explanation will appear here.</p>
+              <div class="tag-list" id="previewMeta"></div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between;">
+              <span class="form-hint">Questions are visible to verified FASTutor peers and senior mentors.</span>
+              <button type="submit" class="btn btn-primary">Publish Question</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- RECENT COMMUNITY QUESTIONS -->
+        <section aria-label="Community questions feed">
+          <div class="card" style="margin-bottom: 1rem;">
+            <div class="card-header" style="margin-bottom: 0.9rem;">
+              <h2 class="card-title">Recent Peer Questions</h2>
+              <span class="badge badge-blue" id="feedCountBadge">3 Questions</span>
+            </div>
+
+            <div class="filter-bar" style="margin-bottom: 0;">
+              <div class="form-group">
+                <label class="sr-only" for="feedSearch">Search questions</label>
+                <input class="form-control" type="search" id="feedSearch" placeholder="Search questions or tags...">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="feedCourseFilter">Filter feed by course</label>
+                <select class="form-control" id="feedCourseFilter">
+                  <option value="all">All Courses</option>
+                  <option value="CS1004">CS1004 OOP</option>
+                  <option value="CS2001">CS2001 Data Structures</option>
+                  <option value="CS2005">CS2005 Database Systems</option>
+                  <option value="CS2006">CS2006 Operating Systems</option>
+                  <option value="MT1003">MT1003 Calculus</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="feedStatusFilter">Filter by answer status</label>
+                <select class="form-control" id="feedStatusFilter">
+                  <option value="all">All Statuses</option>
+                  <option value="answered">Answered</option>
+                  <option value="open">Needs Answer</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="question-feed" id="questionFeed" aria-live="polite"></div>
+          <p id="emptyFeedMsg" class="form-hint" hidden>No questions match those filters right now. Try adjusting your search.</p>
+        </section>
+      </div>
+
+      <!-- RIGHT SIDEBAR: GUIDELINES & ESCALATION -->
+      <aside style="display: flex; flex-direction: column; gap: 1.25rem;" aria-label="Asking guidelines and help options">
+        <section class="card">
+          <h2 class="card-title" style="margin-bottom: 0.75rem;">How to Get Great Senior Replies</h2>
+          <ol class="honor-list">
+            <li>Include the exact course code and lab or lecture topic in your title.</li>
+            <li>Explain what you already tried—seniors prioritize students who show their thought process.</li>
+            <li>Trim code snippets to the specific function causing the bug rather than pasting an entire file.</li>
+            <li>Mark helpful explanations with an upvote so classmates with the same doubt find them fast.</li>
+          </ol>
+        </section>
+
+        <section class="card">
+          <span class="badge badge-amber" style="margin-bottom: 0.6rem;">Academic Integrity</span>
+          <h2 class="card-title" style="margin-bottom: 0.5rem;">Guided Debugging Only</h2>
+          <p class="form-hint" style="margin: 0;">
+            Do not upload graded assignment specifications asking for full solutions. Senior mentors provide conceptual hints, dry runs, and debugging pointers aligned with FAST-NUCES honor standards.
+          </p>
+        </section>
+
+        <section class="card" style="background: linear-gradient(155deg, var(--color-navy) 0%, #163b60 100%); color: #ffffff;">
+          <h2 class="card-title" style="color: #ffffff; margin-bottom: 0.5rem;">Stuck on a deeper concept?</h2>
+          <p style="margin: 0 0 1rem; font-size: 0.88rem; color: #cbd5e1;">
+            If text Q&amp;A isn’t enough for a tough topic like dynamic programming or OS synchronization, schedule a live 1-on-1 screen-share session.
+          </p>
+          <a class="btn btn-primary btn-block" href="book-session.html">Book a 1-on-1 Senior Session</a>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="brand-mark" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </span>
+            <span>FASTutor</span>
+          </div>
+          <p class="footer-desc">Learn from the seniors who’ve been there. Peer-led academic support built by students, for students.</p>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Platform</h2>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="book-session.html">Book a Session</a></li>
+            <li><a href="ask-question.html">Ask a Question</a></li>
+            <li><a href="auth.html">Sign In / Join</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Top Courses</h2>
+          <ul class="footer-links">
+            <li><a href="book-session.html?course=CS2001">CS2001 Data Structures</a></li>
+            <li><a href="book-session.html?course=CS1004">CS1004 Object-Oriented Prog.</a></li>
+            <li><a href="book-session.html?course=CS2005">CS2005 Database Systems</a></li>
+            <li><a href="book-session.html?course=CS2006">CS2006 Operating Systems</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Campuses &amp; Support</h2>
+          <ul class="footer-links">
+            <li>Islamabad · Lahore · Karachi</li>
+            <li>Peshawar · CFD · Multan</li>
+            <li><a href="mailto:support@fastutor.edu.pk">support@fastutor.edu.pk</a></li>
+            <li>Academic Honor Code Enforced</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 FASTutor · SE-A Group 10. All rights reserved.</span>
+        <span>Built with HTML5, CSS3 &amp; Vanilla JavaScript</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // Mobile Navigation Toggle
+      const navToggle = document.getElementById('navToggle');
+      const siteNav = document.getElementById('siteNav');
+      if (navToggle && siteNav) {
+        navToggle.addEventListener('click', function () {
+          const isOpen = siteNav.classList.toggle('is-open');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+
+      const STORAGE_KEY = 'fastutor_questions_v1';
+
+      const SEED_QUESTIONS = [
+        {
+          id: 'q101',
+          title: 'Why does deleting the tail node in my doubly linked list leave a dangling pointer?',
+          course: 'CS2001',
+          category: 'Debugging / Error',
+          details: 'I updated tail = tail->prev and deleted the old tail, but traversing forward from head still hits garbage memory on the last iteration.',
+          code: 'Node* oldTail = tail;\ntail = tail->prev;\ndelete oldTail;\n// Forgot tail->next = nullptr;',
+          tags: ['pointers', 'linked-list', 'c++'],
+          urgency: 'Before Lab',
+          author: 'Raza Ali · 24I-0318',
+          createdAt: '2 hours ago',
+          votes: 14,
+          voted: false,
+          answers: [
+            {
+              author: 'Zainab Farooq (Senior Mentor)',
+              text: 'After moving tail = tail->prev, check if tail is non-null and explicitly set tail->next = nullptr before calling delete oldTail. Also handle the single-node edge case where head == tail.'
+            }
+          ]
+        },
+        {
+          id: 'q102',
+          title: 'Difference between LEFT JOIN filtering in ON vs WHERE clause in SQL?',
+          course: 'CS2005',
+          category: 'Concept Clarification',
+          details: 'When I put s.semester = 4 in the WHERE clause instead of the ON clause, students without any registered courses disappear from the result.',
+          code: '',
+          tags: ['sql-joins', 'rdbms'],
+          urgency: 'Normal',
+          author: 'Nimra Khalid · 23L-2204',
+          createdAt: '5 hours ago',
+          votes: 9,
+          voted: false,
+          answers: [
+            {
+              author: 'Bilal Ahmed (Senior Mentor)',
+              text: 'Putting a condition on the right-hand table inside WHERE runs after the join and drops rows where the right side is NULL, effectively turning your LEFT JOIN into an INNER JOIN. Keep right-table filters inside ON when you want unmatched left rows preserved.'
+            }
+          ]
+        },
+        {
+          id: 'q103',
+          title: 'How to avoid busy waiting when implementing producer-consumer with pthreads?',
+          course: 'CS2006',
+          category: 'Lab Task Guidance',
+          details: 'My while(count == BUFFER_SIZE) loop burns 100% CPU in Ubuntu. Should I use a semaphore or pthread_cond_wait alongside the mutex?',
+          code: '',
+          tags: ['deadlocks', 'pthreads', 'synchronization'],
+          urgency: 'Exam Prep',
+          author: 'Fawad Hassan · 22K-4109',
+          createdAt: '1 day ago',
+          votes: 6,
+          voted: false,
+          answers: []
+        }
+      ];
+
+      // Form Elements
+      const askForm = document.getElementById('askForm');
+      const qTitle = document.getElementById('qTitle');
+      const titleCharCount = document.getElementById('titleCharCount');
+      const qCourse = document.getElementById('qCourse');
+      const qCategory = document.getElementById('qCategory');
+      const qDetails = document.getElementById('qDetails');
+      const qCode = document.getElementById('qCode');
+      const qUrgency = document.getElementById('qUrgency');
+      const qTagInput = document.getElementById('qTagInput');
+      const tagContainer = document.getElementById('tagContainer');
+      const questionAlert = document.getElementById('questionAlert');
+
+      const togglePreviewBtn = document.getElementById('togglePreviewBtn');
+      const questionPreviewBox = document.getElementById('questionPreviewBox');
+      const previewTitle = document.getElementById('previewTitle');
+      const previewDetails = document.getElementById('previewDetails');
+      const previewMeta = document.getElementById('previewMeta');
+
+      const feedSearch = document.getElementById('feedSearch');
+      const feedCourseFilter = document.getElementById('feedCourseFilter');
+      const feedStatusFilter = document.getElementById('feedStatusFilter');
+      const questionFeed = document.getElementById('questionFeed');
+      const feedCountBadge = document.getElementById('feedCountBadge');
+      const emptyFeedMsg = document.getElementById('emptyFeedMsg');
+
+      let currentTags = [];
+
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      function loadQuestions() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          }
+        } catch (err) {
+          // Ignore storage error
+        }
+        return SEED_QUESTIONS.slice();
+      }
+
+      function saveQuestions(list) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        } catch (err) {
+          // Ignore storage error
+        }
+      }
+
+      function renderTags() {
+        tagContainer.querySelectorAll('.tag-chip').forEach(function (chip) {
+          chip.remove();
+        });
+
+        currentTags.forEach(function (tag) {
+          const chip = document.createElement('span');
+          chip.className = 'tag-chip';
+          chip.innerHTML =
+            '<span>#' + escapeHtml(tag) + '</span>' +
+            '<button type="button" aria-label="Remove tag ' + escapeHtml(tag) + '">&times;</button>';
+          chip.querySelector('button').addEventListener('click', function () {
+            currentTags = currentTags.filter(function (t) { return t !== tag; });
+            renderTags();
+            updatePreview();
+          });
+          tagContainer.insertBefore(chip, qTagInput);
+        });
+      }
+
+      function addTag(raw) {
+        const clean = raw.trim().toLowerCase().replace(/[^a-z0-9+-]/g, '');
+        if (!clean || currentTags.includes(clean) || currentTags.length >= 4) return;
+        currentTags.push(clean);
+        renderTags();
+        updatePreview();
+      }
+
+      qTagInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ',') {
+          event.preventDefault();
+          addTag(qTagInput.value);
+          qTagInput.value = '';
+        }
+      });
+
+      document.querySelectorAll('[data-add-tag]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          addTag(btn.getAttribute('data-add-tag'));
+        });
+      });
+
+      function updatePreview() {
+        if (questionPreviewBox.hidden) return;
+        previewTitle.textContent = qTitle.value.trim() || 'Your question title will appear here';
+        previewDetails.textContent = qDetails.value.trim() || 'Your explanation will appear here.';
+        const badges = [];
+        if (qCourse.value) badges.push('<span class="badge badge-blue">' + escapeHtml(qCourse.value) + '</span>');
+        badges.push('<span class="badge badge-slate">' + escapeHtml(qCategory.value) + '</span>');
+        currentTags.forEach(function (t) {
+          badges.push('<span class="badge badge-slate">#' + escapeHtml(t) + '</span>');
+        });
+        previewMeta.innerHTML = badges.join('');
+      }
+
+      qTitle.addEventListener('input', function () {
+        titleCharCount.textContent = qTitle.value.length + ' / 120';
+        updatePreview();
+      });
+
+      [qCourse, qCategory, qDetails].forEach(function (el) {
+        el.addEventListener('input', updatePreview);
+      });
+
+      togglePreviewBtn.addEventListener('click', function () {
+        const isHidden = questionPreviewBox.hidden;
+        questionPreviewBox.hidden = !isHidden;
+        togglePreviewBtn.setAttribute('aria-expanded', String(isHidden));
+        togglePreviewBtn.textContent = isHidden ? 'Hide Preview' : 'Preview Card';
+        updatePreview();
+      });
+
+      function renderFeed() {
+        const allQuestions = loadQuestions();
+        const query = feedSearch.value.trim().toLowerCase();
+        const courseVal = feedCourseFilter.value;
+        const statusVal = feedStatusFilter.value;
+
+        const filtered = allQuestions.filter(function (q) {
+          const matchesCourse = courseVal === 'all' || q.course === courseVal;
+          const isAnswered = q.answers && q.answers.length > 0;
+          const matchesStatus =
+            statusVal === 'all' ||
+            (statusVal === 'answered' && isAnswered) ||
+            (statusVal === 'open' && !isAnswered);
+          const haystack = (q.title + ' ' + q.details + ' ' + q.course + ' ' + q.tags.join(' ')).toLowerCase();
+          const matchesQuery = !query || haystack.includes(query);
+          return matchesCourse && matchesStatus && matchesQuery;
+        });
+
+        feedCountBadge.textContent = filtered.length + (filtered.length === 1 ? ' Question' : ' Questions');
+        emptyFeedMsg.hidden = filtered.length > 0;
+
+        questionFeed.innerHTML = filtered
+          .map(function (q) {
+            const hasAnswers = q.answers && q.answers.length > 0;
+            const statusBadge = hasAnswers
+              ? '<span class="badge badge-emerald">' + q.answers.length + ' Senior ' + (q.answers.length === 1 ? 'Reply' : 'Replies') + '</span>'
+              : '<span class="badge badge-amber">Needs Answer</span>';
+
+            const tagBadges = q.tags
+              .map(function (t) { return '<span class="badge badge-slate">#' + escapeHtml(t) + '</span>'; })
+              .join('');
+
+            const codeBlock = q.code
+              ? '<pre class="code-snippet-box">' + escapeHtml(q.code) + '</pre>'
+              : '';
+
+            const answersHtml = hasAnswers
+              ? q.answers
+                  .map(function (ans) {
+                    return (
+                      '<div class="answer-item">' +
+                        '<header><span>' + escapeHtml(ans.author) + '</span><span class="badge badge-emerald">Verified Guidance</span></header>' +
+                        '<div>' + escapeHtml(ans.text) + '</div>' +
+                      '</div>'
+                    );
+                  })
+                  .join('')
+              : '<p class="form-hint" style="margin: 0;">No senior replies yet. Contribute a helpful hint below.</p>';
+
+            return (
+              '<article class="question-card" data-qid="' + q.id + '">' +
+                '<div class="vote-col">' +
+                  '<button type="button" class="vote-btn' + (q.voted ? ' is-voted' : '') + '" data-vote-id="' + q.id + '" aria-pressed="' + Boolean(q.voted) + '">' +
+                    '<span aria-hidden="true">&#9650;</span>' +
+                    '<span>' + q.votes + '</span>' +
+                  '</button>' +
+                '</div>' +
+                '<div class="question-body">' +
+                  '<div class="tag-list" style="margin-bottom: 0.45rem;">' +
+                    '<span class="badge badge-blue">' + escapeHtml(q.course) + '</span>' +
+                    '<span class="badge badge-slate">' + escapeHtml(q.category) + '</span>' +
+                    statusBadge +
+                  '</div>' +
+                  '<h3 class="question-title">' + escapeHtml(q.title) + '</h3>' +
+                  '<p class="question-excerpt">' + escapeHtml(q.details) + '</p>' +
+                  codeBlock +
+                  '<div class="question-meta-row">' +
+                    '<div class="tag-list">' + tagBadges + '</div>' +
+                    '<div style="display: flex; align-items: center; gap: 0.75rem;">' +
+                      '<span>' + escapeHtml(q.author) + ' · ' + escapeHtml(q.createdAt) + '</span>' +
+                      '<button type="button" class="btn btn-secondary btn-sm" data-toggle-answers="' + q.id + '" aria-expanded="false">' +
+                        (hasAnswers ? 'View Reply' : 'Answer') +
+                      '</button>' +
+                    '</div>' +
+                  '</div>' +
+                  '<div class="answer-drawer" id="drawer-' + q.id + '" hidden>' +
+                    answersHtml +
+                    '<form class="form-stack" data-reply-form="' + q.id + '">' +
+                      '<label class="sr-only" for="reply-' + q.id + '">Write a peer reply</label>' +
+                      '<textarea class="form-control" id="reply-' + q.id + '" style="min-height: 70px;" placeholder="Share a conceptual hint or debugging tip..."></textarea>' +
+                      '<div><button type="submit" class="btn btn-navy btn-sm">Post Peer Reply</button></div>' +
+                    '</form>' +
+                  '</div>' +
+                '</div>' +
+              '</article>'
+            );
+          })
+          .join('');
+
+        // Wire Upvotes
+        questionFeed.querySelectorAll('[data-vote-id]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            const id = btn.getAttribute('data-vote-id');
+            const list = loadQuestions().map(function (item) {
+              if (item.id === id) {
+                item.voted = !item.voted;
+                item.votes += item.voted ? 1 : -1;
+              }
+              return item;
+            });
+            saveQuestions(list);
+            renderFeed();
+          });
+        });
+
+        // Wire Expand Answers
+        questionFeed.querySelectorAll('[data-toggle-answers]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            const id = btn.getAttribute('data-toggle-answers');
+            const drawer = document.getElementById('drawer-' + id);
+            if (!drawer) return;
+            const willOpen = drawer.hidden;
+            drawer.hidden = !willOpen;
+            btn.setAttribute('aria-expanded', String(willOpen));
+          });
+        });
+
+        // Wire Reply Submissions
+        questionFeed.querySelectorAll('[data-reply-form]').forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const id = form.getAttribute('data-reply-form');
+            const textarea = form.querySelector('textarea');
+            const text = textarea.value.trim();
+            if (text.length < 5) return;
+
+            const list = loadQuestions().map(function (item) {
+              if (item.id === id) {
+                item.answers = item.answers || [];
+                item.answers.push({
+                  author: 'Peer Contributor (You)',
+                  text: text
+                });
+              }
+              return item;
+            });
+            saveQuestions(list);
+            renderFeed();
+            const reopened = document.getElementById('drawer-' + id);
+            if (reopened) reopened.hidden = false;
+          });
+        });
+      }
+
+      // Ask Form Submission
+      askForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        questionAlert.hidden = true;
+
+        let valid = true;
+        if (qTitle.value.trim().length < 10) {
+          document.getElementById('qTitleError').textContent = 'Write a clear question title (at least 10 characters).';
+          qTitle.classList.add('is-invalid');
+          valid = false;
+        } else {
+          document.getElementById('qTitleError').textContent = '';
+          qTitle.classList.remove('is-invalid');
+        }
+
+        if (!qCourse.value) {
+          document.getElementById('qCourseError').textContent = 'Select the relevant course.';
+          qCourse.classList.add('is-invalid');
+          valid = false;
+        } else {
+          document.getElementById('qCourseError').textContent = '';
+          qCourse.classList.remove('is-invalid');
+        }
+
+        if (qDetails.value.trim().length < 15) {
+          document.getElementById('qDetailsError').textContent = 'Describe your question and what you tried (at least 15 characters).';
+          qDetails.classList.add('is-invalid');
+          valid = false;
+        } else {
+          document.getElementById('qDetailsError').textContent = '';
+          qDetails.classList.remove('is-invalid');
+        }
+
+        if (!valid) return;
+
+        // Add any unsubmitted tag text left in input
+        if (qTagInput.value.trim()) {
+          addTag(qTagInput.value);
+          qTagInput.value = '';
+        }
+
+        let posterName = 'FAST Student';
+        try {
+          const savedEmail = localStorage.getItem('fastutor_user_email');
+          if (savedEmail) posterName = savedEmail.split('@')[0];
+        } catch (err) {
+          // Ignore storage error
+        }
+
+        const newQuestion = {
+          id: 'q' + Date.now(),
+          title: qTitle.value.trim(),
+          course: qCourse.value,
+          category: qCategory.value,
+          details: qDetails.value.trim(),
+          code: qCode.value.trim(),
+          tags: currentTags.length ? currentTags.slice() : [qCourse.value.toLowerCase()],
+          urgency: qUrgency.value,
+          author: posterName,
+          createdAt: 'Just now',
+          votes: 1,
+          voted: true,
+          answers: []
+        };
+
+        const list = loadQuestions();
+        list.unshift(newQuestion);
+        saveQuestions(list);
+        renderFeed();
+
+        questionAlert.className = 'alert alert-success';
+        questionAlert.innerHTML =
+          '<div><strong>Question published!</strong> Your ' +
+          escapeHtml(newQuestion.course) +
+          ' question is now live in the peer Q&amp;A feed below.</div>';
+        questionAlert.hidden = false;
+
+        askForm.reset();
+        currentTags = [];
+        renderTags();
+        titleCharCount.textContent = '0 / 120';
+        questionPreviewBox.hidden = true;
+        togglePreviewBtn.setAttribute('aria-expanded', 'false');
+        togglePreviewBtn.textContent = 'Preview Card';
+      });
+
+      feedSearch.addEventListener('input', renderFeed);
+      feedCourseFilter.addEventListener('change', renderFeed);
+      feedStatusFilter.addEventListener('change', renderFeed);
+
+      renderFeed();
+    })();
+  </script>
+</body>
+</html>
