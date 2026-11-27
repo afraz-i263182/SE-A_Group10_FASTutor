@@ -3435,3 +3435,13 @@ ul {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==========================================================================
+   Centered call-to-action row below a section's content
+   ========================================================================== */
+
+.section-cta-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
