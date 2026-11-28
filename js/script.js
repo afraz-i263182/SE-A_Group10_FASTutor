@@ -85,10 +85,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  const applyTutorFilters = ({ scrollToResults = false } = {}) => {
-    const normalizedQuery = filterState.query.trim().toLowerCase();
+ 
+  const normalizeSearchText = (value) =>
+    String(value || "")
+      .toLowerCase()
+      .normalize("NFKD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim()
+      .replace(/\s+/g, " ");
+
+    const normalizedQuery = normalizeSearchText(filterState.query);
+    const queryTokens = normalizedQuery ? normalizedQuery.split(" ") : [];
     const selectedCampus = filterState.campus;
     let visibleCount = 0;
+
+    tutorCards.forEach((card) => {
+      const cardCampus = (card.dataset.campus || "").toLowerCase();
+
+      const searchableText = normalizeSearchText(
+        `${card.dataset.courses || ""} ${card.textContent}`
+      );
+
+      const compactSearchableText = searchableText.replace(/\s/g, "");
+
+      const matchesCampus =
+        selectedCampus === "all" ||
+        cardCampus === selectedCampus.toLowerCase();
+
+      const matchesQuery =
+        queryTokens.length === 0 ||
+        queryTokens.every(
+          (token) =>
+            searchableText.includes(token) ||
+            compactSearchableText.includes(token)
+        );
+
+      const isVisible = matchesCampus && matchesQuery;
+
 
     tutorCards.forEach((card) => {
       const cardCampus = (card.dataset.campus || "").toLowerCase();
