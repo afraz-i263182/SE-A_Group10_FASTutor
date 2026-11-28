@@ -1,0 +1,290 @@
+/* ==========================================================================
+   FASTutor — Group Sessions & Workshops (page styles)
+   Reuses: .exam-rush-banner, .grade-chip, .eyebrow-*, modal + form classes.
+   ========================================================================== */
+
+/* Live exam support banner (compact variant of the Exam Rush banner) */
+.sessions-banner {
+  margin-bottom: 1.75rem;
+}
+
+.exam-rush-banner--compact {
+  padding: 1.5rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .exam-rush-banner--compact {
+    padding: 1.75rem 1.75rem;
+  }
+}
+
+.exam-rush-banner--compact .exam-rush-content {
+  gap: 1.25rem;
+}
+
+.exam-rush-banner--compact .exam-rush-title {
+  font-size: clamp(1.375rem, 3.4vw, 1.625rem);
+}
+
+.exam-rush-banner--compact .exam-rush-desc {
+  font-size: 14px;
+}
+
+/* Toolbar above the list */
+.sessions-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.sessions-toolbar > div {
+  max-width: 100%;
+}
+
+.list-title {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.list-title .material-symbols-outlined {
+  font-size: 22px;
+  color: var(--color-primary);
+}
+
+.sort-select {
+  width: auto;
+  max-width: 100%;
+  padding: 0.6875rem 2rem 0.6875rem 0.875rem;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  background-color: #ffffff;
+  border: 1px solid var(--color-surface-container-high);
+  color: var(--color-on-surface);
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+}
+
+/* Session cards */
+.session-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+.session-card {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 1rem 1.25rem;
+  align-items: center;
+  padding: 1.25rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.session-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-surface-container-highest);
+}
+
+@media (min-width: 640px) {
+  .session-card {
+    padding: 1.375rem 1.5rem;
+  }
+}
+
+.session-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.session-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-primary);
+}
+
+.session-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.session-tags .grade-chip {
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 12px;
+}
+
+.session-tags .code-chip {
+  font-size: 11px;
+}
+
+.session-aside {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "seats actions"
+    "price actions";
+  gap: 0.5rem 1.25rem;
+  align-items: center;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--color-surface-container);
+}
+
+@media (min-width: 900px) {
+  .session-card {
+    grid-template-columns: 3.5rem minmax(0, 1fr) 18rem;
+  }
+
+  .session-aside {
+    grid-column: auto;
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+.seat-block {
+  grid-area: seats;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.seat-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 13px;
+  color: var(--color-outline);
+}
+
+.seat-line strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.seat-bar {
+  height: 0.5rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-container-high);
+  overflow: hidden;
+}
+
+.seat-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(to right, var(--color-secondary-dark), var(--color-secondary));
+  transition: width 0.3s ease;
+}
+
+.seat-bar-fill.is-full {
+  background: var(--color-error);
+}
+
+.session-price {
+  grid-area: price;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+
+.session-actions {
+  grid-area: actions;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 7rem;
+}
+
+.session-actions .btn {
+  width: 100%;
+  white-space: nowrap;
+}
+
+/* Details modal */
+.host-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 13px;
+  color: var(--color-outline);
+}
+
+.host-line strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.detail-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1rem;
+  border: 1px solid var(--color-surface-container-high);
+  border-radius: var(--radius-md);
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 13px;
+  color: var(--color-outline);
+}
+
+.detail-row .material-symbols-outlined {
+  font-size: 18px;
+}
+
+.detail-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-on-surface);
+}
+
+.detail-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.detail-seats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 13px;
+  color: var(--color-outline);
+}
+
+.detail-price {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.host-form-note {
+  font-size: 12px;
+  color: var(--color-outline);
+}
