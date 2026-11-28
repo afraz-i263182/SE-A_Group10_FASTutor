@@ -565,6 +565,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- Live Booking Email Validation ---
+  if (bookingEmail) {
+    bookingEmail.addEventListener("input", () => {
+      const emailVal = bookingEmail.value.trim();
+
+      if (isValidNuEmail(emailVal)) {
+        if (bookingEmailError) bookingEmailError.hidden = true;
+        bookingEmail.removeAttribute("aria-invalid");
+      } else if (emailVal.length > 0) {
+        if (bookingEmailError) {
+          bookingEmailError.textContent =
+            "Use your official FAST student email ending in @nu.edu.pk.";
+          bookingEmailError.hidden = false;
+        }
+        bookingEmail.setAttribute("aria-invalid", "true");
+      } else {
+        if (bookingEmailError) bookingEmailError.hidden = true;
+        bookingEmail.removeAttribute("aria-invalid");
+      }
+    });
+  }
+
   // --- Tutor Application Modal ---
   const applyForm = document.getElementById("apply-form");
   const applySuccess = document.getElementById("apply-success");
