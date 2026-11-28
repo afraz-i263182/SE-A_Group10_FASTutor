@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help Center | FASTutor</title>
+  <meta name="description" content="FASTutor Help Center: search FAQs, learn how to stay safe on campus, and contact the support team or your campus ambassador." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&icon_names=arrow_forward,chat,check_circle,close,expand_more,gavel,location_on,mail,menu,receipt_long,school,search,support_agent,verified_user&display=block"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/help-center.css" />
+</head>
+<body>
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <a class="brand-link" href="../index.html" aria-label="FASTutor home">
+          <div class="brand-crest"><span class="material-symbols-outlined brand-crest-icon">school</span></div>
+          <div class="brand-text">
+            <div class="brand-title-row"><span class="brand-name">FASTutor</span><span class="badge-verified-pill">Verified</span></div>
+            <span class="brand-subtitle">FAST-NUCES Peer Mentorship</span>
+          </div>
+        </a>
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <a class="nav-link" href="../index.html#best-tutors">Find Tutors</a>
+          <a class="nav-link nav-link--rush" href="../index.html#exam-rush">
+            <span>Exam Rush</span>
+            <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+          </a>
+          <a class="nav-link" href="./study-tips.html">Study Tips</a>
+          <a class="nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        </nav>
+      </div>
+      <div class="header-actions">
+        <a class="btn-ghost-nav" href="../index.html?modal=login">Log in</a>
+        <a class="btn btn-primary btn-sm" href="../index.html?modal=signup">Get Started</a>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Toggle navigation menu">
+          <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" hidden>
+      <div class="container mobile-nav-inner">
+        <a class="mobile-nav-link" href="../index.html#best-tutors">Find Tutors</a>
+        <a class="mobile-nav-link mobile-nav-link--rush" href="../index.html#exam-rush">
+          <span>Exam Rush</span>
+          <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+        </a>
+        <a class="mobile-nav-link" href="./study-tips.html">Study Tips</a>
+        <a class="mobile-nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        <div class="mobile-nav-actions">
+          <a class="btn btn-secondary btn-full" href="../index.html?modal=login">Log in</a>
+          <a class="btn btn-primary btn-full" href="../index.html?modal=signup">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="help-main">
+    <!-- ==================== 1. HERO + SEARCH ==================== -->
+    <section class="help-hero" aria-labelledby="help-title">
+      <div class="container help-hero-inner">
+        <span class="eyebrow-pill">
+          <span class="eyebrow-dot"></span>
+          <span class="eyebrow-text">Student Support &amp; Help Desk</span>
+        </span>
+        <h1 class="help-title" id="help-title">How can we help you today?</h1>
+
+        <form class="help-search" id="help-search-form" role="search" autocomplete="off">
+          <label class="visually-hidden" for="help-search-input">Search FAQs and help topics</label>
+          <span class="material-symbols-outlined help-search-icon" aria-hidden="true">search</span>
+          <input class="help-search-input" id="help-search-input" type="search" name="q" placeholder="Search FAQs, help topics and anything" />
+          <button class="btn btn-primary btn-md" type="submit">Search</button>
+        </form>
+
+        <div class="help-popular">
+          <span class="help-popular-label">Popular:</span>
+          <button class="help-chip" type="button" data-query="verified">Tutor verification</button>
+          <button class="help-chip" type="button" data-query="payment">Payments</button>
+          <button class="help-chip" type="button" data-query="online">Online sessions</button>
+          <button class="help-chip" type="button" data-query="exam rush">Exam Rush</button>
+        </div>
+
+        <p class="help-status" id="help-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- ==================== 2. CAMPUS SAFETY & ACADEMIC INTEGRITY ==================== -->
+    <section class="help-section help-section--surface" id="safety" aria-labelledby="safety-title">
+      <div class="container">
+        <div class="help-head">
+          <h2 class="help-h2" id="safety-title">Campus Safety &amp; Academic Integrity</h2>
+          <p class="help-sub">Four habits that keep every session safe and fair for everyone.</p>
+        </div>
+
+        <ul class="safety-grid">
+          <li class="safety-tile" data-keywords="safety safe meet public library cafeteria campus location study corner lab in-person">
+            <span class="safety-icon" aria-hidden="true"><span class="material-symbols-outlined">location_on</span></span>
+            <div>
+              <h3 class="safety-title">Meet in Public Spots</h3>
+              <p class="safety-desc">Choose busy campus areas such as the library, labs or study corners for in-person sessions.</p>
+            </div>
+          </li>
+          <li class="safety-tile" data-keywords="verify identity nu email badge verified tutor signup sign up nu.edu.pk">
+            <span class="safety-icon" aria-hidden="true"><span class="material-symbols-outlined">verified_user</span></span>
+            <div>
+              <h3 class="safety-title">Verify @nu Identity</h3>
+              <p class="safety-desc">Look for the Verified badge on your tutor's profile, and use your own official @nu.edu.pk email to sign up.</p>
+            </div>
+          </li>
+          <li class="safety-tile" data-keywords="honor code integrity academic cheating plagiarism assignment graded work rules">
+            <span class="safety-icon" aria-hidden="true"><span class="material-symbols-outlined">gavel</span></span>
+            <div>
+              <h3 class="safety-title">Uphold FAST Honor Code</h3>
+              <p class="safety-desc">Sessions are for learning. Tutors explain concepts and review past papers; they never complete graded work for you.</p>
+            </div>
+          </li>
+          <li class="safety-tile" data-keywords="payment proof receipt refund dispute transfer confirmation money">
+            <span class="safety-icon" aria-hidden="true"><span class="material-symbols-outlined">receipt_long</span></span>
+            <div>
+              <h3 class="safety-title">Keep Payment Proofs</h3>
+              <p class="safety-desc">Save your transfer receipt or booking confirmation. It is the first thing support will ask for if there is a payment issue.</p>
+            </div>
+          </li>
+        </ul>
+
+        <a class="link-arrow safety-link" href="./terms.html?tab=community">
+          <span>Read the full Student Guidelines</span>
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==================== 3. FREQUENTLY ASKED QUESTIONS ==================== -->
+    <section class="help-section help-section--white" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="help-head">
+          <h2 class="help-h2" id="faq-title">Frequently Asked Questions</h2>
+          <p class="help-sub">Quick answers about verification, sessions and payments.</p>
+        </div>
+
+        <div class="faq-box" id="faq-box">
+          <div class="faq-tabs" role="tablist" aria-label="FAQ categories">
+            <button class="faq-tab is-active" id="tab-general" role="tab" type="button" aria-selected="true" aria-controls="panel-general">General</button>
+            <button class="faq-tab" id="tab-groups" role="tab" type="button" aria-selected="false" aria-controls="panel-groups" tabindex="-1">Groups</button>
+            <button class="faq-tab" id="tab-exam-rush" role="tab" type="button" aria-selected="false" aria-controls="panel-exam-rush" tabindex="-1">Exam Rush</button>
+          </div>
+
+          <!-- General -->
+          <div class="faq-panel" id="panel-general" role="tabpanel" aria-labelledby="tab-general">
+            <p class="faq-panel-label">General</p>
+            <div class="faq-list">
+              <div class="faq-item is-open" data-keywords="verification verify verified tutor transcript flex nu-id identity grade a a-">
+                <button class="faq-toggle" type="button" aria-expanded="true">
+                  <span class="faq-question">How are tutors verified?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content">
+                  <p class="faq-answer">Every tutor is verified through their Flex portal transcript and an active NU-ID. They must show an A or A- in the course they teach before their profile is approved.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-keywords="online in-person in person google meet library lab campus session mode">
+                <button class="faq-toggle" type="button" aria-expanded="false">
+                  <span class="faq-question">Can I take sessions online or in-person?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content" hidden>
+                  <p class="faq-answer">Both. When you book, choose in-person (campus library, lab or study corner) or online (Google Meet), then pick a time slot that suits you.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-keywords="refund money back guarantee complaint unhappy dispute tutor quality rebook">
+                <button class="faq-toggle" type="button" aria-expanded="false">
+                  <span class="faq-question">What if I am not satisfied with my tutor?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content" hidden>
+                  <p class="faq-answer">Send us a message using the form below with your booking details and what went wrong. Bookings are covered by FASTutor's money-back guarantee, and you can rebook with another verified senior.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-keywords="payment pay cash transfer proof receipt price fee cost money">
+                <button class="faq-toggle" type="button" aria-expanded="false">
+                  <span class="faq-question">How do I pay for a session?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content" hidden>
+                  <p class="faq-answer">Pay by online transfer or in cash on campus when you book. Keep your payment proof until the session is complete, in case you ever need support.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-keywords="email signup sign up register account nu.edu.pk login students only">
+                <button class="faq-toggle" type="button" aria-expanded="false">
+                  <span class="faq-question">Do I need an @nu.edu.pk email to sign up?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content" hidden>
+                  <p class="faq-answer">Yes. Accounts use your official FAST email ending in @nu.edu.pk, which keeps the community limited to real FASTians.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-keywords="become tutor apply teach application senior review earn">
+                <button class="faq-toggle" type="button" aria-expanded="false">
+                  <span class="faq-question">How do I become a tutor?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content" hidden>
+                  <p class="faq-answer">Choose <a class="faq-link" href="../index.html?modal=apply">Become a Tutor</a> and submit your Flex transcript showing an A or A- in the course, together with your official NU email. Applications are reviewed within 24 hours.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Groups -->
+          <div class="faq-panel" id="panel-groups" role="tabpanel" aria-labelledby="tab-groups" hidden>
+            <p class="faq-panel-label">Groups</p>
+            <div class="faq-list">
+              <div class="faq-item" data-keywords="group sessions cohort batchmates split fee how work">
+                <button class="faq-toggle" type="button" aria-expanded="false">
+                  <span class="faq-question">How do group sessions work?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content" hidden>
+                  <p class="faq-answer">Join an active Exam Rush cohort or book a group slot with 3&ndash;5 batchmates. A verified senior runs the session and the hourly fee is shared between everyone.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-keywords="group price cost fee pkr per student cheaper split">
+                <button class="faq-toggle" type="button" aria-expanded="false">
+                  <span class="faq-question">How much does a group session cost?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content" hidden>
+                  <p class="faq-answer">Splitting the hourly fee typically works out to PKR 250&ndash;350 per student, which makes intensive past-paper reviews much cheaper than a one-on-one.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-keywords="group online campus location google meet in-person">
+                <button class="faq-toggle" type="button" aria-expanded="false">
+                  <span class="faq-question">Can group sessions be online?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content" hidden>
+                  <p class="faq-answer">Group sessions run on campus or online. The mode is shown when you book, so you know where to be before you pay.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exam Rush -->
+          <div class="faq-panel" id="panel-exam-rush" role="tabpanel" aria-labelledby="tab-exam-rush" hidden>
+            <p class="faq-panel-label">Exam Rush</p>
+            <div class="faq-list">
+              <div class="faq-item" data-keywords="exam rush night sessional final revision standby 8 pm 2 am emergency late">
+                <button class="faq-toggle" type="button" aria-expanded="false">
+                  <span class="faq-question">What is Exam Rush?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content" hidden>
+                  <p class="faq-answer">Exam Rush is emergency revision run by verified standby seniors from 8:00 PM to 2:00 AM on the nights before Sessional 1, Sessional 2 and Finals.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-keywords="exam rush join reserve book spot hub how">
+                <button class="faq-toggle" type="button" aria-expanded="false">
+                  <span class="faq-question">How do I join an Exam Rush session?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content" hidden>
+                  <p class="faq-answer">Open the <a class="faq-link" href="../index.html#exam-rush">Exam Rush section</a> on the home page, pick a session for your course and reserve your spot.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-keywords="exam rush bring prepare past papers outline notes ready">
+                <button class="faq-toggle" type="button" aria-expanded="false">
+                  <span class="faq-question">What should I bring to Exam Rush?</span>
+                  <span class="material-symbols-outlined faq-chevron">expand_more</span>
+                </button>
+                <div class="faq-content" hidden>
+                  <p class="faq-answer">Bring your course outline, past papers and a list of the topics you find hardest, so the senior can spend the night on what you actually need.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. CONTACT & SUPPORT ==================== -->
+    <section class="help-section help-section--surface" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="help-head">
+          <h2 class="help-h2" id="contact-title">Contact &amp; Support</h2>
+          <p class="help-sub">Can't find your answer? Send us a message or reach your campus ambassador directly.</p>
+        </div>
+
+        <div class="contact-grid">
+          <form class="contact-card" id="contact-form" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="contact-name">Full Name</label>
+              <input class="form-control" id="contact-name" name="name" type="text" autocomplete="name" aria-describedby="contact-name-error" />
+              <span class="form-error" id="contact-name-error" hidden></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-email">Email</label>
+              <input class="form-control" id="contact-email" name="email" type="email" autocomplete="email" placeholder="rollno@nu.edu.pk" aria-describedby="contact-email-error" />
+              <span class="form-error" id="contact-email-error" hidden></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-message">Message</label>
+              <textarea class="form-control contact-textarea" id="contact-message" name="message" rows="5" aria-describedby="contact-message-error"></textarea>
+              <span class="form-error" id="contact-message-error" hidden></span>
+            </div>
+            <button class="btn btn-primary btn-lg btn-full" type="submit">Send message</button>
+            <div class="form-feedback form-feedback--success" id="contact-feedback" role="status" hidden></div>
+          </form>
+
+          <aside class="ambassador-card" aria-labelledby="ambassador-title">
+            <span class="ambassador-icon" aria-hidden="true"><span class="material-symbols-outlined">support_agent</span></span>
+            <h3 class="ambassador-title" id="ambassador-title">Campus Ambassador</h3>
+            <p class="ambassador-text">Prefer to talk to a real person? Reach out and your campus ambassador will help.</p>
+            <a class="ambassador-email" href="mailto:support@nu.edu.pk">
+              <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+              <span>support@nu.edu.pk</span>
+            </a>
+            <!-- To open a specific chat, use https://wa.me/92XXXXXXXXXX?text=... with the ambassador's number. -->
+            <a class="btn btn-amber btn-lg btn-full" href="https://wa.me/?text=Hi%20FASTutor%20support%2C%20I%20need%20help%20with%20" target="_blank" rel="noopener">
+              <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+              <span>Open live WhatsApp</span>
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. CLOSING CTA ==================== -->
+    <section class="closing-cta-section">
+      <div class="container">
+        <div class="closing-cta-box">
+          <div class="closing-cta-copy">
+            <h2 class="closing-cta-title">Ready to Boost Your GPA This Semester?</h2>
+            <p class="closing-cta-desc">
+              Connect with verified FAST seniors today, or join an upcoming sessional revision hub.
+            </p>
+          </div>
+          <div class="closing-cta-actions">
+            <a class="btn btn-amber btn-lg" href="../index.html#best-tutors">Find Your Course Tutor Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-grid footer-grid--3">
+        <div class="footer-brand-col">
+          <div class="footer-brand-row">
+            <div class="footer-crest"><span class="material-symbols-outlined">school</span></div>
+            <span class="footer-brand-name">FASTutor</span>
+          </div>
+          <p class="footer-tagline">Learn from seniors who've aced it. Verified peer mentorship built for FAST-NUCES students.</p>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Explore</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="../index.html#best-tutors">Find Tutors</a></li>
+            <li><a class="footer-link" href="../index.html#exam-rush">Exam Rush</a></li>
+            <li><a class="footer-link" href="../index.html#exam-rush">Group Sessions</a></li>
+            <li><a class="footer-link" href="./study-tips.html">Study Tips</a></li>
+            <li><a class="footer-link" href="./about.html">About &amp; How it Works</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Trust &amp; Policies</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="./terms.html">Terms of Service</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=privacy">Privacy Policy</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=community">Student Guidelines</a></li>
+            <li><a class="footer-link" href="./help-center.html">Help Center</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 FASTutor. Built for the FAST-NUCES student community. Not affiliated with FAST-NUCES administration.</span>
+        <div class="footer-legal-links">
+          <a href="./terms.html">Terms of Service</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=privacy">Privacy Policy</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=community">Student Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/help-center.js"></script>
+</body>
+</html>
