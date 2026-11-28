@@ -1,0 +1,614 @@
+/* ==========================================================================
+   FASTutor — Book a Session Styles
+   Uses shared design tokens, header, footer, and modal styles from css/style.css
+   ========================================================================== */
+
+.book-main {
+  width: 100%;
+  padding-top: 4.25rem;
+  min-height: calc(100vh - 12rem);
+  background-color: var(--color-surface);
+}
+
+@media (min-width: 768px) {
+  .book-main {
+    padding-top: 5rem;
+  }
+}
+
+.book-hero {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(13, 148, 136, 0.08), transparent 34%),
+    radial-gradient(circle at 90% 8%, rgba(217, 119, 6, 0.08), transparent 28%),
+    #ffffff;
+  border-bottom: 1px solid var(--color-outline-variant);
+  padding: 2.5rem 0 2.25rem;
+}
+
+.book-hero-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .book-hero-inner {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.book-hero-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.75rem, 3.8vw, 2.65rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--color-primary);
+  margin-top: 0.75rem;
+}
+
+.book-hero-title span {
+  color: var(--color-secondary-dark);
+}
+
+.book-hero-lead {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--color-on-surface-variant);
+  max-width: 40rem;
+  margin-top: 0.65rem;
+}
+
+.promo-highlight-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.95rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-amber-50);
+  border: 1px solid var(--color-amber-200);
+  color: var(--color-amber-900);
+  font-size: 13px;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.promo-highlight-pill .material-symbols-outlined {
+  font-size: 18px;
+  color: var(--color-tertiary);
+}
+
+.promo-code-chip {
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-primary);
+  color: var(--color-amber-300);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Main Booking Workspace Grid */
+.book-workspace {
+  padding: 2rem 0 4.5rem;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .book-grid {
+    grid-template-columns: minmax(0, 1.38fr) minmax(340px, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Filter Console */
+.filter-panel {
+  background-color: #ffffff;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card-subtle);
+  padding: 1.125rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.filter-controls-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .filter-controls-row {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+.search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-wrap .material-symbols-outlined {
+  position: absolute;
+  left: 0.75rem;
+  font-size: 19px;
+  color: var(--color-outline);
+  pointer-events: none;
+}
+
+.search-input-wrap .form-control {
+  padding-left: 2.35rem;
+}
+
+.filter-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.subject-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.results-count-badge {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-secondary-dark);
+  background-color: var(--color-emerald-50);
+  border: 1px solid var(--color-emerald-200);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+/* Tutor Cards Directory */
+.book-tutors-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+}
+
+@media (min-width: 640px) {
+  .book-tutors-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.book-tutor-card {
+  position: relative;
+  border: 1.5px solid var(--color-surface-container-high);
+}
+
+.book-tutor-card.is-selected {
+  border-color: var(--color-secondary);
+  background: linear-gradient(to bottom, #ffffff, rgba(236, 253, 245, 0.45));
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.14);
+}
+
+.tutor-initials-box {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-container));
+  color: var(--color-amber-300);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.tutor-bio-copy {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-on-surface-variant);
+}
+
+.tutor-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tutor-name-row .verified-seal {
+  font-size: 16px;
+}
+
+/* Booking Panel (Right Sticky Column) */
+.booking-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .booking-sidebar {
+    position: sticky;
+    top: 6.25rem;
+  }
+}
+
+.booking-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-elevated);
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+@media (min-width: 540px) {
+  .booking-card {
+    padding: 1.65rem;
+  }
+}
+
+.booking-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--color-surface-container-high);
+}
+
+.booking-card-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.required-dot {
+  color: var(--color-error);
+  margin-left: 0.15rem;
+}
+
+.form-control.is-invalid {
+  border-color: var(--color-error);
+  background-color: #fffafa;
+}
+
+.form-control.is-invalid:focus {
+  box-shadow: 0 0 0 3px rgba(186, 26, 26, 0.12);
+}
+
+.form-error:empty {
+  display: none;
+}
+
+.field-hint {
+  font-size: 11.5px;
+  color: var(--color-outline);
+}
+
+.field-success {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-secondary-dark);
+}
+
+.time-presets-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.time-preset-btn {
+  padding: 0.3rem 0.55rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--color-surface-container-high);
+  background-color: var(--color-surface);
+  color: var(--color-on-surface-variant);
+  font-size: 11.5px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.time-preset-btn:hover {
+  border-color: var(--color-secondary);
+  color: var(--color-secondary-dark);
+}
+
+.time-preset-btn.is-active {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #ffffff;
+}
+
+.promo-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.promo-row .form-control {
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+/* Fee Breakdown Box */
+.fee-breakdown {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-surface-container-high);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 13px;
+}
+
+.fee-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--color-on-surface-variant);
+}
+
+.fee-row strong {
+  color: var(--color-primary);
+}
+
+.fee-row--discount {
+  color: var(--color-secondary-dark);
+  font-weight: 600;
+}
+
+.fee-row--total {
+  padding-top: 0.55rem;
+  margin-top: 0.2rem;
+  border-top: 1px solid var(--color-surface-container-high);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.fee-row--total strong {
+  color: var(--color-secondary-dark);
+  font-size: 17px;
+}
+
+.booking-form-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: var(--color-error);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.booking-form-banner .material-symbols-outlined {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* Booked Sessions Persistence Section */
+.booked-section {
+  margin-top: 1.75rem;
+  background-color: #ffffff;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card-subtle);
+  padding: 1.25rem;
+}
+
+.booked-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.booked-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: var(--color-primary);
+}
+
+.booked-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.booked-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.95rem 1rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-surface-container-high);
+}
+
+@media (min-width: 640px) {
+  .booked-item {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.booked-item-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-primary);
+}
+
+.booked-item-meta {
+  font-size: 12.5px;
+  color: var(--color-on-surface-variant);
+  margin-top: 0.2rem;
+}
+
+.booked-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.booked-fee-tag {
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-emerald-50);
+  border: 1px solid var(--color-emerald-200);
+  color: var(--color-secondary-dark);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Confirmation Modal Details */
+.confirm-details-grid {
+  width: 100%;
+  margin-top: 0.65rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  background-color: #ffffff;
+  border: 1px solid var(--color-emerald-200);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 13px;
+}
+
+.confirm-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--color-on-surface-variant);
+}
+
+.confirm-detail-row strong {
+  color: var(--color-primary);
+  text-align: right;
+}
+
+/* Logged-in Navbar Session Controls (matched with auth.css) */
+.nav-session-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.nav-user-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.6rem 0.3rem 0.35rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-container);
+  border: 1px solid var(--color-surface-container-high);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary);
+  max-width: 6.75rem;
+}
+
+@media (min-width: 640px) {
+  .nav-user-pill {
+    gap: 0.45rem;
+    padding: 0.35rem 0.7rem 0.35rem 0.4rem;
+    font-size: 12.5px;
+    max-width: 12.5rem;
+  }
+}
+
+.nav-user-avatar {
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: var(--color-amber-300);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.nav-user-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-role-badge {
+  display: none;
+  padding: 0.1rem 0.38rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-secondary-container);
+  color: var(--color-secondary-dark);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .nav-role-badge {
+    display: inline-block;
+  }
+}
+
+.mobile-session-card {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-surface-container-high);
+}
+
+.mobile-session-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--color-primary);
+}
+
+.mobile-session-role {
+  font-size: 11.5px;
+  color: var(--color-secondary-dark);
+  font-weight: 600;
+}
