@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice &amp; Mock Exams | FASTutor</title>
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&icon_names=school,arrow_forward,search,menu,close,schedule,timer,flag,outlined_flag,check_circle,download,bolt,description,calculate,auto_stories,arrow_back,replay&display=block" rel="stylesheet">
+  <!-- Shared Style and Student Tools CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/student-tools.css">
+</head>
+<body>
+
+  <!-- ==================== SHARED HEADER ==================== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <a class="brand-link" href="../index.html" aria-label="FASTutor home">
+          <div class="brand-crest"><span class="material-symbols-outlined brand-crest-icon">school</span></div>
+          <div class="brand-text">
+            <div class="brand-title-row"><span class="brand-name">FASTutor</span><span class="badge-verified-pill">Verified</span></div>
+            <span class="brand-subtitle">FAST-NUCES Peer Mentorship</span>
+          </div>
+        </a>
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <a class="nav-link" href="../index.html#best-tutors">Find Tutors</a>
+          <a class="nav-link nav-link--rush" href="./exam-rush.html">
+            <span>Exam Rush</span>
+            <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+          </a>
+          <a aria-current="page" class="nav-link is-active" href="./mock-exams.html">Practice</a>
+          <a class="nav-link" href="./study-tips.html">Study Tips</a>
+          <a class="nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        </nav>
+      </div>
+      <div class="header-actions">
+        <a class="btn-ghost-nav" href="../index.html?modal=login">Log in</a>
+        <a class="btn btn-primary btn-sm" href="../index.html?modal=signup">Get Started</a>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Toggle navigation menu">
+          <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" hidden>
+      <div class="container mobile-nav-inner">
+        <a class="mobile-nav-link" href="../index.html#best-tutors">Find Tutors</a>
+        <a class="mobile-nav-link mobile-nav-link--rush" href="./exam-rush.html">
+          <span>Exam Rush</span>
+          <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+        </a>
+        <a aria-current="page" class="mobile-nav-link is-active" href="./mock-exams.html">Practice</a>
+        <a class="mobile-nav-link" href="./study-tips.html">Study Tips</a>
+        <a class="mobile-nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        <div class="mobile-nav-actions">
+          <a class="btn btn-secondary btn-full" href="../index.html?modal=login">Log in</a>
+          <a class="btn btn-primary btn-full" href="../index.html?modal=signup">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main id="page-mock" class="st-main">
+
+    <!-- 1. Hero Section & Progress Card -->
+    <section class="st-hero">
+      <div class="st-container">
+        <div class="st-hero-grid">
+          <!-- Left Column -->
+          <div class="st-hero-copy">
+            <div class="eyebrow-pill">
+              <span class="eyebrow-dot"></span>
+              <span>Practice &amp; Mock Exams</span>
+            </div>
+            <h1>Practice like it's the <span class="st-teal-text">real paper.</span></h1>
+            <p>Timed mock exams and past papers for FAST courses. Test yourself before the sessional, then book a tutor for the weak topics.</p>
+            <div class="st-hero-actions">
+              <a class="btn btn-primary btn-md" href="#mock-list">Start a Mock Exam</a>
+              <a class="btn btn-secondary btn-md" href="#past-papers">Browse Past Papers</a>
+            </div>
+          </div>
+          <!-- Right Column: Progress Card -->
+          <div class="st-progress-card">
+            <div class="st-progress-card-head">
+              <h3>Your Progress</h3>
+              <span class="st-badge st-badge--confirmed">Active Term</span>
+            </div>
+            <div class="st-progress-stats-row">
+              <div class="st-progress-stat-box">
+                <span class="st-stat-num" id="stat-attempts-count">8</span>
+                <span class="st-stat-label">Attempts</span>
+              </div>
+              <div class="st-progress-stat-box">
+                <span class="st-stat-num" id="stat-avg-score">72%</span>
+                <span class="st-stat-label">Avg Score</span>
+              </div>
+              <div class="st-progress-stat-box">
+                <span class="st-stat-num" id="stat-best-score">90%</span>
+                <span class="st-stat-label">Best Score</span>
+              </div>
+            </div>
+            <div class="st-bar-wrap">
+              <div class="st-bar-label">
+                <span>Average Performance</span>
+                <span id="stat-avg-percent">72%</span>
+              </div>
+              <div class="st-bar-track">
+                <div class="st-bar-fill" id="stat-avg-bar" style="width: 72%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Mock Exams Section -->
+    <section class="st-section" id="mock-list">
+      <div class="st-container">
+        <div class="st-section-head">
+          <h2>FAST Course Mock Exams</h2>
+          <p>Real sessional &amp; quiz formats curated by seniors who scored A grades.</p>
+        </div>
+
+        <!-- Filtering & Search Panel -->
+        <div class="st-filter-panel">
+          <div class="st-filter-top-row">
+            <div class="st-search-box">
+              <span class="material-symbols-outlined" aria-hidden="true">search</span>
+              <input type="search" id="mock-search" placeholder="Search course or topic..." aria-label="Search mock exams">
+            </div>
+            <label for="mock-course-filter" class="visually-hidden">Filter by Course</label>
+            <select id="mock-course-filter" class="st-select" aria-label="Course Filter">
+              <option value="all">All courses</option>
+              <option value="PF (CS1002)">PF (CS1002)</option>
+              <option value="DSA">DSA</option>
+              <option value="Calculus II">Calculus II</option>
+              <option value="COAL">COAL</option>
+              <option value="OOP">OOP</option>
+            </select>
+            <label for="mock-sort" class="visually-hidden">Sort Mock Exams</label>
+            <select id="mock-sort" class="st-select" aria-label="Sort Options">
+              <option value="default">Default</option>
+              <option value="shortest">Shortest first</option>
+              <option value="hardest">Hardest first</option>
+            </select>
+          </div>
+          <div class="st-chips-row" role="group" aria-label="Filter by exam type">
+            <button type="button" class="st-chip is-active" data-mock-chip="all">All</button>
+            <button type="button" class="st-chip" data-mock-chip="Quiz">Quiz</button>
+            <button type="button" class="st-chip" data-mock-chip="Sessional 1">Sessional 1</button>
+            <button type="button" class="st-chip" data-mock-chip="Sessional 2">Sessional 2</button>
+            <button type="button" class="st-chip" data-mock-chip="Final">Final</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Mock Exams Grid -->
+        <div id="mock-exam-grid" class="st-exam-grid">
+          <!-- Dynamically populated by JS -->
+        </div>
+        <div id="mock-empty-state" class="st-empty-state" hidden>
+          <span class="material-symbols-outlined" aria-hidden="true">auto_stories</span>
+          <p>No mock exams match your filters.</p>
+        </div>
+
+        <p class="st-prototype-note">Prototype note: every mock exam currently opens the same 5-question C++ sample.</p>
+      </div>
+    </section>
+
+    <!-- 3. Past Papers Library & Recent Attempts (Alternate Band) -->
+    <section class="st-section st-section--light" id="past-papers">
+      <div class="st-container">
+        <div class="st-section-head">
+          <h2>Past Papers Library &amp; Recent Attempts</h2>
+          <p>Review past university exams and track your latest trial scores.</p>
+        </div>
+        <div class="st-past-layout">
+          <!-- Past Papers Table Column -->
+          <div>
+            <div class="st-table-wrapper">
+              <table class="st-table" id="past-papers-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Course</th>
+                    <th scope="col">Paper</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>PF (CS1002)</b></td>
+                    <td>Sessional 1</td>
+                    <td>2025</td>
+                    <td><button type="button" class="btn btn-secondary btn-sm" data-download-paper="PF Sessional 1 2025"><span class="material-symbols-outlined" aria-hidden="true">download</span> Download</button></td>
+                  </tr>
+                  <tr>
+                    <td><b>DSA</b></td>
+                    <td>Final</td>
+                    <td>2025</td>
+                    <td><button type="button" class="btn btn-secondary btn-sm" data-download-paper="DSA Final 2025"><span class="material-symbols-outlined" aria-hidden="true">download</span> Download</button></td>
+                  </tr>
+                  <tr>
+                    <td><b>Calculus II</b></td>
+                    <td>Sessional 2</td>
+                    <td>2024</td>
+                    <td><button type="button" class="btn btn-secondary btn-sm" data-download-paper="Calculus II Sessional 2 2024"><span class="material-symbols-outlined" aria-hidden="true">download</span> Download</button></td>
+                  </tr>
+                  <tr>
+                    <td><b>OOP</b></td>
+                    <td>Final</td>
+                    <td>2024</td>
+                    <td><button type="button" class="btn btn-secondary btn-sm" data-download-paper="OOP Final 2024"><span class="material-symbols-outlined" aria-hidden="true">download</span> Download</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Recent Attempts Column -->
+          <div class="st-recent-card">
+            <h3>Recent Attempts</h3>
+            <div id="recent-attempts-list" class="st-attempts-list">
+              <!-- Dynamically populated by JS from localStorage -->
+            </div>
+            <div id="attempts-empty" class="st-empty-state" hidden>
+              <p>Finish a mock exam and it appears here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 4. EXAM DIALOG MODAL (5-Question Timed Sample) ==================== -->
+  <div class="st-modal-backdrop" id="st-exam-modal" hidden>
+    <div class="st-modal-dialog st-modal-dialog--lg" role="dialog" aria-modal="true" aria-labelledby="exam-dialog-title">
+      <button class="st-modal-close" type="button" data-modal-close aria-label="Close exam">×</button>
+
+      <!-- Quiz View Screen -->
+      <div id="exam-quiz-view" class="st-quiz-wrap">
+        <div class="st-quiz-head">
+          <div>
+            <h2 id="exam-dialog-title" class="st-exam-title">PF: Quiz 1 Mock</h2>
+            <span id="exam-q-count" class="st-quiz-qcount">Question 1 of 5</span>
+          </div>
+          <div class="st-quiz-timer" aria-label="Time remaining">
+            <span class="material-symbols-outlined" aria-hidden="true">timer</span>
+            <span id="exam-timer">10:00</span>
+          </div>
+        </div>
+
+        <div class="st-bar-track">
+          <div class="st-bar-fill" id="exam-progress-bar" style="width: 20%;"></div>
+        </div>
+
+        <fieldset class="st-fieldset">
+          <legend class="st-legend">
+            <span id="exam-legend-topic" class="st-legend-topic">[Loops]</span><br>
+            <span id="exam-legend-text">Output of for(int i=0;i&lt;3;i++) cout&lt;&lt;i;</span>
+          </legend>
+          <div id="exam-options-box" class="st-options-list">
+            <!-- 4 Radio Options injected dynamically -->
+          </div>
+        </fieldset>
+
+        <div class="st-quiz-nav-row">
+          <div style="display: flex; gap: 0.5rem;">
+            <button type="button" class="btn btn-ghost-nav btn-sm" id="exam-prev-btn"><span class="material-symbols-outlined" aria-hidden="true">arrow_back</span> Previous</button>
+            <button type="button" class="btn btn-ghost-nav btn-sm" id="exam-flag-btn"><span class="material-symbols-outlined" aria-hidden="true">flag</span> Flag</button>
+            <button type="button" class="btn btn-ghost-nav btn-sm" id="exam-next-btn">Next <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span></button>
+          </div>
+          <button type="button" class="btn btn-amber btn-md" id="exam-submit-btn">Submit Exam</button>
+        </div>
+
+        <div class="st-palette-box">
+          <div class="st-palette-label">Question palette (tap to jump)</div>
+          <div class="st-palette-grid" id="exam-palette-grid">
+            <!-- 5 question buttons injected dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Result View Screen (Hidden until submitted) -->
+      <div id="exam-result-view" class="st-result-view" hidden>
+        <div class="st-result-badge" id="exam-result-score">4/5</div>
+        <h3 class="st-result-title" id="exam-result-title">Great job!</h3>
+        <p class="st-result-desc" id="exam-result-desc">Strong grasp of the core concepts. You are in great shape for the exam.</p>
+
+        <div class="st-topic-bars" id="exam-topic-breakdown">
+          <!-- Injected dynamically -->
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+          <button type="button" class="btn btn-secondary btn-md" id="exam-retake-btn"><span class="material-symbols-outlined" aria-hidden="true">replay</span> Retake</button>
+          <a class="btn btn-primary btn-md" href="../index.html#best-tutors">Book a Tutor</a>
+          <button type="button" class="btn btn-ghost-nav btn-md" data-modal-close>Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== TOAST CONTAINER ==================== -->
+  <div id="st-toast-container" class="st-toast-container" aria-live="polite"></div>
+
+  <!-- ==================== SHARED FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-grid footer-grid--3">
+        <div class="footer-brand-col">
+          <div class="footer-brand-row">
+            <div class="footer-crest"><span class="material-symbols-outlined">school</span></div>
+            <span class="footer-brand-name">FASTutor</span>
+          </div>
+          <p class="footer-tagline">Learn from seniors who've aced it. Verified peer mentorship built for FAST-NUCES students.</p>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Explore</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="../index.html#best-tutors">Find Tutors</a></li>
+            <li><a class="footer-link" href="./exam-rush.html">Exam Rush</a></li>
+            <li><a class="footer-link" href="./mock-exams.html">Practice &amp; Mock Exams</a></li>
+            <li><a class="footer-link" href="./dashboard.html">My Dashboard</a></li>
+            <li><a class="footer-link" href="./study-tips.html">Study Tips</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Trust &amp; Policies</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="./terms.html">Terms of Service</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=privacy">Privacy Policy</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=community">Student Guidelines</a></li>
+            <li><a class="footer-link" href="./help-center.html">Help Center</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 FASTutor. Built for the FAST-NUCES student community. Not affiliated with FAST-NUCES administration.</span>
+        <div class="footer-legal-links">
+          <a href="./terms.html">Terms of Service</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=privacy">Privacy Policy</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=community">Student Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/student-tools.js"></script>
+</body>
+</html>

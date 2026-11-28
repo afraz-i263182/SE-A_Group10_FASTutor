@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Dashboard | FASTutor</title>
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&icon_names=school,arrow_forward,search,menu,close,bookmark,article,lightbulb,calendar_month,mail,check_circle,star,star_border,schedule,delete,lock,person,warning,info,bolt,groups&display=block" rel="stylesheet">
+  <!-- Shared Style and Student Tools CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/student-tools.css">
+</head>
+<body>
+
+  <!-- ==================== SHARED HEADER ==================== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <a class="brand-link" href="../index.html" aria-label="FASTutor home">
+          <div class="brand-crest"><span class="material-symbols-outlined brand-crest-icon">school</span></div>
+          <div class="brand-text">
+            <div class="brand-title-row"><span class="brand-name">FASTutor</span><span class="badge-verified-pill">Verified</span></div>
+            <span class="brand-subtitle">FAST-NUCES Peer Mentorship</span>
+          </div>
+        </a>
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <a class="nav-link" href="../index.html#best-tutors">Find Tutors</a>
+          <a class="nav-link nav-link--rush" href="./exam-rush.html">
+            <span>Exam Rush</span>
+            <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+          </a>
+          <a class="nav-link" href="./mock-exams.html">Practice</a>
+          <a class="nav-link" href="./study-tips.html">Study Tips</a>
+          <a class="nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        </nav>
+      </div>
+      <div class="header-actions">
+        <!-- Dashboard page only: User Pill -->
+        <a class="st-user-pill" href="./dashboard.html" aria-label="Current student dashboard">
+          <span class="st-avatar-badge" aria-hidden="true">ST</span>
+          <span class="st-user-name">Hi, Student</span>
+        </a>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Toggle navigation menu">
+          <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" hidden>
+      <div class="container mobile-nav-inner">
+        <a class="mobile-nav-link" href="../index.html#best-tutors">Find Tutors</a>
+        <a class="mobile-nav-link mobile-nav-link--rush" href="./exam-rush.html">
+          <span>Exam Rush</span>
+          <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+        </a>
+        <a class="mobile-nav-link" href="./mock-exams.html">Practice</a>
+        <a class="mobile-nav-link" href="./study-tips.html">Study Tips</a>
+        <a class="mobile-nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        <div class="mobile-nav-actions">
+          <a class="st-user-pill" href="./dashboard.html" style="justify-content: center; width: 100%;">
+            <span class="st-avatar-badge" aria-hidden="true">ST</span>
+            <span class="st-user-name">Hi, Student (Dashboard)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main id="page-dashboard" class="st-main">
+    
+    <!-- 1. Hero Section in Two Columns -->
+    <section class="st-hero">
+      <div class="st-container">
+        <div class="st-hero-grid">
+          <!-- Left Column -->
+          <div class="st-hero-copy">
+            <div class="eyebrow-pill">
+              <span class="eyebrow-dot"></span>
+              <span>Student Dashboard</span>
+            </div>
+            <h1>Welcome back, <span class="st-teal-text">Student</span></h1>
+            <p>Your sessions, ratings and saved tutors in one place. Next up: Calculus II, tomorrow at 6:00 PM.</p>
+            <div class="st-hero-actions">
+              <a class="btn btn-primary btn-md" href="../index.html#best-tutors">Find a Tutor</a>
+              <a class="btn btn-secondary btn-md" href="./exam-rush.html">Join Exam Rush</a>
+            </div>
+          </div>
+          <!-- Right Column: 2x2 Grid of Stat Cards -->
+          <div class="st-stat-grid">
+            <div class="st-stat-card">
+              <div class="st-stat-top">
+                <span class="st-stat-icon"><span class="material-symbols-outlined" aria-hidden="true">calendar_month</span></span>
+              </div>
+              <span class="st-stat-num" id="stat-upcoming">3</span>
+              <span class="st-stat-label">Upcoming Sessions</span>
+            </div>
+            <div class="st-stat-card">
+              <div class="st-stat-top">
+                <span class="st-stat-icon"><span class="material-symbols-outlined" aria-hidden="true">check_circle</span></span>
+              </div>
+              <span class="st-stat-num" id="stat-completed">12</span>
+              <span class="st-stat-label">Completed Sessions</span>
+            </div>
+            <div class="st-stat-card">
+              <div class="st-stat-top">
+                <span class="st-stat-icon"><span class="material-symbols-outlined" aria-hidden="true">bookmark</span></span>
+              </div>
+              <span class="st-stat-num" id="stat-saved">3</span>
+              <span class="st-stat-label">Saved Tutors</span>
+            </div>
+            <div class="st-stat-card">
+              <div class="st-stat-top">
+                <span class="st-stat-icon"><span class="material-symbols-outlined" aria-hidden="true">schedule</span></span>
+              </div>
+              <span class="st-stat-num" id="stat-hours">18 hrs</span>
+              <span class="st-stat-label">Hours Learned</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Data and Display Section -->
+    <section class="st-section">
+      <div class="st-container">
+        
+        <!-- 2.1 Upcoming Sessions -->
+        <div class="st-section-head">
+          <h2>Upcoming Sessions</h2>
+          <p>Join, reschedule or cancel your booked sessions.</p>
+        </div>
+        <div id="upcoming-sessions-list" class="st-sessions-list">
+          <!-- Dynamically populated by JS from data and localStorage -->
+        </div>
+        <div id="upcoming-empty-state" class="st-empty-state" hidden>
+          <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
+          <p>No upcoming sessions. Find a tutor to book one.</p>
+          <a class="btn btn-primary btn-sm" href="../index.html#best-tutors" style="margin-top: 1rem;">Browse Mentors</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2.2 Rate Completed Sessions (Light grey band) -->
+    <section class="st-section st-section--light">
+      <div class="st-container">
+        <div class="st-section-head">
+          <h2>Rate Completed Sessions</h2>
+          <p>Your honest feedback helps juniors find trusted seniors and keeps mentor standards high.</p>
+        </div>
+        <div class="st-rate-grid">
+          
+          <!-- Card 1: COAL -->
+          <article class="st-rate-card" id="rate-card-coal">
+            <div class="st-rate-card-head">
+              <div>
+                <h3>COAL (Computer Org. &amp; Assembly)</h3>
+                <span class="st-rate-date">Completed Monday 7:00 PM</span>
+              </div>
+              <span class="st-badge st-badge--confirmed">Completed</span>
+            </div>
+            <div class="st-rate-form-container">
+              <label class="visually-hidden" for="review-coal">Write a review for COAL tutor</label>
+              <div class="st-star-group" role="group" aria-label="Rating for COAL session">
+                <button type="button" class="st-star-btn" data-rating="1" aria-label="1 star" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">star</span></button>
+                <button type="button" class="st-star-btn" data-rating="2" aria-label="2 stars" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">star</span></button>
+                <button type="button" class="st-star-btn" data-rating="3" aria-label="3 stars" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">star</span></button>
+                <button type="button" class="st-star-btn" data-rating="4" aria-label="4 stars" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">star</span></button>
+                <button type="button" class="st-star-btn" data-rating="5" aria-label="5 stars" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">star</span></button>
+              </div>
+              <textarea id="review-coal" class="st-review-textarea" placeholder="Write a short review (optional)"></textarea>
+              <button type="button" class="btn btn-secondary btn-sm st-submit-rating">Submit Rating</button>
+            </div>
+          </article>
+
+          <!-- Card 2: OOP -->
+          <article class="st-rate-card" id="rate-card-oop">
+            <div class="st-rate-card-head">
+              <div>
+                <h3>OOP (Object Oriented Programming)</h3>
+                <span class="st-rate-date">Completed last Friday</span>
+              </div>
+              <span class="st-badge st-badge--confirmed">Completed</span>
+            </div>
+            <div class="st-rate-form-container">
+              <label class="visually-hidden" for="review-oop">Write a review for OOP tutor</label>
+              <div class="st-star-group" role="group" aria-label="Rating for OOP session">
+                <button type="button" class="st-star-btn" data-rating="1" aria-label="1 star" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">star</span></button>
+                <button type="button" class="st-star-btn" data-rating="2" aria-label="2 stars" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">star</span></button>
+                <button type="button" class="st-star-btn" data-rating="3" aria-label="3 stars" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">star</span></button>
+                <button type="button" class="st-star-btn" data-rating="4" aria-label="4 stars" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">star</span></button>
+                <button type="button" class="st-star-btn" data-rating="5" aria-label="5 stars" aria-pressed="false"><span class="material-symbols-outlined" aria-hidden="true">star</span></button>
+              </div>
+              <textarea id="review-oop" class="st-review-textarea" placeholder="Write a short review (optional)"></textarea>
+              <button type="button" class="btn btn-secondary btn-sm st-submit-rating">Submit Rating</button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2.3 Saved Tutors -->
+    <section class="st-section">
+      <div class="st-container">
+        <div class="st-section-head st-section-head--split">
+          <div>
+            <h2>Saved Tutors</h2>
+            <p>Your shortlist of favourite seniors.</p>
+          </div>
+          <button type="button" id="reset-dashboard-demo" class="st-btn-text">Reset demo data</button>
+        </div>
+        <div id="saved-tutors-grid" class="st-saved-grid">
+          <!-- Dynamically populated from JS and localStorage -->
+        </div>
+        <div id="saved-tutors-empty" class="st-empty-state" hidden>
+          <span class="material-symbols-outlined" aria-hidden="true">bookmark</span>
+          <p>No saved tutors yet. Tap the heart on a tutor profile to save one.</p>
+          <a class="btn btn-primary btn-sm" href="../index.html#best-tutors" style="margin-top: 1rem;">Explore Tutors</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Navy Gradient Banner -->
+    <section class="st-section" style="padding-top: 0;">
+      <div class="st-container">
+        <div class="st-banner-rush">
+          <div class="st-banner-copy">
+            <span class="st-gold-badge">
+              <span class="material-symbols-outlined" aria-hidden="true" style="font-size: 1rem;">bolt</span>
+              Live Exam Support
+            </span>
+            <h2>Sessionals Sprint Active</h2>
+            <p>Last-minute slots and group revision hubs, 8:00 PM to 2:00 AM.</p>
+          </div>
+          <div class="st-banner-actions">
+            <a class="btn btn-amber btn-lg" href="./exam-rush.html">Open Exam Rush</a>
+            <a class="btn btn-glass btn-lg" href="./mock-exams.html">Try a Mock Exam</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MISSING RATING ALERT MODAL ==================== -->
+  <div class="st-modal-backdrop" id="st-missing-rating-modal" hidden>
+    <div class="st-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="missing-rating-title">
+      <button class="st-modal-close" type="button" data-modal-close aria-label="Close dialog">×</button>
+      <div class="st-alert-amber">
+        <span class="material-symbols-outlined" aria-hidden="true" style="font-size: 3rem; color: var(--color-tertiary);">warning</span>
+        <h2 id="missing-rating-title" class="st-alert-amber-text">⚠️ HOLD UP! Please choose a star rating (1–5) before submitting.</h2>
+        <button type="button" class="btn btn-amber btn-md" data-modal-close>[ Okay, Got It ]</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST CONTAINER ==================== -->
+  <div id="st-toast-container" class="st-toast-container" aria-live="polite"></div>
+
+  <!-- ==================== SHARED FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-grid footer-grid--3">
+        <div class="footer-brand-col">
+          <div class="footer-brand-row">
+            <div class="footer-crest"><span class="material-symbols-outlined">school</span></div>
+            <span class="footer-brand-name">FASTutor</span>
+          </div>
+          <p class="footer-tagline">Learn from seniors who've aced it. Verified peer mentorship built for FAST-NUCES students.</p>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Explore</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="../index.html#best-tutors">Find Tutors</a></li>
+            <li><a class="footer-link" href="./exam-rush.html">Exam Rush</a></li>
+            <li><a class="footer-link" href="./mock-exams.html">Practice &amp; Mock Exams</a></li>
+            <li><a class="footer-link" href="./dashboard.html">My Dashboard</a></li>
+            <li><a class="footer-link" href="./study-tips.html">Study Tips</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Trust &amp; Policies</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="./terms.html">Terms of Service</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=privacy">Privacy Policy</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=community">Student Guidelines</a></li>
+            <li><a class="footer-link" href="./help-center.html">Help Center</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 FASTutor. Built for the FAST-NUCES student community. Not affiliated with FAST-NUCES administration.</span>
+        <div class="footer-legal-links">
+          <a href="./terms.html">Terms of Service</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=privacy">Privacy Policy</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=community">Student Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/student-tools.js"></script>
+</body>
+</html>
