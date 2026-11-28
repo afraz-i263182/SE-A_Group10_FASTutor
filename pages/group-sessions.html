@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Group Sessions &amp; Workshops | FASTutor</title>
+  <meta name="description" content="Join workshops and group revisions hosted by verified FAST-NUCES seniors. Learn together, pay less.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/group-sessions.css">
+</head>
+<body>
+
+  <!-- ===================== Header ===================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <div class="header-left">
+        <a class="brand-link" href="#" aria-label="FASTutor home">
+          <span class="brand-crest"><span class="material-symbols-outlined brand-crest-icon" aria-hidden="true">school</span></span>
+          <span class="brand-text">
+            <span class="brand-title-row">
+              <span class="brand-name">FASTutor</span>
+              <span class="badge-verified-pill">Verified</span>
+            </span>
+            <span class="brand-subtitle">FAST-NUCES Peer Mentorship</span>
+          </span>
+        </a>
+        <nav class="main-nav" aria-label="Primary">
+          <a class="nav-link" href="#">Find Tutors</a>
+          <a class="nav-link nav-link--rush" href="#">
+            <span>Exam Rush</span>
+            <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+          </a>
+          <a class="nav-link" href="study-resources.html">Study Resources</a>
+          <a class="nav-link" href="#">Study Tips</a>
+        </nav>
+      </div>
+      <div class="header-actions">
+        <a class="btn btn-secondary btn-sm btn-hide-xs" href="group-sessions.html" aria-current="page">Group Sessions</a>
+        <a class="btn btn-secondary btn-sm btn-hide-xs" href="tutor-dashboard.html">Tutor</a>
+        <a class="account-trigger account-trigger--initials" href="#" aria-label="Account: Ahmad F.">AF</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav-drawer" id="mobileNav" hidden>
+      <div class="container mobile-nav-inner">
+        <a class="mobile-nav-link" href="#">Find Tutors</a>
+        <a class="mobile-nav-link mobile-nav-link--rush" href="#"><span>Exam Rush</span>
+          <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span></a>
+        <a class="mobile-nav-link" href="study-resources.html">Study Resources</a>
+        <a class="mobile-nav-link" href="#">Study Tips</a>
+        <div class="mobile-nav-actions">
+          <a class="btn btn-secondary btn-md" href="group-sessions.html">Group Sessions</a>
+          <a class="btn btn-secondary btn-md" href="tutor-dashboard.html">Tutor</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== Main ===================== -->
+  <main class="site-main">
+    <div class="container page-shell">
+
+      <div class="page-head">
+        <div>
+          <div class="eyebrow-inline">
+            <span class="eyebrow-dot eybrow-dot--sm" aria-hidden="true"></span>
+            <span class="eyebrow-text eyebrow-text--sm">Group Sessions &amp; Workshops</span>
+          </div>
+          <h1 class="section-title">Learn together, pay less</h1>
+          <p class="section-subtitle">Join workshops and group revisions hosted by verified seniors.</p>
+        </div>
+        <div class="page-head-tools">
+          <label class="sr-only" for="sessionSearch">Search sessions</label>
+          <input class="search-input" id="sessionSearch" type="search" placeholder="Search sessions..." autocomplete="off">
+          <button class="btn btn-primary btn-md" type="button" id="hostBtn">
+            <span class="material-symbols-outlined" aria-hidden="true">add</span>
+            Host a session (tutors)
+          </button>
+        </div>
+      </div>
+
+      <!-- Live exam support banner -->
+      <section class="sessions-banner" aria-labelledby="rushTitle">
+        <div class="exam-rush-banner exam-rush-banner--compact">
+          <span class="banner-glow banner-glow--amber" aria-hidden="true"></span>
+          <span class="banner-glow banner-glow--emerald" aria-hidden="true"></span>
+          <div class="exam-rush-content">
+            <div class="exam-rush-copy">
+              <div class="rush-eyebrow">
+                <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+                <span class="rush-eyebrow-text">Live exam support</span>
+              </div>
+              <h2 class="exam-rush-title" id="rushTitle">Sessional season is here</h2>
+              <p class="exam-rush-desc">Join live group revision hubs, 8 PM to 2 AM, before Sessional 1, 2 and Finals.</p>
+            </div>
+            <div class="exam-rush-actions">
+              <button class="btn btn-amber btn-md" type="button" id="joinGroupBtn">
+                <span class="material-symbols-outlined" aria-hidden="true">groups</span>
+                Join Group Session
+              </button>
+              <button class="btn btn-glass btn-md" type="button" id="standbyBtn">Find Standby Tutors</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="page-layout">
+
+        <!-- Filters -->
+        <aside aria-label="Session filters">
+          <button class="btn btn-secondary btn-md filter-toggle" type="button" data-filter-toggle aria-expanded="false">
+            <span class="material-symbols-outlined" aria-hidden="true">tune</span> Filters
+          </button>
+          <form class="panel filter-panel" id="filterForm" onsubmit="return false">
+            <h2 class="filter-title">Filters</h2>
+
+            <fieldset class="filter-group">
+              <legend class="filter-label">Course</legend>
+              <div class="filter-options">
+                <label class="filter-option"><input type="checkbox" name="course" value="MT-1003" checked> MT-1003 Calculus</label>
+                <label class="filter-option"><input type="checkbox" name="course" value="CS-1002" checked> CS-1002 PF</label>
+                <label class="filter-option"><input type="checkbox" name="course" value="NS-1001" checked> NS-1001 Applied Physics</label>
+                <label class="filter-option"><input type="checkbox" name="course" value="CS-2002" checked> CS-2002 OOP</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="filter-group">
+              <legend class="filter-label">Type</legend>
+              <div class="filter-options">
+                <label class="filter-option"><input type="radio" name="type" value="all" checked> All types</label>
+                <label class="filter-option"><input type="radio" name="type" value="workshop"> Workshop</label>
+                <label class="filter-option"><input type="radio" name="type" value="revision"> Group revision</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="filter-group">
+              <legend class="filter-label">Mode</legend>
+              <div class="filter-options">
+                <label class="filter-option"><input type="checkbox" name="mode" value="online" checked> Online</label>
+                <label class="filter-option"><input type="checkbox" name="mode" value="campus" checked> On campus</label>
+              </div>
+            </fieldset>
+
+            <div class="filter-group">
+              <label class="filter-label" for="priceRange">Max price</label>
+              <input class="range-input" id="priceRange" type="range" min="100" max="500" step="50" value="400">
+              <p class="filter-hint" id="priceLabel">Up to PKR 400</p>
+            </div>
+
+            <div class="filter-group">
+              <span class="filter-label">My sessions</span>
+              <label class="filter-option"><input type="checkbox" id="joinedOnly"> Show only joined</label>
+            </div>
+          </form>
+        </aside>
+
+        <!-- Session list -->
+        <section aria-labelledby="listTitle">
+          <div class="sessions-toolbar">
+            <h2 class="list-title" id="listTitle">
+              <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
+              Upcoming sessions
+            </h2>
+            <div>
+              <label class="sr-only" for="sortSelect">Sort sessions</label>
+              <select class="sort-select" id="sortSelect">
+                <option value="soonest">Sort: Soonest</option>
+                <option value="price-asc">Sort: Price, low to high</option>
+                <option value="price-desc">Sort: Price, high to low</option>
+                <option value="seats">Sort: Most seats left</option>
+                <option value="rating">Sort: Top rated</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="sr-only" id="resultsStatus" role="status" aria-live="polite"></p>
+          <div class="session-list" id="sessionList"></div>
+          <nav class="pagination" id="pagination" aria-label="Sessions pages"></nav>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner footer-inner--slim">
+      <div class="footer-bottom footer-bottom--flush">
+        <p>&copy; 2026 FASTutor. Built for the FAST-NUCES student community. Not affiliated with FAST-NUCES administration.</p>
+        <div class="footer-legal-links">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Student Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== Modal: Session details ===================== -->
+  <div class="modal-backdrop" id="detailsModal" hidden>
+    <div class="modal-dialog modal-dialog--sm" role="dialog" aria-modal="true" aria-labelledby="detailsTitle">
+      <div class="modal-header modal-header--plain">
+        <div>
+          <div class="eyebrow-inline">
+            <span class="eyebrow-dot eybrow-dot--sm" aria-hidden="true"></span>
+            <span class="modal-eyebrow">Session details</span>
+          </div>
+          <h2 class="modal-title" id="detailsTitle"></h2>
+        </div>
+      </div>
+
+      <p class="host-line">
+        Host: <strong id="dHost"></strong>
+        <span class="meta-dot" aria-hidden="true">&bull;</span>
+        <span class="material-symbols-outlined star-icon star-icon--sm" aria-hidden="true">star</span>
+        <span id="dRating"></span>
+        <span class="meta-dot" aria-hidden="true">&bull;</span>
+        <button class="text-link" type="button" id="dProfile">View profile</button>
+      </p>
+
+      <div class="detail-box">
+        <div class="detail-row">
+          <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+          <span id="dWhen"></span>
+        </div>
+        <div class="detail-row">
+          <span class="material-symbols-outlined" aria-hidden="true" id="dModeIcon">videocam</span>
+          <span id="dMode"></span>
+        </div>
+        <p class="detail-desc" id="dDesc"></p>
+      </div>
+
+      <div class="detail-foot">
+        <div class="detail-seats">
+          <div class="avatar-stack" id="dAvatars" aria-hidden="true"></div>
+          <span id="dSeats"></span>
+        </div>
+        <span class="detail-price" id="dPrice"></span>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-md" type="button" data-close-modal>Close</button>
+        <button class="btn btn-teal btn-md" type="button" id="dAction" data-autofocus>Join now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== Modal: Host a session ===================== -->
+  <div class="modal-backdrop" id="hostModal" hidden>
+    <div class="modal-dialog modal-dialog--sm" role="dialog" aria-modal="true" aria-labelledby="hostTitleHeading">
+      <div class="modal-header modal-header--plain">
+        <div>
+          <div class="eyebrow-inline">
+            <span class="eyebrow-dot eybrow-dot--sm" aria-hidden="true"></span>
+            <span class="modal-eyebrow">Tutors only</span>
+          </div>
+          <h2 class="modal-title" id="hostTitleHeading">Host a session</h2>
+        </div>
+      </div>
+
+      <form class="modal-form" id="hostForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="hTitle">Title</label>
+          <input class="form-control" id="hTitle" name="title" type="text" maxlength="80" data-autofocus>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="hCourse">Course</label>
+            <select class="form-control" id="hCourse" name="course">
+              <option value="MT-1003">MT-1003 Calculus</option>
+              <option value="CS-1002">CS-1002 PF</option>
+              <option value="NS-1001">NS-1001 Applied Physics</option>
+              <option value="CS-2002">CS-2002 OOP</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="hTopic">Topic</label>
+            <input class="form-control" id="hTopic" name="topic" type="text" maxlength="60">
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="hDate">Date</label>
+            <input class="form-control" id="hDate" name="date" type="date">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="hTime">Time</label>
+            <input class="form-control" id="hTime" name="time" type="time">
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="hMode">Mode</label>
+            <select class="form-control" id="hMode" name="mode">
+              <option value="online">Online</option>
+              <option value="campus">On campus</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="hSeats">Max seats</label>
+            <input class="form-control" id="hSeats" name="seats" type="number" min="2" max="50" value="15">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="hPrice">Price per student (PKR)</label>
+          <input class="form-control" id="hPrice" name="price" type="number" min="0" max="2000" step="50" value="300">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="hDesc">Description</label>
+          <textarea class="form-control" id="hDesc" name="description" maxlength="300"></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary btn-md" type="button" data-close-modal>Cancel</button>
+          <button class="btn btn-primary btn-md" type="submit">Publish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/common.js" defer></script>
+  <script src="../js/group-sessions.js" defer></script>
+</body>
+</html>
