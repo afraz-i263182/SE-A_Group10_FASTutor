@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAST Sessionals Sprint Active: Exam Rush | FASTutor</title>
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&icon_names=school,arrow_forward,search,menu,close,schedule,timer,bolt,groups,favorite,favorite_border,star,check_circle,shield,payments,local_fire_department,lock,add&display=block" rel="stylesheet">
+  <!-- Shared Style and Student Tools CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/student-tools.css">
+</head>
+<body>
+
+  <!-- ==================== SHARED HEADER ==================== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <a class="brand-link" href="../index.html" aria-label="FASTutor home">
+          <div class="brand-crest"><span class="material-symbols-outlined brand-crest-icon">school</span></div>
+          <div class="brand-text">
+            <div class="brand-title-row"><span class="brand-name">FASTutor</span><span class="badge-verified-pill">Verified</span></div>
+            <span class="brand-subtitle">FAST-NUCES Peer Mentorship</span>
+          </div>
+        </a>
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <a class="nav-link" href="../index.html#best-tutors">Find Tutors</a>
+          <a aria-current="page" class="nav-link nav-link--rush is-active" href="./exam-rush.html">
+            <span>Exam Rush</span>
+            <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+          </a>
+          <a class="nav-link" href="./mock-exams.html">Practice</a>
+          <a class="nav-link" href="./study-tips.html">Study Tips</a>
+          <a class="nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        </nav>
+      </div>
+      <div class="header-actions">
+        <a class="btn-ghost-nav" href="../index.html?modal=login">Log in</a>
+        <a class="btn btn-primary btn-sm" href="../index.html?modal=signup">Get Started</a>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Toggle navigation menu">
+          <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" hidden>
+      <div class="container mobile-nav-inner">
+        <a class="mobile-nav-link" href="../index.html#best-tutors">Find Tutors</a>
+        <a aria-current="page" class="mobile-nav-link mobile-nav-link--rush is-active" href="./exam-rush.html">
+          <span>Exam Rush</span>
+          <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+        </a>
+        <a class="mobile-nav-link" href="./mock-exams.html">Practice</a>
+        <a class="mobile-nav-link" href="./study-tips.html">Study Tips</a>
+        <a class="mobile-nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        <div class="mobile-nav-actions">
+          <a class="btn btn-secondary btn-full" href="../index.html?modal=login">Log in</a>
+          <a class="btn btn-primary btn-full" href="../index.html?modal=signup">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main id="page-rush" class="st-main">
+
+    <!-- 1. Navy Gradient Hero Banner & Live Countdown -->
+    <section class="st-hero-rush">
+      <div class="st-container">
+        <div class="st-rush-grid">
+          <!-- Left Column -->
+          <div>
+            <span class="st-gold-badge">
+              <span class="material-symbols-outlined" aria-hidden="true" style="font-size: 1rem;">bolt</span>
+              Live Exam Support
+            </span>
+            <h1>FAST Sessionals Sprint Active: Exam Rush</h1>
+            <p>Join live group revision hubs or book verified standby seniors, 8:00 PM to 2:00 AM, on the nights before Sessional 1, 2 and Final exams.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <button type="button" class="btn btn-amber btn-lg" id="hero-btn-groups">Join Group Session</button>
+              <button type="button" class="btn btn-glass btn-lg" id="hero-btn-slots">Find Standby Tutors</button>
+            </div>
+          </div>
+          <!-- Right Column: Live Countdown Box -->
+          <div class="st-countdown-box" id="countdown" data-target="2026-12-07T20:00:00+05:00">
+            <div class="st-countdown-label">Next exam starts in</div>
+            <div class="st-countdown-tiles">
+              <div class="st-time-tile">
+                <span class="st-time-num" id="cd-days">08</span>
+                <span class="st-time-unit">Days</span>
+              </div>
+              <div class="st-time-tile">
+                <span class="st-time-num" id="cd-hours">23</span>
+                <span class="st-time-unit">Hours</span>
+              </div>
+              <div class="st-time-tile">
+                <span class="st-time-num" id="cd-mins">01</span>
+                <span class="st-time-unit">Mins</span>
+              </div>
+              <div class="st-time-tile">
+                <span class="st-time-num" id="cd-secs">14</span>
+                <span class="st-time-unit">Secs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Tabs, Filters & Sorting -->
+    <section class="st-section">
+      <div class="st-container">
+        
+        <!-- Tabs Navigation -->
+        <div class="st-tabs-bar" role="tablist" aria-label="Exam rush session formats">
+          <button type="button" class="st-tab-btn is-active" id="tab-btn-slots" role="tab" aria-selected="true" aria-controls="tab-panel-slots">Last-Minute Slots</button>
+          <button type="button" class="st-tab-btn" id="tab-btn-groups" role="tab" aria-selected="false" aria-controls="tab-panel-groups">Group Revision Sessions</button>
+        </div>
+
+        <!-- Filter Row for Both Tabs -->
+        <div class="st-rush-filters">
+          <label for="rush-exam-filter" class="visually-hidden">Filter by Exam</label>
+          <select id="rush-exam-filter" class="st-select" aria-label="Filter by Exam">
+            <option value="all">All Exams</option>
+            <option value="Sessional 1">Sessional 1</option>
+            <option value="Sessional 2">Sessional 2</option>
+            <option value="Final">Final</option>
+          </select>
+
+          <label for="rush-course-filter" class="visually-hidden">Filter by Course</label>
+          <select id="rush-course-filter" class="st-select" aria-label="Filter by Course">
+            <option value="all">All courses</option>
+            <option value="PF (CS1002)">PF (CS1002)</option>
+            <option value="DSA">DSA</option>
+            <option value="Calculus II">Calculus II</option>
+            <option value="OOP">OOP</option>
+          </select>
+
+          <div class="st-chips-row" role="group" aria-label="Filter by Session Mode">
+            <button type="button" class="st-chip is-active" data-rush-mode="any">Any mode</button>
+            <button type="button" class="st-chip" data-rush-mode="online">Online</button>
+            <button type="button" class="st-chip" data-rush-mode="in-person">In-person</button>
+          </div>
+
+          <label for="rush-sort-filter" class="visually-hidden">Sort Sessions</label>
+          <select id="rush-sort-filter" class="st-select" aria-label="Sort Sessions">
+            <option value="earliest">Earliest first</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+
+        <!-- 3. Tab Panel 1: Last-Minute Slots -->
+        <div id="tab-panel-slots" role="tabpanel" aria-labelledby="tab-btn-slots">
+          <div class="st-section-head">
+            <h2>Standby tutors available tonight</h2>
+            <p>Verified seniors on call ready for instant single-topic 1-on-1 prep.</p>
+          </div>
+          <div id="standby-slots-grid" class="st-slots-grid">
+            <!-- Dynamically populated by JS from standbySlots -->
+          </div>
+          <div id="slots-empty-state" class="st-empty-state" hidden>
+            <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+            <p>No matching sessions found.</p>
+          </div>
+        </div>
+
+        <!-- 4. Tab Panel 2: Group Revision Sessions -->
+        <div id="tab-panel-groups" role="tabpanel" aria-labelledby="tab-btn-groups" hidden>
+          <div class="st-section-head st-section-head--split">
+            <div>
+              <h2>Join a revision hub and split the fee</h2>
+              <p>5-seat maximum revision pods with dedicated senior discussion leads.</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-request-group"><span class="material-symbols-outlined" aria-hidden="true">add</span> Request a Group</button>
+          </div>
+
+          <div class="st-groups-layout">
+            <div id="group-sessions-grid" class="st-groups-grid">
+              <!-- Dynamically populated by JS from groupSessions -->
+            </div>
+            <div id="groups-empty-state" class="st-empty-state" hidden>
+              <span class="material-symbols-outlined" aria-hidden="true">groups</span>
+              <p>No matching sessions found.</p>
+            </div>
+
+            <!-- 4.1 Interactive Group Fee Splitter -->
+            <div class="st-fee-splitter">
+              <div class="st-splitter-left">
+                <h3>Group fee splitter</h3>
+                <p>See how much you save when you bring classmates to an Exam Rush hub.</p>
+                <div class="st-splitter-inputs">
+                  <div class="st-form-group" style="margin-bottom: 0;">
+                    <label for="splitter-tutor-rate">Tutor hourly rate (PKR)</label>
+                    <input type="number" id="splitter-tutor-rate" class="st-input" value="900" min="400" max="3000" step="50">
+                  </div>
+                  <div class="st-form-group" style="margin-bottom: 0;">
+                    <label for="splitter-group-size">Group size (students)</label>
+                    <select id="splitter-group-size" class="st-select" style="width: 100%;">
+                      <option value="2">2 students</option>
+                      <option value="3" selected>3 students</option>
+                      <option value="4">4 students</option>
+                      <option value="5">5 students (Max)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="st-splitter-right">
+                <div class="st-split-row">
+                  <span class="st-split-label">Your Share / Student:</span>
+                  <span class="st-split-val" id="splitter-per-student">PKR 300</span>
+                </div>
+                <div class="st-split-row">
+                  <span class="st-split-label">Your Savings:</span>
+                  <span class="st-split-val st-split-val--save" id="splitter-saving">Save PKR 600 vs 1-on-1</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. How Exam Rush Works & Safety Tips (Alternate Band) -->
+    <section class="st-section st-section--light">
+      <div class="st-container">
+        <div class="st-section-head">
+          <h2>How Exam Rush works</h2>
+          <p>Swift, structured revision on the nights when every hour counts.</p>
+        </div>
+        <div class="st-steps-grid">
+          <!-- Card 1 -->
+          <div class="st-step-card">
+            <div class="st-step-num">01</div>
+            <h3>Pick a slot</h3>
+            <p>Choose a tutor or group by course and time.</p>
+          </div>
+          <!-- Card 2 -->
+          <div class="st-step-card">
+            <div class="st-step-num">02</div>
+            <h3>Confirm</h3>
+            <p>Reserve your seat with your FAST email.</p>
+          </div>
+          <!-- Card 3 -->
+          <div class="st-step-card">
+            <div class="st-step-num">03</div>
+            <h3>Revise live</h3>
+            <p>Join online or meet on campus.</p>
+          </div>
+          <!-- Safety Tips Card -->
+          <div class="st-safety-card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">shield</span> Safety tips</h3>
+            <ul class="st-safety-list">
+              <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Meet in public campus spots</li>
+              <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Verify your tutor's identity</li>
+              <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Follow the FAST honor code</li>
+              <li><span class="material-symbols-outlined" aria-hidden="true">check_circle</span> Keep payment proofs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 5. BOOKING DIALOG MODAL ==================== -->
+  <div class="st-modal-backdrop" id="st-booking-modal" hidden>
+    <div class="st-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="booking-dialog-title">
+      <button class="st-modal-close" type="button" data-modal-close aria-label="Close booking modal">×</button>
+
+      <!-- Form View -->
+      <div id="booking-form-view">
+        <div class="st-modal-header">
+          <h2 id="booking-dialog-title">Reserve Seat</h2>
+        </div>
+
+        <form id="booking-form" novalidate>
+          <div class="st-form-group">
+            <label for="booking-email">FAST student email</label>
+            <input type="email" id="booking-email" class="st-input" placeholder="i261234@isb.nu.edu.pk" required>
+            <div id="booking-email-error" class="st-form-error" role="alert"></div>
+          </div>
+
+          <div class="st-form-group">
+            <label for="booking-topics">Topics to revise</label>
+            <textarea id="booking-topics" class="st-review-textarea" placeholder="e.g. Recursion tracing, AVL balance factors, pointer arithmetic..."></textarea>
+          </div>
+
+          <div class="st-form-group">
+            <label for="booking-promo">Promo code (optional)</label>
+            <div class="st-promo-row">
+              <input type="text" id="booking-promo" class="st-input" placeholder="e.g. RUSH10">
+              <button type="button" class="btn btn-secondary btn-sm" id="booking-apply-promo">Apply</button>
+            </div>
+            <div id="booking-promo-error" class="st-form-error" role="alert"></div>
+          </div>
+
+          <div class="st-pricing-summary">
+            <div class="st-price-line">
+              <span>Session Fee:</span>
+              <span id="booking-base-fee">PKR 850</span>
+            </div>
+            <div class="st-price-line st-price-line--discount" id="booking-discount-row" hidden>
+              <span>Promo (RUSH10 -10%):</span>
+              <span id="booking-discount-amount">- PKR 85</span>
+            </div>
+            <div class="st-price-line st-price-line--total">
+              <span>Total:</span>
+              <span id="booking-total-fee">PKR 850</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-amber btn-full btn-lg">Reserve Seat</button>
+        </form>
+      </div>
+
+      <!-- Confirmation Popup View (Injected dynamically on valid submission) -->
+      <div id="booking-confirmation-view" hidden>
+        <!-- Injected dynamically by JS -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== TOAST CONTAINER ==================== -->
+  <div id="st-toast-container" class="st-toast-container" aria-live="polite"></div>
+
+  <!-- ==================== SHARED FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-grid footer-grid--3">
+        <div class="footer-brand-col">
+          <div class="footer-brand-row">
+            <div class="footer-crest"><span class="material-symbols-outlined">school</span></div>
+            <span class="footer-brand-name">FASTutor</span>
+          </div>
+          <p class="footer-tagline">Learn from seniors who've aced it. Verified peer mentorship built for FAST-NUCES students.</p>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Explore</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="../index.html#best-tutors">Find Tutors</a></li>
+            <li><a class="footer-link" href="./exam-rush.html">Exam Rush</a></li>
+            <li><a class="footer-link" href="./mock-exams.html">Practice &amp; Mock Exams</a></li>
+            <li><a class="footer-link" href="./dashboard.html">My Dashboard</a></li>
+            <li><a class="footer-link" href="./study-tips.html">Study Tips</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Trust &amp; Policies</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="./terms.html">Terms of Service</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=privacy">Privacy Policy</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=community">Student Guidelines</a></li>
+            <li><a class="footer-link" href="./help-center.html">Help Center</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 FASTutor. Built for the FAST-NUCES student community. Not affiliated with FAST-NUCES administration.</span>
+        <div class="footer-legal-links">
+          <a href="./terms.html">Terms of Service</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=privacy">Privacy Policy</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=community">Student Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/student-tools.js"></script>
+</body>
+</html>
