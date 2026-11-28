@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About &amp; How It Works | FASTutor</title>
+  <meta name="description" content="FASTutor is built by FASTians, for FASTians. See how Flex-verified seniors, 1-on-1 coaching and group sessions help you find, book and ace your next exam." />
+  <script>document.documentElement.classList.add("about-js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&icon_names=arrow_forward,auto_stories,check_circle,close,groups,lock,mail,menu,payments,person,person_search,schedule,school,search,verified,verified_user&display=block"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/about.css" />
+</head>
+<body>
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <a class="brand-link" href="../index.html" aria-label="FASTutor home">
+          <div class="brand-crest"><span class="material-symbols-outlined brand-crest-icon">school</span></div>
+          <div class="brand-text">
+            <div class="brand-title-row"><span class="brand-name">FASTutor</span><span class="badge-verified-pill">Verified</span></div>
+            <span class="brand-subtitle">FAST-NUCES Peer Mentorship</span>
+          </div>
+        </a>
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <a class="nav-link" href="../index.html#best-tutors">Find Tutors</a>
+          <a class="nav-link nav-link--rush" href="../index.html#exam-rush">
+            <span>Exam Rush</span>
+            <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+          </a>
+          <a class="nav-link" href="./study-tips.html">Study Tips</a>
+          <a class="nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        </nav>
+      </div>
+      <div class="header-actions">
+        <a class="btn-ghost-nav" href="../index.html?modal=login">Log in</a>
+        <a class="btn btn-primary btn-sm" href="../index.html?modal=signup">Get Started</a>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Toggle navigation menu">
+          <span class="material-symbols-outlined" id="mobile-menu-icon">menu</span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" hidden>
+      <div class="container mobile-nav-inner">
+        <a class="mobile-nav-link" href="../index.html#best-tutors">Find Tutors</a>
+        <a class="mobile-nav-link mobile-nav-link--rush" href="../index.html#exam-rush">
+          <span>Exam Rush</span>
+          <span class="ping-indicator" aria-hidden="true"><span class="ping-ring"></span><span class="ping-dot"></span></span>
+        </a>
+        <a class="mobile-nav-link" href="./study-tips.html">Study Tips</a>
+        <a class="mobile-nav-link" href="../index.html?modal=apply">Become a Tutor</a>
+        <div class="mobile-nav-actions">
+          <a class="btn btn-secondary btn-full" href="../index.html?modal=login">Log in</a>
+          <a class="btn btn-primary btn-full" href="../index.html?modal=signup">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="about-main">
+    <!-- ==================== 1. HERO ==================== -->
+    <section class="about-hero" aria-labelledby="about-title">
+      <div class="container about-hero-grid">
+        <div class="about-hero-copy">
+          <span class="eyebrow-pill">
+            <span class="eyebrow-dot"></span>
+            <span class="eyebrow-text">About &amp; How it Works</span>
+          </span>
+          <h1 class="about-title" id="about-title">
+            Built by FASTians,
+            <span>for FASTians.</span>
+          </h1>
+          <p class="about-lead">
+            Bringing every FASTian together with Flex-verified seniors, 1-on-1 mentors and group sessions, so the help you need is never more than one senior away.
+          </p>
+          <div class="about-hero-actions">
+            <a class="btn btn-primary btn-lg" href="../index.html#best-tutors">Find a Mentor</a>
+            <a class="btn btn-secondary btn-lg" href="../index.html?modal=apply">Apply as Tutor</a>
+          </div>
+        </div>
+
+        <!-- Illustrative peer exchange (decorative) -->
+        <figure class="thread" aria-label="Example of a junior booking a session with a verified senior">
+          <figcaption class="thread-caption">How a session starts</figcaption>
+
+          <div class="thread-msg">
+            <span class="thread-avatar thread-avatar--junior" aria-hidden="true">J</span>
+            <div class="thread-body">
+              <span class="thread-who">Junior &middot; BS SE, Batch '26</span>
+              <p class="thread-bubble">Sessional 2 on pointers is Thursday. Anyone here who got an A in PF?</p>
+            </div>
+          </div>
+
+          <div class="thread-msg thread-msg--senior">
+            <span class="thread-avatar thread-avatar--senior" aria-hidden="true">S</span>
+            <div class="thread-body">
+              <span class="thread-who">
+                Senior &middot; Batch '23
+                <span class="thread-verified"><span class="material-symbols-outlined" aria-hidden="true">verified</span>Flex verified</span>
+              </span>
+              <p class="thread-bubble">Grade A in PF. I'm free today at 8:30 PM. Bring last year's paper and we'll go through it.</p>
+            </div>
+          </div>
+
+          <div class="thread-booked">
+            <span class="thread-booked-slot">
+              <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+              Today 8:30 PM &middot; In-person
+            </span>
+            <span class="thread-booked-rate">PKR 750/hr</span>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ==================== 2. HOW FASTUTOR WORKS ==================== -->
+    <section class="about-section about-section--white" id="how-it-works" aria-labelledby="how-title">
+      <div class="container">
+        <div class="about-head about-head--split">
+          <div>
+            <h2 class="about-h2" id="how-title">How FASTutor works</h2>
+            <p class="about-sub">Whether you're stuck on a course or ready to teach one, it takes three steps.</p>
+          </div>
+
+          <div class="seg" role="tablist" aria-label="Choose your role">
+            <button class="seg-btn is-active" id="tab-students" role="tab" type="button" aria-selected="true" aria-controls="panel-students">For FAST students</button>
+            <button class="seg-btn" id="tab-tutors" role="tab" type="button" aria-selected="false" aria-controls="panel-tutors" tabindex="-1">For senior tutors</button>
+          </div>
+        </div>
+
+        <!-- Students -->
+        <div class="route-panel" id="panel-students" role="tabpanel" aria-labelledby="tab-students">
+          <ol class="route">
+            <li class="route-step">
+              <span class="route-num" aria-hidden="true">01</span>
+              <h3 class="route-title">Find your match</h3>
+              <p class="route-desc">Search by course code, campus and rating. Every profile shows the grade the senior earned in that exact course, so you pick someone who has already done what you're about to do.</p>
+              <span class="route-note"><span class="material-symbols-outlined" aria-hidden="true">search</span>Filter by campus and course</span>
+            </li>
+            <li class="route-step">
+              <span class="route-num" aria-hidden="true">02</span>
+              <h3 class="route-title">Book a session</h3>
+              <p class="route-desc">Choose in-person or online, pick a time slot that fits your timetable, and pay by online transfer or cash on campus. Confirmation goes to your NU email.</p>
+              <span class="route-note"><span class="material-symbols-outlined" aria-hidden="true">lock</span>100% money-back guarantee</span>
+            </li>
+            <li class="route-step">
+              <span class="route-num" aria-hidden="true">03</span>
+              <h3 class="route-title">Ace the exam</h3>
+              <p class="route-desc">Meet in the campus library or on Google Meet, work through past sessionals and lab tasks, and go into the exam knowing the method, not just the answers.</p>
+              <span class="route-note"><span class="material-symbols-outlined" aria-hidden="true">auto_stories</span>Past sessionals, step by step</span>
+            </li>
+          </ol>
+          <a class="link-arrow route-link" href="../index.html#best-tutors">
+            <span>Browse verified tutors</span>
+            <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- Tutors -->
+        <div class="route-panel" id="panel-tutors" role="tabpanel" aria-labelledby="tab-tutors" hidden>
+          <ol class="route">
+            <li class="route-step">
+              <span class="route-num" aria-hidden="true">01</span>
+              <h3 class="route-title">Submit your transcript</h3>
+              <p class="route-desc">Upload your Flex transcript showing an A or A- in the course, together with your official NU email. Applications are reviewed within 24 hours.</p>
+              <span class="route-note"><span class="material-symbols-outlined" aria-hidden="true">verified_user</span>24-hour NU-ID verification</span>
+            </li>
+            <li class="route-step">
+              <span class="route-num" aria-hidden="true">02</span>
+              <h3 class="route-title">Set your schedule and rate</h3>
+              <p class="route-desc">Pick the days and the gaps between labs when you're free, set your hourly rate, and publish your slots for juniors to book.</p>
+              <span class="route-note"><span class="material-symbols-outlined" aria-hidden="true">schedule</span>You control your availability</span>
+            </li>
+            <li class="route-step">
+              <span class="route-num" aria-hidden="true">03</span>
+              <h3 class="route-title">Teach and get paid</h3>
+              <p class="route-desc">Run focused peer sessions, help juniors through their sessionals, and receive weekly payouts to your wallet or IBAN.</p>
+              <span class="route-note"><span class="material-symbols-outlined" aria-hidden="true">payments</span>Weekly SadaPay / IBAN payout</span>
+            </li>
+          </ol>
+          <a class="link-arrow route-link" href="../index.html?modal=apply">
+            <span>Apply as a tutor</span>
+            <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. OUR STORY & MISSION ==================== -->
+    <section class="about-section about-section--surface" id="our-story" aria-labelledby="story-title">
+      <div class="container story-grid">
+        <div class="story-copy">
+          <h2 class="about-h2" id="story-title">Our story &amp; mission</h2>
+          <p class="story-statement">Engineered by students to help juniors master tough subjects and labs.</p>
+          <p class="story-text">
+            Sessional weeks arrive all at once and the syllabus is long. The person best placed to help is usually a senior who sat the same paper a year or two ago, but a junior rarely knows who that is, or whether their grade backs it up.
+          </p>
+          <p class="story-text">
+            FASTutor is that introduction. Seniors prove their results with their Flex transcript, juniors search by course code, and both meet on campus or online at a student-sized price. Our tutors know the lab tasks and paper patterns because they have been through them.
+          </p>
+        </div>
+
+        <aside class="verify-card" id="verify-card" aria-labelledby="verify-title">
+          <div class="verify-head">
+            <span class="verify-icon" aria-hidden="true"><span class="material-symbols-outlined">verified_user</span></span>
+            <div>
+              <h3 class="verify-title" id="verify-title">3-step tutor verification</h3>
+              <p class="verify-sub">Every tutor clears all three checks before their profile goes live.</p>
+            </div>
+          </div>
+
+          <ul class="verify-list">
+            <li class="verify-item">
+              <span class="verify-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" pathLength="20" /></svg></span>
+              <div>
+                <strong>Flex transcript verified</strong>
+                <p>An A or A- in the course they teach, shown on their official Flex portal transcript.</p>
+              </div>
+            </li>
+            <li class="verify-item">
+              <span class="verify-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" pathLength="20" /></svg></span>
+              <div>
+                <strong>Minimum 3.5 GPA</strong>
+                <p>Strong results overall, not just one good course.</p>
+              </div>
+            </li>
+            <li class="verify-item">
+              <span class="verify-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" pathLength="20" /></svg></span>
+              <div>
+                <strong>Official NU email</strong>
+                <p>Linked to an active nu.edu.pk address, so every tutor is a real FASTian.</p>
+              </div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ==================== 4. SESSION FORMATS ==================== -->
+    <section class="about-section about-section--white" id="session-formats" aria-labelledby="formats-title">
+      <div class="container">
+        <div class="about-head">
+          <h2 class="about-h2" id="formats-title">Choose how you want to learn</h2>
+          <p class="about-sub">Work one-on-one when you need focus, or share the prep and the cost with your batchmates.</p>
+        </div>
+
+        <div class="format-tabs" role="tablist" aria-label="Session format">
+          <button class="format-pill is-active" id="tab-one-on-one" role="tab" type="button" aria-selected="true" aria-controls="panel-one-on-one">
+            <span class="material-symbols-outlined" aria-hidden="true">person</span>1-on-1 Coaching
+          </button>
+          <button class="format-pill" id="tab-group" role="tab" type="button" aria-selected="false" aria-controls="panel-group" tabindex="-1">
+            <span class="material-symbols-outlined" aria-hidden="true">groups</span>Group Sessions
+          </button>
+        </div>
+
+        <!-- 1-on-1 -->
+        <div class="format-panel" id="panel-one-on-one" role="tabpanel" aria-labelledby="tab-one-on-one">
+          <div class="format-copy">
+            <h3 class="format-title">One senior, built around your syllabus</h3>
+            <p class="format-intro">Sit down with a senior who aced your course and work on exactly what is holding you back: a lab task, a tricky chapter, or last year's sessional paper.</p>
+            <dl class="format-facts">
+              <div><dt>Who</dt><dd>You and one verified senior</dd></div>
+              <div><dt>Where</dt><dd>Campus library, lab or study corner, or Google Meet</dd></div>
+              <div><dt>When</dt><dd>Slots taken from the senior's free time, including same-day when available</dd></div>
+              <div><dt>Best for</dt><dd>Concept gaps, lab tasks, project debugging and past-paper walkthroughs</dd></div>
+            </dl>
+          </div>
+          <div class="format-price">
+            <div>
+              <span class="format-price-label">Typical rate</span>
+              <p class="format-price-amount">PKR 650&ndash;900<span>/hour</span></p>
+              <p class="format-price-note">Each senior sets their own rate. You see it on their profile before you book.</p>
+            </div>
+            <a class="btn btn-amber btn-lg btn-full" href="../index.html#best-tutors">Find a 1-on-1 mentor</a>
+          </div>
+        </div>
+
+        <!-- Group -->
+        <div class="format-panel" id="panel-group" role="tabpanel" aria-labelledby="tab-group" hidden>
+          <div class="format-copy">
+            <h3 class="format-title">Share the prep, split the fee</h3>
+            <p class="format-intro">Join a revision hub or book a slot with batchmates. A verified senior runs the session and the hourly fee is shared, so intensive prep costs less per person.</p>
+            <dl class="format-facts">
+              <div><dt>Who</dt><dd>3&ndash;5 batchmates with one verified senior</dd></div>
+              <div><dt>Where</dt><dd>On campus or online</dd></div>
+              <div><dt>When</dt><dd>Exam Rush nights, 8:00 PM to 2:00 AM before Sessional 1, Sessional 2 and Finals</dd></div>
+              <div><dt>Best for</dt><dd>Last-minute revision, shared past papers and splitting the cost</dd></div>
+            </dl>
+          </div>
+          <div class="format-price">
+            <div>
+              <span class="format-price-label">Typical cost</span>
+              <p class="format-price-amount">PKR 250&ndash;350<span>/student</span></p>
+              <p class="format-price-note">The hourly fee is divided between everyone in the group.</p>
+            </div>
+            <a class="btn btn-amber btn-lg btn-full" href="../index.html#exam-rush">Join a group session</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. CLOSING CTA ==================== -->
+    <section class="closing-cta-section">
+      <div class="container">
+        <div class="closing-cta-box">
+          <div class="closing-cta-copy">
+            <h2 class="closing-cta-title">Ready to Boost Your GPA This Semester?</h2>
+            <p class="closing-cta-desc">
+              Connect with verified FAST seniors today, or join an upcoming sessional revision hub.
+            </p>
+          </div>
+          <div class="closing-cta-actions">
+            <a class="btn btn-amber btn-lg" href="../index.html#best-tutors">Browse Verified Tutors</a>
+            <a class="btn btn-glass btn-lg" href="../index.html?modal=apply">Become a Tutor</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-grid footer-grid--3">
+        <div class="footer-brand-col">
+          <div class="footer-brand-row">
+            <div class="footer-crest"><span class="material-symbols-outlined">school</span></div>
+            <span class="footer-brand-name">FASTutor</span>
+          </div>
+          <p class="footer-tagline">Learn from seniors who've aced it. Verified peer mentorship built for FAST-NUCES students.</p>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Explore</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="../index.html#best-tutors">Find Tutors</a></li>
+            <li><a class="footer-link" href="../index.html#exam-rush">Exam Rush</a></li>
+            <li><a class="footer-link" href="../index.html#exam-rush">Group Sessions</a></li>
+            <li><a class="footer-link" href="./study-tips.html">Study Tips</a></li>
+            <li><a class="footer-link" href="./about.html">About &amp; How it Works</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-title">Trust &amp; Policies</span>
+          <ul class="footer-links">
+            <li><a class="footer-link" href="./terms.html">Terms of Service</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=privacy">Privacy Policy</a></li>
+            <li><a class="footer-link" href="./terms.html?tab=community">Student Guidelines</a></li>
+            <li><a class="footer-link" href="./help-center.html">Help Center</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 FASTutor. Built for the FAST-NUCES student community. Not affiliated with FAST-NUCES administration.</span>
+        <div class="footer-legal-links">
+          <a href="./terms.html">Terms of Service</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=privacy">Privacy Policy</a><span aria-hidden="true">•</span>
+          <a href="./terms.html?tab=community">Student Guidelines</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/about.js"></script>
+</body>
+</html>
