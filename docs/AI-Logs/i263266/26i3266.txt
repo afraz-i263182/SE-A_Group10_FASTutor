@@ -1,0 +1,2272 @@
+ROLE
+You are a senior front-end developer. Build three pages for an existing static website called FASTutor, a verified peer-tutoring site for FAST-NUCES students in Pakistan. The new pages must look like they belong to the same site as the homepage, so follow the THEME section exactly. Output complete, production-ready code. No placeholders and no summaries.
+
+TECH RULES
+- Plain HTML5, one shared CSS file and a little vanilla JavaScript. No frameworks, no build step, no npm.
+- It must work by double-clicking the files and on GitHub Pages.
+- Create exactly these files:
+  1. css/member-pages.css (shared by all three pages)
+  2. pages/tutor-dashboard.html
+  3. pages/resources.html
+  4. pages/group-sessions.html
+- Each page links ../css/member-pages.css. HTML pages have no <style> block. The only <script> allowed is the small one described below.
+- In each <head>, add a viewport meta tag and these Google Fonts links:
+  - Inter 400, 500, 600, 700
+  - Plus Jakarta Sans 500, 600, 700, 800
+  - Material Symbols Outlined: https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&display=block
+- Icons are <span class="material-symbols-outlined">name</span>. Use no images. Avatars are coloured circles with initials.
+- Use semantic HTML, real <button> and <a> elements, and the native <dialog> element for popups.
+
+THEME (copied from the FASTutor homepage: dark navy buttons, teal accents, amber highlights, very light slate background)
+Put these in :root.
+--ink:#0f172a (headings, dark buttons, logo box, sidebar active item)
+--ink-2:#1e293b
+--teal:#0f766e (eyebrow text, "Accept" and "Join session" buttons, progress bar, ticked availability cells)
+--teal-soft:#ccfbf1 (pale teal fill for the VERIFIED pill and neutral-positive chips), with border #99f6e4
+--amber:#f59e0b (highlight button, stars, ping dot)
+--amber-hover:#d97706
+--amber-text:#b45309 (Exam Rush nav text, amber chip text)
+--amber-soft:#fffbeb (amber chip fill), with border #fde68a
+--bg:#f8fafc (page background)
+--slate-100:#f1f5f9 (active nav pill, date tiles, neutral chips)
+--line:#e2e8f0 (all borders and dividers)
+--muted:#64748b (small text)
+--text-2:#475569 (body copy, footer text)
+--danger:#dc2626 with soft fill #fef2f2
+
+Dark feature panel (used for the Exam Rush panel on the Group Sessions page):
+- background: linear-gradient(135deg,#0f172a 0%,#1c2739 55%,#22262b 100%) plus a faint warm glow in the bottom-right corner, radial-gradient(circle at 100% 100%, rgba(245,158,11,.10), transparent 55%).
+- Radius 24px and a soft shadow, 0 20px 40px rgba(15,23,42,.18). White text.
+- A small amber uppercase eyebrow with an amber dot.
+- An amber button with dark text, and a ghost button: background #363c46, 1px border rgba(255,255,255,.15), white text.
+
+Avatar colours: navy #0f172a, teal #0f766e, amber-dark #d97706. Initials are white and bold.
+Cards: white, 1px --line border, 16px radius, shadow 0 1px 2px rgba(15,23,42,.04).
+Eyebrow: inline-flex, 12px uppercase bold, letter-spacing .06em, teal text, with an 8px teal dot before it.
+Course codes (CS-1002, MT-1003) use a monospace font on a --slate-100 chip, 12px, radius 8px.
+Stars are amber. Rating numbers use --amber-text.
+
+TYPOGRAPHY
+- Body: Inter 14px, line-height 1.5, ink colour.
+- Headings, brand name, big numbers and prices: Plus Jakarta Sans 700 to 800, letter-spacing -0.02em.
+- h1 is 30px/800. Section headings (.sec) are 18px/700 with an icon.
+- Muted text is 13px in --muted.
+
+SHARED COMPONENTS (write all in member-pages.css)
+Header (.site-header):
+- Sticky, z-index 10, white at 92% opacity with a 10px backdrop blur, 1px bottom border.
+- Container is 1240px wide, 68px high, flex, space-between.
+- Brand: a 40x40px box, 12px radius, background #0f172a, holding the "school" icon in amber #f59e0b. Next to it is "FASTutor" (Plus Jakarta Sans 800, 19px), then a "VERIFIED" pill (10px uppercase bold, #ccfbf1 fill, #0f766e text). Under the name is "FAST-NUCES Peer Mentorship" (11px, muted).
+- Nav links in this order: "Find Tutors" (../index.html#best-tutors), "Exam Rush" (../index.html#exam-rush), "Study Resources" (resources.html), "Study Tips" (study-tips.html). Links are 14px, weight 500, muted, with 8px 14px padding and a 10px radius.
+  - Hover and active: #f1f5f9 fill with ink text.
+  - "Exam Rush" text is #b45309 and has a pulsing 8px amber dot after it (opacity animation, 1.6s, infinite).
+- Right side: a small secondary button "Tutor" (tutor-dashboard.html), a small secondary button "Group Sessions" (group-sessions.html), then a 40px avatar. The avatar is "AN" in teal on the tutor page and "AF" in navy on the resources and group sessions pages.
+- On the resources page, the "Study Resources" link is active.
+
+Footer (.site-footer): white, 1px top border, text colour #475569, 13px, 30px vertical padding, 56px top margin. A flex row, space-between, wrapping.
+- Left: "© 2026 FASTutor. Built for the FAST-NUCES student community. Not affiliated with FAST-NUCES administration."
+- Right: links "Terms" (terms.html), "Privacy" (terms.html?tab=privacy), "Student Guidelines" (terms.html?tab=community), spaced 16px, no underline, darker on hover.
+
+Buttons (.btn): no border, 12px radius, padding 10px 18px, Inter 600 14px, inline-flex, 6px gap, centred, pointer cursor, .15s transition.
+- .btn-primary: #0f172a background, white text, hover #1e293b.
+- .btn-secondary: white, ink text, 1px --line border, hover border and text ink.
+- .btn-green: #0f766e background, white text.
+- .btn-amber: #f59e0b background, DARK ink text, hover #d97706.
+- .btn-danger: #fef2f2 background, #dc2626 text.
+- .btn-ghost: described in the dark panel above.
+- .btn-sm: padding 7px 14px, 13px font.
+
+Chips (.chip): inline-block, 12px, weight 600, 4px 10px padding, pill shape.
+- default: #f1f5f9 fill, #475569 text
+- .g: #ccfbf1 fill, #0f766e text
+- .a: #fffbeb fill, 1px #fde68a border, #b45309 text
+- .b: #f1f5f9 fill, ink text
+- .r: #fee2e2 fill, #dc2626 text
+
+Other helpers:
+- Grids: .grid with .g2, .g3 and .g4, 18px gap.
+- Flex: .row (flex, centred, 14px gap), .wrap, and .f (flex:1; min-width:0).
+- Text: .m (muted 13px).
+- Dividers: .item+.item has a top border, 16px margin and 16px padding above.
+- Progress bar: .bar is 10px high, #e2e8f0, rounded, with an inner <i> filled by linear-gradient(90deg,#0f766e,#14b8a6). A modifier makes it solid #dc2626 when full.
+- Metric cards: .metric has a 13px muted label, a 32px Plus Jakarta 800 number, and a 12px teal note line.
+- Date tile: .when is a 64px-wide tile with #f1f5f9 fill, 12px radius, ink bold day number and a small month underneath.
+
+Tutor dashboard shell: .shell is a grid with a 250px sidebar plus main, 28px gap, 1240px max width, centred, 28px 24px padding.
+- .sidebar: white, bordered, 16px radius, 14px padding, sticky at top 92px, vertical flex with 2px gaps.
+- Sidebar links: icon plus label, 11px 14px padding, 12px radius, muted, weight 500. Hover is --bg. Active (.on) is #0f172a with white text.
+- .page-head: flex row, aligned to the bottom, wrapping, 16px gap, 22px bottom margin. Its first child has flex:1.
+
+Dialogs (native <dialog>):
+- 20px radius, 26px padding, width min(460px, 92vw), no border, large soft shadow.
+- Backdrop is rgba(15,23,42,.55) with backdrop-filter: blur(4px).
+- Header: a teal uppercase eyebrow, the title in Plus Jakarta 800 20px, and a square 36px close button on the right (an "×" with a 1px --line border, 10px radius, with data-close). A 1px divider sits under the header.
+- Labels (.l): 13px/600, block, 14px top margin.
+- Inputs (.field): full width, 11px 14px padding, 1px #cbd5e1 border, 12px radius, white fill, inherited font. Focus is a 2px #99f6e4 outline and a #0f766e border.
+- Footer buttons are right-aligned: Cancel is secondary, the main action is primary navy.
+
+JAVASCRIPT (the same small script at the end of every page)
+- Elements with data-open="ID" call document.getElementById(ID).showModal() on click.
+- Elements with data-close close their parent dialog (closest('dialog').close()) on click.
+- The availability grid works with pure CSS checkboxes.
+
+RESPONSIVE
+- At 900px and below:
+  - .shell becomes one column with 16px padding.
+  - The sidebar becomes a horizontal scrolling row.
+  - .g2, .g3, .g4 and the filter grids (class "lib") become one column.
+  - Hide the main nav and the brand subtitle.
+- At 600px and below:
+  - Hide the header action buttons.
+  - Make .row.wrap > .f take 100% width.
+  - Make .page-head children full width.
+  - Make buttons inside the dark panel full width.
+  - Make buttons directly inside .row.wrap fill the row.
+  - Reduce container padding to 14px.
+  - Make the h1 24px.
+  - The availability grid columns become 42px plus 7 equal columns with a 4px gap.
+- No horizontal scrolling at 390px.
+
+==================== PAGE 1: pages/tutor-dashboard.html ====================
+Title "Tutor Dashboard | FASTutor". The header avatar is "AN" in teal.
+Sidebar (Dashboard is active): Dashboard (space_dashboard), Requests (inbox), Schedule (calendar_month), Earnings (account_balance_wallet), Reviews (star), Resources (auto_stories), Settings (settings).
+
+Main content:
+1. Page head
+   - Eyebrow "Tutor Dashboard".
+   - h1 "Hello, Ayesha".
+   - Sub-line "You have 3 new session requests waiting."
+   - A 240px block: the label "Profile completion" on the left, bold "70%" on the right, and a .bar filled to 70%.
+   - A primary button "Complete profile".
+2. Section "New session requests" (inbox icon) with an amber chip showing 3. One card, three rows. Each row has an avatar, bold title, muted time line, muted mode line, a green "Accept" button and a danger "Decline" button.
+   - navy "AF": "Ahmad F. • CS-1002 PF", "Fri, 3:00 PM", "In person, Islamabad"
+   - teal "SM": "Sana M. • MT-1003 Calculus", "Sat, 10:00 AM", "Online"
+   - amber-dark "BH": "Bilal H. • NS-1001 Applied Physics", "Sun, 2:00 PM", "Group of 3, in person"
+3. Two columns
+   - Left, section "Today's schedule" (today icon), one card:
+     - A .when tile "2 PM", bold "Applied Physics", muted "with Hamza T. • Library Room 2".
+     - A .when tile "4 PM", bold "Calculus", muted "with Ahmad F. • Online".
+     - A muted line "**Upcoming:** Fri 3 PM PF • Sat 10 AM Calculus • Sun 2 PM Physics".
+   - Right, section "Availability editor" (edit_calendar icon), one card:
+     - A grid with a 60px label column and 7 equal columns, 6px gap. The header row is M T W T F S S, and the time rows are 9-12, 12-3, 3-6, 6-9.
+     - Each cell is a hidden checkbox plus a label drawn as a 34px-high rounded square. It is #f1f5f9 unchecked and #0f766e checked. Give every checkbox a unique id and a matching label for.
+     - Ticked by default (Mon to Sun): 9-12 = Mon, Wed, Fri. 12-3 = Tue, Thu, Sat. 3-6 = Mon, Tue, Fri. 6-9 = Wed, Thu, Sat, Sun.
+     - A right-aligned primary small button "Save changes".
+4. Section "Earnings summary" (payments icon): three metric cards.
+   - "This month" / PKR 4,500 / "+12% vs last month"
+   - "Total earned" / PKR 18,000 / "31 sessions"
+   - "Pending payout" / PKR 1,500 / "Next payout 1 Dec"
+5. Section "Payout history" (receipt_long icon): one card with two rows. Each row has the date, a bold amount and a teal "Paid" chip.
+   - 12 Nov 2026, PKR 2,000
+   - 1 Nov 2026, PKR 3,500
+6. Section "Reviews" (star icon) with an amber chip "★ 4.9 (24)". One card:
+   - Five amber stars, "Very clear explanations, trees finally made sense.", muted "- Ahmad, BS SE".
+   - Four amber stars and one empty star, "Helpful past-paper examples.", muted "- Sana, BS CS".
+   - A bold underlined link "See all reviews".
+
+==================== PAGE 2: pages/resources.html ====================
+Title "Study Resources Library | FASTutor". "Study Resources" is the active nav link. The "AF" navy avatar. There is no left sidebar. The content sits in a 1240px container with 28px top padding.
+
+1. Page head
+   - Eyebrow "Study Resources Library".
+   - h1 "Notes and materials from verified seniors".
+   - Sub-line "Browse by course, then topic."
+   - On the right, a 280px search input on a #f1f5f9 fill (placeholder "Search resources...") and a primary navy button "Upload (tutors)" (upload icon, opens #up).
+2. A grid with a 260px filter column and a flexible results column (class "lib", one column on mobile).
+   - Filters card: bold "Filters", then 12px uppercase muted sub-headings. All checkbox and radio inputs use accent-color #0f172a.
+     - COURSE (radio buttons, same name): CS-1002 PF, MT-1003 Calculus (checked), NS-1001 Applied Physics, CS-2001 DSA, CS-2002 OOP.
+     - TOPIC (checkboxes): Limits (checked), Integration (checked), Derivatives.
+     - TYPE (checkboxes): Notes, Cheat sheets, Practice problems (all checked).
+   - Results column:
+     - A muted breadcrumb: "Courses › MT-1003 Calculus › **Integration**".
+     - Four resource cards. Each is a .card row with a 54x60px file-type tile (12px radius, bold white 12px text; #dc2626 for PDF and #2563eb for DOC), a text block, and three buttons.
+       - Text block: a bold title, a muted "type • topic" line, and "Uploaded by **Name** • ★ rating (count)" in muted text with an amber star.
+       - Buttons: secondary small "Preview" (visibility icon, opens #prev), primary navy small "Download" (download icon), and danger small "Report" (flag icon, opens #rep).
+     - The four resources:
+       1. PDF "Integration Notes", Notes • Integration, Ayesha Noor, 4.2 (18)
+       2. PDF "Limits Cheat Sheet", Cheat sheet • Limits, Hamza Tariq, 4.9 (31)
+       3. DOC "Practice Problems Set 3", Practice problems • Integration, Ahmed Khan, 3.8 (9)
+       4. PDF "Derivatives Quick Notes", Notes • Derivatives, Mahnoor Fatima, 4.5 (14)
+     - Centred pagination: small buttons "‹", "1" (primary, active), "2", "3", "›" (secondary).
+3. Dialogs
+   - #prev: eyebrow "Preview", title "Integration Notes", muted "By Ayesha Noor • ★★★★☆" (amber stars). A 200px preview box with repeating-linear-gradient(#f1f5f9 0 14px,#fff 14px 28px), a 14px radius, a 1px border and the centred text "First page preview". Buttons on the right: danger small "Report" (opens #rep), primary small "Download", secondary small "Close" (data-close).
+   - #up: eyebrow "Tutors only", title "Upload resource". Fields: Title (text), Course (select: CS-1002 PF, MT-1003 Calculus, NS-1001 Applied Physics), Topic (text), Type (select: Notes, Cheat sheet, Practice problems), File (file input). Buttons: Cancel and Upload (both data-close).
+   - #rep: eyebrow "Moderation", title "Report content", muted "Tell us what is wrong with this resource." Radios (same name): "Inappropriate content", "Wrong or copied material", "Other". A 3-row textarea with placeholder "Details". Buttons: Cancel and a danger "Submit report" (both data-close).
+
+==================== PAGE 3: pages/group-sessions.html ====================
+Title "Group Sessions & Workshops | FASTutor". No active nav link. The "AF" navy avatar. There is no left sidebar. The content sits in a 1240px container with 28px top padding.
+
+1. Page head
+   - Eyebrow "Group Sessions & Workshops".
+   - h1 "Learn together, pay less".
+   - Sub-line "Join workshops and group revisions hosted by verified seniors."
+   - On the right, a 280px search input (placeholder "Search sessions...") and a primary navy button "Host a session (tutors)" with a plus icon, opening #host.
+2. Dark feature panel, 22px bottom margin:
+   - Amber eyebrow "Live exam support".
+   - Title "Sessional season is here".
+   - Text "Join live group revision hubs, 8 PM to 2 AM, before Sessional 1, 2 and Finals."
+   - Amber button "Join Group Session" (groups icon, ../index.html#exam-rush) and ghost button "Find Standby Tutors" (../index.html#best-tutors).
+3. A grid with a 260px filter column and a flexible results column (class "lib").
+   - Filters card: bold "Filters", with the same sub-heading style.
+     - COURSE (checkboxes, all checked): MT-1003 Calculus, CS-1002 PF, NS-1001 Applied Physics, CS-2002 OOP.
+     - TYPE (radio buttons, same name): All types (checked), Workshop, Group revision.
+     - MODE (checkboxes, both checked): Online, On campus.
+     - MAX PRICE: a range slider from 100 to 500 set to 400 (accent #0f172a), and the muted text "Up to PKR 400".
+     - MY SESSIONS: one checkbox "Show only joined".
+   - Results column:
+     - A row with the section heading "Upcoming sessions" (event icon) on the left and a select on the right: "Sort: Soonest", "Price: Low to high", "Most seats left".
+     - Four session cards. Each .card is a flex row that wraps and contains four parts:
+       a) a .when date tile,
+       b) a text block: an h3 title, a line with the monospace course-code chip and a type chip (Workshop = .b, Group revision = .g), a host line with a 28px avatar, "Host: **Name** • ★ rating", and a muted line with a clock icon plus the time, a dot, then a mode icon plus the mode (online or location),
+       c) a seats block, min-width 170px: "**8/15** seats", a .bar showing the percentage, and the price in PKR in Plus Jakarta 800 18px,
+       d) a vertical stack of two buttons: secondary small "View details" (opens #det) and a green small "Join session". When a session is full, show a red "FULL" chip next to the seat count, make the bar solid red, and replace "Join session" with a secondary small "Join waitlist".
+     - The four sessions:
+       1. 28 NOV, "Integration Crash Course", MT-1003, Workshop, host Ayesha Noor (teal "AN") ★ 4.9, "Sat, 4:00 PM", "Online (Google Meet)", 8/15 seats, PKR 300
+       2. 29 NOV, "PF Arrays Revision", CS-1002, Group revision, host Hamza Tariq (navy "HT") ★ 4.7, "Sun, 11:00 AM", "Library, Room 2", 15/15 seats FULL, PKR 250
+       3. 30 NOV, "Physics Problem Solving", NS-1001, Workshop, host Ahmed Khan (amber-dark "AK") ★ 4.8, "Mon, 6:00 PM", "Online (Google Meet)", 5/12 seats, PKR 200
+       4. 01 DEC, "OOP Final Revision", CS-2002, Group revision, host Mahnoor Fatima (amber-dark "MF") ★ 5.0, "Tue, 8:00 PM", "Online (Google Meet)", 10/20 seats, PKR 350
+     - Centred pagination: "‹", "1" (primary, active), "2", "3", "›".
+4. Dialogs
+   - #det: eyebrow "Session details", title "Integration Crash Course", muted "Host: **Ayesha Noor** • ★ 4.9 • View profile (link)". A bordered box with three lines: "Sat 28 Nov, 4:00 PM • 90 min", "Online (Google Meet link sent after joining)", and "Limits recap, integration by parts and substitution, plus 10 past-paper questions solved step by step." Below it, a row with overlapping 32px avatars (DA navy, AL teal, US amber-dark, "+5" dark), the muted text "7 seats left", and the price "PKR 300". Buttons: secondary "Close" and green "Join now" (both data-close).
+   - #host: eyebrow "Tutors only", title "Host a session". Fields: Title; a two-column grid with Course (select), Topic (text), Date (date input), Time (time input), Mode (select: Online, On campus), Max seats (number, default 15); then Price per student in PKR (number, default 300) and Description (3-row textarea). Buttons: Cancel and a primary navy "Publish" (both data-close).
+
+QUALITY CHECKLIST (verify before finishing)
+- All three pages share the same header and footer, and the same colours: navy buttons, teal accents, amber highlights, #f8fafc background.
+- No leftover blue (#1e40af or similar) or any colour outside the THEME list, except the PDF red and DOC blue file tiles.
+- The amber buttons have dark text.
+- Every popup opens from its button and closes with Cancel, Close, the × button or the main action.
+- All links are valid relative paths and there are no console errors.
+- It looks right at 1440px and 390px.
+- Do not add a Student Dashboard or any other page. Output the full contents of all four files, each labelled with its path.
+
+All four files have been written in C:/Users/hp/.gemini/antigravity/scratch/fastutor (you can set this folder as your active workspace).
+
+css/member-pages.css
+css
+:root {
+  --ink: #0f172a;
+  --ink-2: #1e293b;
+  --teal: #0f766e;
+  --teal-soft: #ccfbf1;
+  --amber: #f59e0b;
+  --amber-hover: #d97706;
+  --amber-text: #b45309;
+  --amber-soft: #fffbeb;
+  --bg: #f8fafc;
+  --slate-100: #f1f5f9;
+  --line: #e2e8f0;
+  --muted: #64748b;
+  --text-2: #475569;
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg);
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+.brand-name,
+.metric-val,
+.session-price {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+}
+h1 {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+h2,
+h3 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+a {
+  color: inherit;
+}
+.material-symbols-outlined {
+  font-size: 20px;
+  line-height: 1;
+  vertical-align: middle;
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+.material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  max-width: 1240px;
+  height: 68px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--amber);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.brand-mark .material-symbols-outlined {
+  font-size: 22px;
+}
+.brand-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-name {
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.verified-pill {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--teal-soft);
+  border: 1px solid #99f6e4;
+  color: var(--teal);
+  padding: 2px 7px;
+  border-radius: 999px;
+  line-height: 1.3;
+}
+.brand-sub {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.main-nav a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  transition: 0.15s;
+}
+.main-nav a:hover,
+.main-nav a.active {
+  background: var(--slate-100);
+  color: var(--ink);
+}
+.main-nav a.exam-rush {
+  color: var(--amber-text);
+}
+.main-nav a.exam-rush:hover {
+  color: var(--amber-text);
+}
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  display: inline-block;
+  animation: pulse 1.6s infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+/* Footer */
+.site-footer {
+  background: #fff;
+  border-top: 1px solid var(--line);
+  color: var(--text-2);
+  font-size: 13px;
+  padding: 30px 0;
+  margin-top: 56px;
+}
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  text-decoration: none;
+  transition: 0.15s;
+}
+.footer-links a:hover {
+  color: var(--ink);
+}
+/* Buttons */
+.btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.25;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: 0.15s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn .material-symbols-outlined {
+  font-size: 18px;
+}
+.btn-primary {
+  background: var(--ink);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--ink-2);
+}
+.btn-secondary {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn-secondary:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.btn-green {
+  background: var(--teal);
+  color: #fff;
+}
+.btn-green:hover {
+  background: var(--ink);
+}
+.btn-amber {
+  background: var(--amber);
+  color: var(--ink);
+}
+.btn-amber:hover {
+  background: var(--amber-hover);
+}
+.btn-danger {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+.btn-danger:hover {
+  background: #fee2e2;
+}
+.btn-ghost {
+  background: #363c46;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+.btn-ghost:hover {
+  background: #434a56;
+}
+.btn-sm {
+  padding: 7px 14px;
+  font-size: 13px;
+}
+.btn-sm .material-symbols-outlined {
+  font-size: 16px;
+}
+/* Cards */
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.metric:hover,
+.res-list .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+/* Chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--slate-100);
+  color: var(--text-2);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.chip .material-symbols-outlined {
+  font-size: 14px;
+}
+.chip.g {
+  background: var(--teal-soft);
+  color: var(--teal);
+}
+.chip.a {
+  background: var(--amber-soft);
+  border: 1px solid #fde68a;
+  color: var(--amber-text);
+}
+.chip.b {
+  background: var(--slate-100);
+  color: var(--ink);
+}
+.chip.r {
+  background: #fee2e2;
+  color: var(--danger);
+}
+/* Code chip for course codes */
+.code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--slate-100);
+  color: var(--ink);
+  padding: 2px 7px;
+  border-radius: 8px;
+  display: inline-block;
+  line-height: 1.35;
+}
+/* Eyebrow */
+.eyebrow {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+.banner-eyebrow {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--amber);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.banner-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+/* Avatars */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.av-s {
+  background: var(--teal);
+}
+.av-t {
+  background: var(--amber-hover);
+}
+.av-28 {
+  width: 28px;
+  height: 28px;
+  font-size: 11px;
+}
+.av-32 {
+  width: 32px;
+  height: 32px;
+  font-size: 11px;
+}
+.avatar-stack {
+  display: inline-flex;
+  align-items: center;
+}
+.avatar-stack .avatar {
+  border: 2px solid #fff;
+}
+.avatar-stack .avatar + .avatar {
+  margin-left: -8px;
+}
+/* Layout & Helpers */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 28px 24px 0;
+}
+.grid {
+  display: grid;
+  gap: 18px;
+}
+.g2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.g3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.g4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.f {
+  flex: 1;
+  min-width: 0;
+}
+.m {
+  font-size: 13px;
+  color: var(--muted);
+}
+.sec {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.sec .material-symbols-outlined {
+  color: var(--teal);
+  font-size: 21px;
+}
+.sec-block {
+  margin-top: 28px;
+}
+.item + .item {
+  border-top: 1px solid var(--line);
+  margin-top: 16px;
+  padding-top: 16px;
+}
+.star {
+  color: var(--amber);
+}
+.rating-num {
+  color: var(--amber-text);
+  font-weight: 700;
+}
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.bar {
+  height: 10px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.bar > i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #0f766e, #14b8a6);
+  border-radius: 999px;
+}
+.bar.full > i {
+  background: var(--danger);
+}
+.w-42 {
+  width: 42%;
+}
+.w-50 {
+  width: 50%;
+}
+.w-53 {
+  width: 53%;
+}
+.w-70 {
+  width: 70%;
+}
+.w-100 {
+  width: 100%;
+}
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.metric-label {
+  font-size: 13px;
+  color: var(--muted);
+}
+.metric-val {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.metric-note {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal);
+}
+.when {
+  width: 64px;
+  flex-shrink: 0;
+  background: var(--slate-100);
+  border-radius: 12px;
+  text-align: center;
+  padding: 10px 6px;
+}
+.when strong {
+  display: block;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.when span {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+/* Dark feature panel (Exam Rush banner) */
+.banner {
+  margin-bottom: 22px;
+  border-radius: 24px;
+  padding: 28px 30px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 100% 100%, rgba(245, 158, 11, 0.10), transparent 55%),
+    linear-gradient(135deg, #0f172a 0%, #1c2739 55%, #22262b 100%);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.banner h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: #fff;
+}
+.banner p {
+  font-size: 14px;
+  color: #e2e8f0;
+}
+/* Dashboard shell */
+.shell {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 28px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 28px 24px 0;
+  align-items: start;
+}
+.shell > main {
+  min-width: 0;
+}
+.sidebar {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px;
+  position: sticky;
+  top: 92px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  color: var(--muted);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: 0.15s;
+}
+.sidebar a:hover {
+  background: var(--bg);
+  color: var(--ink);
+}
+.sidebar a.on,
+.sidebar a.on:hover {
+  background: var(--ink);
+  color: #fff;
+}
+.page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.page-head > :first-child {
+  flex: 1;
+  min-width: 240px;
+}
+.page-head .m {
+  margin-top: 4px;
+}
+/* Tutor Dashboard Specific */
+.profile-progress {
+  width: 240px;
+}
+.profile-progress-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.avail-grid {
+  display: grid;
+  grid-template-columns: 60px repeat(7, minmax(0, 1fr));
+  gap: 6px;
+  align-items: center;
+}
+.avail-head {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  padding-bottom: 4px;
+}
+.avail-time {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.avail-cell {
+  position: relative;
+}
+.avail-cell input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.avail-cell label {
+  display: block;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--slate-100);
+  cursor: pointer;
+  transition: 0.15s;
+}
+.avail-cell input:checked + label {
+  background: var(--teal);
+}
+.avail-cell input:focus-visible + label {
+  outline: 2px solid #99f6e4;
+  outline-offset: 1px;
+}
+.avail-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+.see-all {
+  display: inline-block;
+  margin-top: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: underline;
+}
+/* Resources & Group Sessions Library Layout */
+.search-wrap {
+  position: relative;
+  width: 280px;
+}
+.search-wrap .material-symbols-outlined {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 19px;
+  pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  padding-left: 40px;
+  background: var(--slate-100);
+}
+.lib {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.filters-title {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.filter-group + .filter-group {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.filter-heading {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.filter-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 4px 0;
+}
+.filter-opt input {
+  accent-color: var(--ink);
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  flex-shrink: 0;
+}
+.range-field {
+  width: 100%;
+  accent-color: var(--ink);
+  margin: 4px 0 6px;
+  cursor: pointer;
+}
+.breadcrumb {
+  margin-bottom: 14px;
+}
+.breadcrumb strong {
+  color: var(--ink);
+}
+.res-list {
+  display: grid;
+  gap: 14px;
+}
+.ftype {
+  width: 54px;
+  height: 60px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+}
+.ftype.pdf {
+  background: #dc2626;
+}
+.ftype.doc {
+  background: #2563eb;
+}
+.results-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.results-head .sec {
+  margin-bottom: 0;
+}
+.sort-select {
+  width: auto;
+  min-width: 180px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+.session-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.session-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.session-host {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.session-host strong {
+  color: var(--ink);
+}
+.session-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.session-meta .material-symbols-outlined {
+  font-size: 16px;
+}
+.seats-col {
+  min-width: 170px;
+}
+.seats-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+}
+.session-price {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-top: 8px;
+}
+.session-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+/* Dialogs */
+dialog {
+  border-radius: 20px;
+  padding: 26px;
+  width: min(460px, 92vw);
+  border: 0;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.24);
+  background: #fff;
+  color: var(--ink);
+  margin: auto;
+}
+dialog::backdrop {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.dialog-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.dialog-head .eyebrow {
+  margin-bottom: 6px;
+}
+.dialog-head h3 {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.dialog-close {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: 0.15s;
+}
+.dialog-close:hover {
+  border-color: var(--ink);
+  background: var(--slate-100);
+}
+label.l {
+  font-size: 13px;
+  font-weight: 600;
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.field {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+}
+.field.search-input {
+  padding-left: 40px;
+  background: var(--slate-100);
+}
+.field::placeholder {
+  color: var(--muted);
+}
+.field:focus {
+  outline: 2px solid #99f6e4;
+  border-color: var(--teal);
+}
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+.preview-box {
+  height: 200px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: repeating-linear-gradient(to bottom, #f1f5f9 0 14px, #fff 14px 28px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 0 0;
+  font-weight: 600;
+  color: var(--muted);
+}
+.radio-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+.det-box {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 14px 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.det-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.det-meta .material-symbols-outlined {
+  color: var(--teal);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.det-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.dialog-grid {
+  gap: 0 12px;
+}
+.link-inline {
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: underline;
+}
+/* Responsive */
+@media (max-width: 900px) {
+  .header-inner {
+    gap: 12px;
+    padding: 0 16px;
+  }
+  .main-nav,
+  .brand-sub {
+    display: none;
+  }
+  .shell {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 20px 16px 0;
+    gap: 20px;
+  }
+  .container,
+  .footer-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .sidebar {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 6px;
+    padding: 10px;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .g2,
+  .g3,
+  .g4,
+  .lib {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .header-actions .btn {
+    display: none;
+  }
+  .header-inner,
+  .container,
+  .shell,
+  .footer-inner {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  .row.wrap > .f {
+    flex: 1 1 100%;
+  }
+  .page-head > * {
+    width: 100%;
+    min-width: 0;
+  }
+  .profile-progress,
+  .search-wrap,
+  .sort-select,
+  .seats-col,
+  .session-actions {
+    width: 100%;
+    min-width: 0;
+  }
+  .banner .btn,
+  .f .btn {
+    width: 100%;
+  }
+  .banner .row.wrap {
+    width: 100%;
+  }
+  .row.wrap > .btn {
+    flex: 1;
+  }
+  .avail-grid {
+    grid-template-columns: 42px repeat(7, minmax(0, 1fr));
+    gap: 4px;
+  }
+}
+pages/tutor-dashboard.html
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutor Dashboard | FASTutor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="../css/member-pages.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="../index.html" class="brand">
+          <span class="brand-mark"><span class="material-symbols-outlined">school</span></span>
+          <span>
+            <span class="brand-title">
+              <span class="brand-name">FASTutor</span>
+              <span class="verified-pill">VERIFIED</span>
+            </span>
+            <span class="brand-sub">FAST-NUCES Peer Mentorship</span>
+          </span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="../index.html#best-tutors">Find Tutors</a>
+          <a href="../index.html#exam-rush" class="exam-rush">Exam Rush <span class="pulse-dot" aria-hidden="true"></span></a>
+          <a href="resources.html">Study Resources</a>
+          <a href="study-tips.html">Study Tips</a>
+        </nav>
+      </div>
+      <div class="header-actions">
+        <a href="tutor-dashboard.html" class="btn btn-secondary btn-sm">Tutor</a>
+        <a href="group-sessions.html" class="btn btn-secondary btn-sm">Group Sessions</a>
+        <span class="avatar av-s" aria-label="Ayesha Noor">AN</span>
+      </div>
+    </div>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Tutor navigation">
+      <a href="tutor-dashboard.html" class="on"><span class="material-symbols-outlined">space_dashboard</span>Dashboard</a>
+      <a href="#requests"><span class="material-symbols-outlined">inbox</span>Requests</a>
+      <a href="#schedule"><span class="material-symbols-outlined">calendar_month</span>Schedule</a>
+      <a href="#earnings"><span class="material-symbols-outlined">account_balance_wallet</span>Earnings</a>
+      <a href="#reviews"><span class="material-symbols-outlined">star</span>Reviews</a>
+      <a href="resources.html"><span class="material-symbols-outlined">auto_stories</span>Resources</a>
+      <a href="#settings"><span class="material-symbols-outlined">settings</span>Settings</a>
+    </aside>
+    <main>
+      <div class="page-head">
+        <div>
+          <span class="eyebrow">Tutor Dashboard</span>
+          <h1>Hello, Ayesha</h1>
+          <p class="m">You have 3 new session requests waiting.</p>
+        </div>
+        <div class="row wrap">
+          <div class="profile-progress">
+            <div class="profile-progress-top">
+              <span class="m">Profile completion</span>
+              <strong>70%</strong>
+            </div>
+            <div class="bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" aria-label="Profile completion">
+              <i class="w-70"></i>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary">Complete profile</button>
+        </div>
+      </div>
+      <section id="requests">
+        <h2 class="sec"><span class="material-symbols-outlined">inbox</span>New session requests <span class="chip a">3</span></h2>
+        <div class="card">
+          <div class="item row wrap">
+            <span class="avatar">AF</span>
+            <div class="f">
+              <p><strong>Ahmad F. &bull; <span class="code">CS-1002</span> PF</strong></p>
+              <p class="m">Fri, 3:00 PM</p>
+              <p class="m">In person, Islamabad</p>
+            </div>
+            <div class="row wrap">
+              <button type="button" class="btn btn-green btn-sm">Accept</button>
+              <button type="button" class="btn btn-danger btn-sm">Decline</button>
+            </div>
+          </div>
+          <div class="item row wrap">
+            <span class="avatar av-s">SM</span>
+            <div class="f">
+              <p><strong>Sana M. &bull; <span class="code">MT-1003</span> Calculus</strong></p>
+              <p class="m">Sat, 10:00 AM</p>
+              <p class="m">Online</p>
+            </div>
+            <div class="row wrap">
+              <button type="button" class="btn btn-green btn-sm">Accept</button>
+              <button type="button" class="btn btn-danger btn-sm">Decline</button>
+            </div>
+          </div>
+          <div class="item row wrap">
+            <span class="avatar av-t">BH</span>
+            <div class="f">
+              <p><strong>Bilal H. &bull; <span class="code">NS-1001</span> Applied Physics</strong></p>
+              <p class="m">Sun, 2:00 PM</p>
+              <p class="m">Group of 3, in person</p>
+            </div>
+            <div class="row wrap">
+              <button type="button" class="btn btn-green btn-sm">Accept</button>
+              <button type="button" class="btn btn-danger btn-sm">Decline</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="grid g2 sec-block">
+        <section id="schedule">
+          <h2 class="sec"><span class="material-symbols-outlined">today</span>Today's schedule</h2>
+          <div class="card">
+            <div class="item row">
+              <div class="when"><strong>2 PM</strong></div>
+              <div class="f">
+                <p><strong>Applied Physics</strong></p>
+                <p class="m">with Hamza T. &bull; Library Room 2</p>
+              </div>
+            </div>
+            <div class="item row">
+              <div class="when"><strong>4 PM</strong></div>
+              <div class="f">
+                <p><strong>Calculus</strong></p>
+                <p class="m">with Ahmad F. &bull; Online</p>
+              </div>
+            </div>
+            <p class="item m"><strong>Upcoming:</strong> Fri 3 PM PF &bull; Sat 10 AM Calculus &bull; Sun 2 PM Physics</p>
+          </div>
+        </section>
+        <section id="settings">
+          <h2 class="sec"><span class="material-symbols-outlined">edit_calendar</span>Availability editor</h2>
+          <div class="card">
+            <div class="avail-grid" role="group" aria-label="Weekly availability">
+              <span></span>
+              <span class="avail-head">M</span>
+              <span class="avail-head">T</span>
+              <span class="avail-head">W</span>
+              <span class="avail-head">T</span>
+              <span class="avail-head">F</span>
+              <span class="avail-head">S</span>
+              <span class="avail-head">S</span>
+              <span class="avail-time">9-12</span>
+              <span class="avail-cell"><input type="checkbox" id="av-9-m" checked><label for="av-9-m" aria-label="Monday 9 to 12"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-9-t"><label for="av-9-t" aria-label="Tuesday 9 to 12"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-9-w" checked><label for="av-9-w" aria-label="Wednesday 9 to 12"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-9-th"><label for="av-9-th" aria-label="Thursday 9 to 12"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-9-f" checked><label for="av-9-f" aria-label="Friday 9 to 12"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-9-s"><label for="av-9-s" aria-label="Saturday 9 to 12"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-9-su"><label for="av-9-su" aria-label="Sunday 9 to 12"></label></span>
+              <span class="avail-time">12-3</span>
+              <span class="avail-cell"><input type="checkbox" id="av-12-m"><label for="av-12-m" aria-label="Monday 12 to 3"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-12-t" checked><label for="av-12-t" aria-label="Tuesday 12 to 3"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-12-w"><label for="av-12-w" aria-label="Wednesday 12 to 3"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-12-th" checked><label for="av-12-th" aria-label="Thursday 12 to 3"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-12-f"><label for="av-12-f" aria-label="Friday 12 to 3"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-12-s" checked><label for="av-12-s" aria-label="Saturday 12 to 3"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-12-su"><label for="av-12-su" aria-label="Sunday 12 to 3"></label></span>
+              <span class="avail-time">3-6</span>
+              <span class="avail-cell"><input type="checkbox" id="av-3-m" checked><label for="av-3-m" aria-label="Monday 3 to 6"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-3-t" checked><label for="av-3-t" aria-label="Tuesday 3 to 6"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-3-w"><label for="av-3-w" aria-label="Wednesday 3 to 6"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-3-th"><label for="av-3-th" aria-label="Thursday 3 to 6"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-3-f" checked><label for="av-3-f" aria-label="Friday 3 to 6"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-3-s"><label for="av-3-s" aria-label="Saturday 3 to 6"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-3-su"><label for="av-3-su" aria-label="Sunday 3 to 6"></label></span>
+              <span class="avail-time">6-9</span>
+              <span class="avail-cell"><input type="checkbox" id="av-6-m"><label for="av-6-m" aria-label="Monday 6 to 9"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-6-t"><label for="av-6-t" aria-label="Tuesday 6 to 9"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-6-w" checked><label for="av-6-w" aria-label="Wednesday 6 to 9"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-6-th" checked><label for="av-6-th" aria-label="Thursday 6 to 9"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-6-f"><label for="av-6-f" aria-label="Friday 6 to 9"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-6-s" checked><label for="av-6-s" aria-label="Saturday 6 to 9"></label></span>
+              <span class="avail-cell"><input type="checkbox" id="av-6-su" checked><label for="av-6-su" aria-label="Sunday 6 to 9"></label></span>
+            </div>
+            <div class="avail-actions">
+              <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+            </div>
+          </div>
+        </section>
+      </div>
+      <section id="earnings" class="sec-block">
+        <h2 class="sec"><span class="material-symbols-outlined">payments</span>Earnings summary</h2>
+        <div class="grid g3">
+          <div class="card metric">
+            <span class="metric-label">This month</span>
+            <strong class="metric-val">PKR 4,500</strong>
+            <span class="metric-note">+12% vs last month</span>
+          </div>
+          <div class="card metric">
+            <span class="metric-label">Total earned</span>
+            <strong class="metric-val">PKR 18,000</strong>
+            <span class="metric-note">31 sessions</span>
+          </div>
+          <div class="card metric">
+            <span class="metric-label">Pending payout</span>
+            <strong class="metric-val">PKR 1,500</strong>
+            <span class="metric-note">Next payout 1 Dec</span>
+          </div>
+        </div>
+      </section>
+      <section class="sec-block">
+        <h2 class="sec"><span class="material-symbols-outlined">receipt_long</span>Payout history</h2>
+        <div class="card">
+          <div class="item row">
+            <span class="f">12 Nov 2026</span>
+            <strong>PKR 2,000</strong>
+            <span class="chip g">Paid</span>
+          </div>
+          <div class="item row">
+            <span class="f">1 Nov 2026</span>
+            <strong>PKR 3,500</strong>
+            <span class="chip g">Paid</span>
+          </div>
+        </div>
+      </section>
+      <section id="reviews" class="sec-block">
+        <h2 class="sec"><span class="material-symbols-outlined">star</span>Reviews <span class="chip a"><span class="material-symbols-outlined star filled">star</span> 4.9 (24)</span></h2>
+        <div class="card">
+          <div class="item">
+            <div class="stars" aria-label="5 out of 5 stars">
+              <span class="material-symbols-outlined star filled">star</span>
+              <span class="material-symbols-outlined star filled">star</span>
+              <span class="material-symbols-outlined star filled">star</span>
+              <span class="material-symbols-outlined star filled">star</span>
+              <span class="material-symbols-outlined star filled">star</span>
+            </div>
+            <p>Very clear explanations, trees finally made sense.</p>
+            <p class="m">- Ahmad, BS SE</p>
+          </div>
+          <div class="item">
+            <div class="stars" aria-label="4 out of 5 stars">
+              <span class="material-symbols-outlined star filled">star</span>
+              <span class="material-symbols-outlined star filled">star</span>
+              <span class="material-symbols-outlined star filled">star</span>
+              <span class="material-symbols-outlined star filled">star</span>
+              <span class="material-symbols-outlined star">star</span>
+            </div>
+            <p>Helpful past-paper examples.</p>
+            <p class="m">- Sana, BS CS</p>
+          </div>
+          <a href="#reviews" class="see-all">See all reviews</a>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 FASTutor. Built for the FAST-NUCES student community. Not affiliated with FAST-NUCES administration.</p>
+      <div class="footer-links">
+        <a href="terms.html">Terms</a>
+        <a href="terms.html?tab=privacy">Privacy</a>
+        <a href="terms.html?tab=community">Student Guidelines</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.querySelectorAll('[data-open]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.getElementById(btn.dataset.open).showModal();
+      });
+    });
+    document.querySelectorAll('[data-close]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btn.closest('dialog').close();
+      });
+    });
+  </script>
+</body>
+</html>
+pages/resources.html
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Resources Library | FASTutor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="../css/member-pages.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="../index.html" class="brand">
+          <span class="brand-mark"><span class="material-symbols-outlined">school</span></span>
+          <span>
+            <span class="brand-title">
+              <span class="brand-name">FASTutor</span>
+              <span class="verified-pill">VERIFIED</span>
+            </span>
+            <span class="brand-sub">FAST-NUCES Peer Mentorship</span>
+          </span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="../index.html#best-tutors">Find Tutors</a>
+          <a href="../index.html#exam-rush" class="exam-rush">Exam Rush <span class="pulse-dot" aria-hidden="true"></span></a>
+          <a href="resources.html" class="active">Study Resources</a>
+          <a href="study-tips.html">Study Tips</a>
+        </nav>
+      </div>
+      <div class="header-actions">
+        <a href="tutor-dashboard.html" class="btn btn-secondary btn-sm">Tutor</a>
+        <a href="group-sessions.html" class="btn btn-secondary btn-sm">Group Sessions</a>
+        <span class="avatar" aria-label="Ahmad Farooq">AF</span>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <span class="eyebrow">Study Resources Library</span>
+        <h1>Notes and materials from verified seniors</h1>
+        <p class="m">Browse by course, then topic.</p>
+      </div>
+      <div class="row wrap">
+        <div class="search-wrap">
+          <span class="material-symbols-outlined" aria-hidden="true">search</span>
+          <input type="search" class="field search-input" placeholder="Search resources..." aria-label="Search resources">
+        </div>
+        <button type="button" class="btn btn-primary" data-open="up"><span class="material-symbols-outlined">upload</span>Upload (tutors)</button>
+      </div>
+    </div>
+    <div class="lib">
+      <aside class="card filters" aria-label="Resource filters">
+        <p class="filters-title">Filters</p>
+        <div class="filter-group">
+          <p class="filter-heading">COURSE</p>
+          <label class="filter-opt"><input type="radio" name="course" value="cs1002"><span class="code">CS-1002</span> PF</label>
+          <label class="filter-opt"><input type="radio" name="course" value="mt1003" checked><span class="code">MT-1003</span> Calculus</label>
+          <label class="filter-opt"><input type="radio" name="course" value="ns1001"><span class="code">NS-1001</span> Applied Physics</label>
+          <label class="filter-opt"><input type="radio" name="course" value="cs2001"><span class="code">CS-2001</span> DSA</label>
+          <label class="filter-opt"><input type="radio" name="course" value="cs2002"><span class="code">CS-2002</span> OOP</label>
+        </div>
+        <div class="filter-group">
+          <p class="filter-heading">TOPIC</p>
+          <label class="filter-opt"><input type="checkbox" checked>Limits</label>
+          <label class="filter-opt"><input type="checkbox" checked>Integration</label>
+          <label class="filter-opt"><input type="checkbox">Derivatives</label>
+        </div>
+        <div class="filter-group">
+          <p class="filter-heading">TYPE</p>
+          <label class="filter-opt"><input type="checkbox" checked>Notes</label>
+          <label class="filter-opt"><input type="checkbox" checked>Cheat sheets</label>
+          <label class="filter-opt"><input type="checkbox" checked>Practice problems</label>
+        </div>
+      </aside>
+      <section aria-label="Resource results">
+        <p class="m breadcrumb">Courses &rsaquo; <span class="code">MT-1003</span> Calculus &rsaquo; <strong>Integration</strong></p>
+        <div class="res-list">
+          <article class="card row wrap">
+            <span class="ftype pdf">PDF</span>
+            <div class="f">
+              <p><strong>Integration Notes</strong></p>
+              <p class="m">Notes &bull; Integration</p>
+              <p class="m">Uploaded by <strong>Ayesha Noor</strong> &bull; <span class="material-symbols-outlined star filled">star</span> <span class="rating-num">4.2</span> (18)</p>
+            </div>
+            <div class="row wrap">
+              <button type="button" class="btn btn-secondary btn-sm" data-open="prev"><span class="material-symbols-outlined">visibility</span>Preview</button>
+              <a href="#" class="btn btn-primary btn-sm"><span class="material-symbols-outlined">download</span>Download</a>
+              <button type="button" class="btn btn-danger btn-sm" data-open="rep"><span class="material-symbols-outlined">flag</span>Report</button>
+            </div>
+          </article>
+          <article class="card row wrap">
+            <span class="ftype pdf">PDF</span>
+            <div class="f">
+              <p><strong>Limits Cheat Sheet</strong></p>
+              <p class="m">Cheat sheet &bull; Limits</p>
+              <p class="m">Uploaded by <strong>Hamza Tariq</strong> &bull; <span class="material-symbols-outlined star filled">star</span> <span class="rating-num">4.9</span> (31)</p>
+            </div>
+            <div class="row wrap">
+              <button type="button" class="btn btn-secondary btn-sm" data-open="prev"><span class="material-symbols-outlined">visibility</span>Preview</button>
+              <a href="#" class="btn btn-primary btn-sm"><span class="material-symbols-outlined">download</span>Download</a>
+              <button type="button" class="btn btn-danger btn-sm" data-open="rep"><span class="material-symbols-outlined">flag</span>Report</button>
+            </div>
+          </article>
+          <article class="card row wrap">
+            <span class="ftype doc">DOC</span>
+            <div class="f">
+              <p><strong>Practice Problems Set 3</strong></p>
+              <p class="m">Practice problems &bull; Integration</p>
+              <p class="m">Uploaded by <strong>Ahmed Khan</strong> &bull; <span class="material-symbols-outlined star filled">star</span> <span class="rating-num">3.8</span> (9)</p>
+            </div>
+            <div class="row wrap">
+              <button type="button" class="btn btn-secondary btn-sm" data-open="prev"><span class="material-symbols-outlined">visibility</span>Preview</button>
+              <a href="#" class="btn btn-primary btn-sm"><span class="material-symbols-outlined">download</span>Download</a>
+              <button type="button" class="btn btn-danger btn-sm" data-open="rep"><span class="material-symbols-outlined">flag</span>Report</button>
+            </div>
+          </article>
+          <article class="card row wrap">
+            <span class="ftype pdf">PDF</span>
+            <div class="f">
+              <p><strong>Derivatives Quick Notes</strong></p>
+              <p class="m">Notes &bull; Derivatives</p>
+              <p class="m">Uploaded by <strong>Mahnoor Fatima</strong> &bull; <span class="material-symbols-outlined star filled">star</span> <span class="rating-num">4.5</span> (14)</p>
+            </div>
+            <div class="row wrap">
+              <button type="button" class="btn btn-secondary btn-sm" data-open="prev"><span class="material-symbols-outlined">visibility</span>Preview</button>
+              <a href="#" class="btn btn-primary btn-sm"><span class="material-symbols-outlined">download</span>Download</a>
+              <button type="button" class="btn btn-danger btn-sm" data-open="rep"><span class="material-symbols-outlined">flag</span>Report</button>
+            </div>
+          </article>
+        </div>
+        <nav class="pager" aria-label="Pagination">
+          <button type="button" class="btn btn-secondary btn-sm" aria-label="Previous page">&lsaquo;</button>
+          <button type="button" class="btn btn-primary btn-sm" aria-current="page">1</button>
+          <button type="button" class="btn btn-secondary btn-sm">2</button>
+          <button type="button" class="btn btn-secondary btn-sm">3</button>
+          <button type="button" class="btn btn-secondary btn-sm" aria-label="Next page">&rsaquo;</button>
+        </nav>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 FASTutor. Built for the FAST-NUCES student community. Not affiliated with FAST-NUCES administration.</p>
+      <div class="footer-links">
+        <a href="terms.html">Terms</a>
+        <a href="terms.html?tab=privacy">Privacy</a>
+        <a href="terms.html?tab=community">Student Guidelines</a>
+      </div>
+    </div>
+  </footer>
+  <dialog id="prev" aria-labelledby="prev-title">
+    <div class="dialog-head">
+      <div>
+        <span class="eyebrow">Preview</span>
+        <h3 id="prev-title">Integration Notes</h3>
+      </div>
+      <button type="button" class="dialog-close" data-close aria-label="Close">&times;</button>
+    </div>
+    <p class="m">By Ayesha Noor &bull;
+      <span class="stars" aria-label="4 out of 5 stars">
+        <span class="material-symbols-outlined star filled">star</span>
+        <span class="material-symbols-outlined star filled">star</span>
+        <span class="material-symbols-outlined star filled">star</span>
+        <span class="material-symbols-outlined star filled">star</span>
+        <span class="material-symbols-outlined star">star</span>
+      </span>
+    </p>
+    <div class="preview-box">First page preview</div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-danger btn-sm" data-open="rep">Report</button>
+      <a href="#" class="btn btn-primary btn-sm">Download</a>
+      <button type="button" class="btn btn-secondary btn-sm" data-close>Close</button>
+    </div>
+  </dialog>
+  <dialog id="up" aria-labelledby="up-title">
+    <div class="dialog-head">
+      <div>
+        <span class="eyebrow">Tutors only</span>
+        <h3 id="up-title">Upload resource</h3>
+      </div>
+      <button type="button" class="dialog-close" data-close aria-label="Close">&times;</button>
+    </div>
+    <label class="l" for="up-title-input">Title</label>
+    <input id="up-title-input" type="text" class="field" placeholder="e.g. Integration Notes">
+    <label class="l" for="up-course">Course</label>
+    <select id="up-course" class="field">
+      <option>CS-1002 PF</option>
+      <option>MT-1003 Calculus</option>
+      <option>NS-1001 Applied Physics</option>
+    </select>
+    <label class="l" for="up-topic">Topic</label>
+    <input id="up-topic" type="text" class="field" placeholder="e.g. Integration">
+    <label class="l" for="up-type">Type</label>
+    <select id="up-type" class="field">
+      <option>Notes</option>
+      <option>Cheat sheet</option>
+      <option>Practice problems</option>
+    </select>
+    <label class="l" for="up-file">File</label>
+    <input id="up-file" type="file" class="field">
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-close>Cancel</button>
+      <button type="button" class="btn btn-primary" data-close>Upload</button>
+    </div>
+  </dialog>
+  <dialog id="rep" aria-labelledby="rep-title">
+    <div class="dialog-head">
+      <div>
+        <span class="eyebrow">Moderation</span>
+        <h3 id="rep-title">Report content</h3>
+      </div>
+      <button type="button" class="dialog-close" data-close aria-label="Close">&times;</button>
+    </div>
+    <p class="m">Tell us what is wrong with this resource.</p>
+    <div class="radio-stack">
+      <label class="filter-opt"><input type="radio" name="report-reason" value="inappropriate">Inappropriate content</label>
+      <label class="filter-opt"><input type="radio" name="report-reason" value="wrong">Wrong or copied material</label>
+      <label class="filter-opt"><input type="radio" name="report-reason" value="other">Other</label>
+    </div>
+    <textarea class="field" rows="3" placeholder="Details" aria-label="Details"></textarea>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-close>Cancel</button>
+      <button type="button" class="btn btn-danger" data-close>Submit report</button>
+    </div>
+  </dialog>
+  <script>
+    document.querySelectorAll('[data-open]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.getElementById(btn.dataset.open).showModal();
+      });
+    });
+    document.querySelectorAll('[data-close]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btn.closest('dialog').close();
+      });
+    });
+  </script>
+</body>
+</html>
+pages/group-sessions.html
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group Sessions &amp; Workshops | FASTutor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@24,500,0..1&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="../css/member-pages.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="../index.html" class="brand">
+          <span class="brand-mark"><span class="material-symbols-outlined">school</span></span>
+          <span>
+            <span class="brand-title">
+              <span class="brand-name">FASTutor</span>
+              <span class="verified-pill">VERIFIED</span>
+            </span>
+            <span class="brand-sub">FAST-NUCES Peer Mentorship</span>
+          </span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="../index.html#best-tutors">Find Tutors</a>
+          <a href="../index.html#exam-rush" class="exam-rush">Exam Rush <span class="pulse-dot" aria-hidden="true"></span></a>
+          <a href="resources.html">Study Resources</a>
+          <a href="study-tips.html">Study Tips</a>
+        </nav>
+      </div>
+      <div class="header-actions">
+        <a href="tutor-dashboard.html" class="btn btn-secondary btn-sm">Tutor</a>
+        <a href="group-sessions.html" class="btn btn-secondary btn-sm">Group Sessions</a>
+        <span class="avatar" aria-label="Ahmad Farooq">AF</span>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <span class="eyebrow">Group Sessions &amp; Workshops</span>
+        <h1>Learn together, pay less</h1>
+        <p class="m">Join workshops and group revisions hosted by verified seniors.</p>
+      </div>
+      <div class="row wrap">
+        <div class="search-wrap">
+          <span class="material-symbols-outlined" aria-hidden="true">search</span>
+          <input type="search" class="field search-input" placeholder="Search sessions..." aria-label="Search sessions">
+        </div>
+        <button type="button" class="btn btn-primary" data-open="host"><span class="material-symbols-outlined">add</span>Host a session (tutors)</button>
+      </div>
+    </div>
+    <section class="banner">
+      <div class="f">
+        <span class="banner-eyebrow">Live exam support</span>
+        <h2>Sessional season is here</h2>
+        <p>Join live group revision hubs, 8 PM to 2 AM, before Sessional 1, 2 and Finals.</p>
+      </div>
+      <div class="row wrap">
+        <a href="../index.html#exam-rush" class="btn btn-amber"><span class="material-symbols-outlined">groups</span>Join Group Session</a>
+        <a href="../index.html#best-tutors" class="btn btn-ghost">Find Standby Tutors</a>
+      </div>
+    </section>
+    <div class="lib">
+      <aside class="card filters" aria-label="Session filters">
+        <p class="filters-title">Filters</p>
+        <div class="filter-group">
+          <p class="filter-heading">COURSE</p>
+          <label class="filter-opt"><input type="checkbox" checked><span class="code">MT-1003</span> Calculus</label>
+          <label class="filter-opt"><input type="checkbox" checked><span class="code">CS-1002</span> PF</label>
+          <label class="filter-opt"><input type="checkbox" checked><span class="code">NS-1001</span> Applied Physics</label>
+          <label class="filter-opt"><input type="checkbox" checked><span class="code">CS-2002</span> OOP</label>
+        </div>
+        <div class="filter-group">
+          <p class="filter-heading">TYPE</p>
+          <label class="filter-opt"><input type="radio" name="session-type" value="all" checked>All types</label>
+          <label class="filter-opt"><input type="radio" name="session-type" value="workshop">Workshop</label>
+          <label class="filter-opt"><input type="radio" name="session-type" value="revision">Group revision</label>
+        </div>
+        <div class="filter-group">
+          <p class="filter-heading">MODE</p>
+          <label class="filter-opt"><input type="checkbox" checked>Online</label>
+          <label class="filter-opt"><input type="checkbox" checked>On campus</label>
+        </div>
+        <div class="filter-group">
+          <p class="filter-heading">MAX PRICE</p>
+          <input type="range" class="range-field" min="100" max="500" value="400" aria-label="Maximum price in PKR">
+          <p class="m">Up to PKR 400</p>
+        </div>
+        <div class="filter-group">
+          <p class="filter-heading">MY SESSIONS</p>
+          <label class="filter-opt"><input type="checkbox">Show only joined</label>
+        </div>
+      </aside>
+      <section aria-label="Upcoming group sessions">
+        <div class="results-head">
+          <h2 class="sec"><span class="material-symbols-outlined">event</span>Upcoming sessions</h2>
+          <select class="field sort-select" aria-label="Sort sessions">
+            <option>Sort: Soonest</option>
+            <option>Price: Low to high</option>
+            <option>Most seats left</option>
+          </select>
+        </div>
+        <div class="res-list">
+          <article class="card row wrap session-card">
+            <div class="when"><strong>28</strong><span>NOV</span></div>
+            <div class="f">
+              <h3>Integration Crash Course</h3>
+              <div class="session-tags">
+                <span class="code">MT-1003</span>
+                <span class="chip b">Workshop</span>
+              </div>
+              <div class="session-host">
+                <span class="avatar av-s av-28">AN</span>
+                <span>Host: <strong>Ayesha Noor</strong> &bull; <span class="material-symbols-outlined star filled">star</span> <span class="rating-num">4.9</span></span>
+              </div>
+              <div class="session-meta">
+                <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+                <span>Sat, 4:00 PM</span>
+                <span>&bull;</span>
+                <span class="material-symbols-outlined" aria-hidden="true">videocam</span>
+                <span>Online (Google Meet)</span>
+              </div>
+            </div>
+            <div class="seats-col">
+              <div class="seats-top">
+                <span><strong>8/15</strong> seats</span>
+              </div>
+              <div class="bar" role="progressbar" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100" aria-label="8 of 15 seats filled">
+                <i class="w-53"></i>
+              </div>
+              <p class="session-price">PKR 300</p>
+            </div>
+            <div class="session-actions">
+              <button type="button" class="btn btn-secondary btn-sm" data-open="det">View details</button>
+              <button type="button" class="btn btn-green btn-sm">Join session</button>
+            </div>
+          </article>
+          <article class="card row wrap session-card">
+            <div class="when"><strong>29</strong><span>NOV</span></div>
+            <div class="f">
+              <h3>PF Arrays Revision</h3>
+              <div class="session-tags">
+                <span class="code">CS-1002</span>
+                <span class="chip g">Group revision</span>
+              </div>
+              <div class="session-host">
+                <span class="avatar av-28">HT</span>
+                <span>Host: <strong>Hamza Tariq</strong> &bull; <span class="material-symbols-outlined star filled">star</span> <span class="rating-num">4.7</span></span>
+              </div>
+              <div class="session-meta">
+                <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+                <span>Sun, 11:00 AM</span>
+                <span>&bull;</span>
+                <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+                <span>Library, Room 2</span>
+              </div>
+            </div>
+            <div class="seats-col">
+              <div class="seats-top">
+                <span><strong>15/15</strong> seats</span>
+                <span class="chip r">FULL</span>
+              </div>
+              <div class="bar full" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="15 of 15 seats filled">
+                <i class="w-100"></i>
+              </div>
+              <p class="session-price">PKR 250</p>
+            </div>
+            <div class="session-actions">
+              <button type="button" class="btn btn-secondary btn-sm" data-open="det">View details</button>
+              <button type="button" class="btn btn-secondary btn-sm">Join waitlist</button>
+            </div>
+          </article>
+          <article class="card row wrap session-card">
+            <div class="when"><strong>30</strong><span>NOV</span></div>
+            <div class="f">
+              <h3>Physics Problem Solving</h3>
+              <div class="session-tags">
+                <span class="code">NS-1001</span>
+                <span class="chip b">Workshop</span>
+              </div>
+              <div class="session-host">
+                <span class="avatar av-t av-28">AK</span>
+                <span>Host: <strong>Ahmed Khan</strong> &bull; <span class="material-symbols-outlined star filled">star</span> <span class="rating-num">4.8</span></span>
+              </div>
+              <div class="session-meta">
+                <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+                <span>Mon, 6:00 PM</span>
+                <span>&bull;</span>
+                <span class="material-symbols-outlined" aria-hidden="true">videocam</span>
+                <span>Online (Google Meet)</span>
+              </div>
+            </div>
+            <div class="seats-col">
+              <div class="seats-top">
+                <span><strong>5/12</strong> seats</span>
+              </div>
+              <div class="bar" role="progressbar" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100" aria-label="5 of 12 seats filled">
+                <i class="w-42"></i>
+              </div>
+              <p class="session-price">PKR 200</p>
+            </div>
+            <div class="session-actions">
+              <button type="button" class="btn btn-secondary btn-sm" data-open="det">View details</button>
+              <button type="button" class="btn btn-green btn-sm">Join session</button>
+            </div>
+          </article>
+          <article class="card row wrap session-card">
+            <div class="when"><strong>01</strong><span>DEC</span></div>
+            <div class="f">
+              <h3>OOP Final Revision</h3>
+              <div class="session-tags">
+                <span class="code">CS-2002</span>
+                <span class="chip g">Group revision</span>
+              </div>
+              <div class="session-host">
+                <span class="avatar av-t av-28">MF</span>
+                <span>Host: <strong>Mahnoor Fatima</strong> &bull; <span class="material-symbols-outlined star filled">star</span> <span class="rating-num">5.0</span></span>
+              </div>
+              <div class="session-meta">
+                <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+                <span>Tue, 8:00 PM</span>
+                <span>&bull;</span>
+                <span class="material-symbols-outlined" aria-hidden="true">videocam</span>
+                <span>Online (Google Meet)</span>
+              </div>
+            </div>
+            <div class="seats-col">
+              <div class="seats-top">
+                <span><strong>10/20</strong> seats</span>
+              </div>
+              <div class="bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" aria-label="10 of 20 seats filled">
+                <i class="w-50"></i>
+              </div>
+              <p class="session-price">PKR 350</p>
+            </div>
+            <div class="session-actions">
+              <button type="button" class="btn btn-secondary btn-sm" data-open="det">View details</button>
+              <button type="button" class="btn btn-green btn-sm">Join session</button>
+            </div>
+          </article>
+        </div>
+        <nav class="pager" aria-label="Pagination">
+          <button type="button" class="btn btn-secondary btn-sm" aria-label="Previous page">&lsaquo;</button>
+          <button type="button" class="btn btn-primary btn-sm" aria-current="page">1</button>
+          <button type="button" class="btn btn-secondary btn-sm">2</button>
+          <button type="button" class="btn btn-secondary btn-sm">3</button>
+          <button type="button" class="btn btn-secondary btn-sm" aria-label="Next page">&rsaquo;</button>
+        </nav>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 FASTutor. Built for the FAST-NUCES student community. Not affiliated with FAST-NUCES administration.</p>
+      <div class="footer-links">
+        <a href="terms.html">Terms</a>
+        <a href="terms.html?tab=privacy">Privacy</a>
+        <a href="terms.html?tab=community">Student Guidelines</a>
+      </div>
+    </div>
+  </footer>
+  <dialog id="det" aria-labelledby="det-title">
+    <div class="dialog-head">
+      <div>
+        <span class="eyebrow">Session details</span>
+        <h3 id="det-title">Integration Crash Course</h3>
+      </div>
+      <button type="button" class="dialog-close" data-close aria-label="Close">&times;</button>
+    </div>
+    <p class="m">Host: <strong>Ayesha Noor</strong> &bull; <span class="material-symbols-outlined star filled">star</span> <span class="rating-num">4.9</span> &bull; <a href="../index.html#best-tutors" class="link-inline">View profile</a></p>
+    <div class="det-box">
+      <div class="det-meta">
+        <span class="material-symbols-outlined" aria-hidden="true">schedule</span>
+        <span>Sat 28 Nov, 4:00 PM &bull; 90 min</span>
+      </div>
+      <div class="det-meta">
+        <span class="material-symbols-outlined" aria-hidden="true">videocam</span>
+        <span>Online (Google Meet link sent after joining)</span>
+      </div>
+      <p>Limits recap, integration by parts and substitution, plus 10 past-paper questions solved step by step.</p>
+    </div>
+    <div class="det-summary">
+      <div class="row">
+        <div class="avatar-stack" aria-label="Registered students">
+          <span class="avatar av-32">DA</span>
+          <span class="avatar av-s av-32">AL</span>
+          <span class="avatar av-t av-32">US</span>
+          <span class="avatar av-32">+5</span>
+        </div>
+        <span class="m">7 seats left</span>
+      </div>
+      <strong class="session-price">PKR 300</strong>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-close>Close</button>
+      <button type="button" class="btn btn-green" data-close>Join now</button>
+    </div>
+  </dialog>
+  <dialog id="host" aria-labelledby="host-title">
+    <div class="dialog-head">
+      <div>
+        <span class="eyebrow">Tutors only</span>
+        <h3 id="host-title">Host a session</h3>
+      </div>
+      <button type="button" class="dialog-close" data-close aria-label="Close">&times;</button>
+    </div>
+    <label class="l" for="host-session-title">Title</label>
+    <input id="host-session-title" type="text" class="field" placeholder="e.g. Integration Crash Course">
+    <div class="grid g2 dialog-grid">
+      <div>
+        <label class="l" for="host-course">Course</label>
+        <select id="host-course" class="field">
+          <option>MT-1003 Calculus</option>
+          <option>CS-1002 PF</option>
+          <option>NS-1001 Applied Physics</option>
+          <option>CS-2002 OOP</option>
+        </select>
+      </div>
+      <div>
+        <label class="l" for="host-topic">Topic</label>
+        <input id="host-topic" type="text" class="field" placeholder="e.g. Integration">
+      </div>
+      <div>
+        <label class="l" for="host-date">Date</label>
+        <input id="host-date" type="date" class="field">
+      </div>
+      <div>
+        <label class="l" for="host-time">Time</label>
+        <input id="host-time" type="time" class="field">
+      </div>
+      <div>
+        <label class="l" for="host-mode">Mode</label>
+        <select id="host-mode" class="field">
+          <option>Online</option>
+          <option>On campus</option>
+        </select>
+      </div>
+      <div>
+        <label class="l" for="host-seats">Max seats</label>
+        <input id="host-seats" type="number" class="field" value="15">
+      </div>
+    </div>
+    <label class="l" for="host-price">Price per student (PKR)</label>
+    <input id="host-price" type="number" class="field" value="300">
+    <label class="l" for="host-desc">Description</label>
+    <textarea id="host-desc" class="field" rows="3" placeholder="What topics and past-paper questions will you cover?"></textarea>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" data-close>Cancel</button>
+      <button type="button" class="btn btn-primary" data-close>Publish</button>
+    </div>
+  </dialog>
+  <script>
+    document.querySelectorAll('[data-open]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.getElementById(btn.dataset.open).showModal();
+      });
+    });
+    document.querySelectorAll('[data-close]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btn.closest('dialog').close();
+      });
+    });
+  </script>
+</body>
+</html>
