@@ -1,0 +1,489 @@
+/* ==========================================================================
+   FASTutor — Help Center page
+   Loaded after css/style.css; reuses its tokens, buttons, FAQ accordion and form fields.
+   ========================================================================== */
+
+.help-main {
+  padding-top: 4.25rem;
+}
+
+@media (min-width: 768px) {
+  .help-main {
+    padding-top: 5rem;
+  }
+}
+
+.help-main [hidden] {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.help-main .btn:focus-visible,
+.help-main .link-arrow:focus-visible,
+.help-chip:focus-visible,
+.faq-tab:focus-visible,
+.faq-toggle:focus-visible,
+.faq-link:focus-visible,
+.ambassador-email:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   1. Hero + search
+   -------------------------------------------------------------------------- */
+.help-hero {
+  border-bottom: 1px solid var(--color-outline-variant);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(13, 148, 136, 0.1), transparent 34%),
+    radial-gradient(circle at 94% 10%, rgba(217, 119, 6, 0.1), transparent 28%),
+    var(--color-surface-container-low);
+}
+
+.help-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  .help-hero-inner {
+    padding-top: 5rem;
+    padding-bottom: 4.5rem;
+  }
+}
+
+.help-hero-inner .eyebrow-pill {
+  align-self: center;
+}
+
+.help-title {
+  margin-top: 1.25rem;
+  max-width: 56rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 5.2vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  color: var(--color-primary);
+}
+
+.help-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 40rem;
+  margin-top: 2rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  background: var(--color-surface-bright);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-elevated);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.help-search:focus-within {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.14), var(--shadow-elevated);
+}
+
+.help-search-icon {
+  flex: none;
+  font-size: 22px;
+  color: var(--color-outline);
+}
+
+.help-search-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.65rem 0.25rem;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-primary);
+}
+
+.help-search-input::placeholder {
+  color: var(--color-outline);
+}
+
+.help-popular {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.help-popular-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-outline);
+}
+
+.help-chip {
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-outline-variant);
+  background: var(--color-surface-bright);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.help-chip:hover {
+  border-color: var(--color-secondary);
+  color: var(--color-secondary-dark);
+}
+
+.help-status {
+  min-height: 1.5rem;
+  margin-top: 1rem;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.help-status a {
+  color: var(--color-secondary-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Shared section scaffolding
+   -------------------------------------------------------------------------- */
+.help-section {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+@media (min-width: 1024px) {
+  .help-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.help-section--surface {
+  background: var(--color-surface);
+}
+
+.help-section--white {
+  background: var(--color-surface-bright);
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.help-head {
+  max-width: 42rem;
+  margin-bottom: 2rem;
+}
+
+.help-h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.625rem, 3.6vw, 2.25rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+
+.help-sub {
+  margin-top: 0.6rem;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-on-surface-variant);
+}
+
+/* --------------------------------------------------------------------------
+   2. Campus safety & academic integrity (2 x 2 grid, as in the prototype)
+   -------------------------------------------------------------------------- */
+.safety-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1px;
+  overflow: hidden;
+  background: var(--color-outline-variant);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card-subtle);
+}
+
+@media (min-width: 768px) {
+  .safety-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.safety-tile {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: var(--color-surface-bright);
+}
+
+@media (min-width: 640px) {
+  .safety-tile {
+    padding: 1.75rem 2rem;
+  }
+}
+
+.safety-icon {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--color-secondary-container);
+  color: var(--color-secondary-dark);
+}
+
+.safety-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  color: var(--color-primary);
+}
+
+.safety-desc {
+  margin-top: 0.4rem;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--color-on-surface-variant);
+}
+
+.safety-link {
+  margin-top: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. FAQ — tabs attached to a panel (folder-tab look from the prototype)
+   -------------------------------------------------------------------------- */
+.faq-box {
+  overflow: hidden;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-bright);
+  box-shadow: var(--shadow-card-subtle);
+}
+
+.faq-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.6rem 0.75rem 0;
+  overflow-x: auto;
+  background: var(--color-surface-container-low);
+  border-bottom: 1px solid var(--color-outline-variant);
+}
+
+.faq-tab {
+  flex: none;
+  margin-bottom: -1px;
+  padding: 0.7rem 1.15rem;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: 0.65rem 0.65rem 0 0;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-on-surface-variant);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.faq-tab:hover {
+  color: var(--color-primary);
+}
+
+.faq-tab.is-active {
+  background: var(--color-surface-bright);
+  border-color: var(--color-outline-variant);
+  color: var(--color-primary);
+}
+
+.faq-panel {
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .faq-panel {
+    padding: 1.5rem;
+  }
+}
+
+/* The category label only shows while searching, when all categories are listed together */
+.faq-panel-label {
+  display: none;
+  margin: 0.25rem 0 0.75rem;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-secondary-dark);
+}
+
+.faq-box.is-searching .faq-tabs {
+  display: none;
+}
+
+.faq-box.is-searching .faq-panel-label {
+  display: block;
+}
+
+.faq-link {
+  font-weight: 600;
+  color: var(--color-secondary-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Contact & support
+   -------------------------------------------------------------------------- */
+.contact-grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+@media (min-width: 900px) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 2rem;
+  }
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.5rem;
+  background: var(--color-surface-bright);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card-subtle);
+}
+
+@media (min-width: 640px) {
+  .contact-card {
+    padding: 2rem;
+  }
+}
+
+.contact-card .form-control {
+  padding: 0.75rem 0.9rem;
+  font-size: 14px;
+}
+
+.contact-card .form-label {
+  font-size: 13px;
+}
+
+.contact-card .form-control[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.contact-textarea {
+  min-height: 8rem;
+  resize: vertical;
+  font-family: var(--font-body);
+  line-height: 1.55;
+}
+
+.ambassador-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem;
+  border-radius: var(--radius-xl);
+  color: #ffffff;
+  background: linear-gradient(150deg, var(--color-primary), var(--color-primary-container) 60%, var(--color-navy-deep));
+  box-shadow: var(--shadow-banner);
+}
+
+@media (min-width: 640px) {
+  .ambassador-card {
+    padding: 2rem;
+  }
+}
+
+.ambassador-icon {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-amber-300);
+}
+
+.ambassador-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.375rem;
+  letter-spacing: -0.015em;
+}
+
+.ambassador-text {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--color-slate-300);
+}
+
+.ambassador-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: max-content;
+  max-width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.ambassador-email:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.ambassador-email .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--color-amber-300);
+}
+
+.ambassador-card .btn {
+  margin-top: auto;
+}
+
+.ambassador-card .btn .material-symbols-outlined {
+  font-size: 20px;
+}
